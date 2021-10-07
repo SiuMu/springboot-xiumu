@@ -17,37 +17,7 @@
 - `exception:` 全局异常处理相关
 - `config:` 配置相关
 
-## manager层是干嘛的
-
-与常规的MVC分层不同，这里多了一个manager层。我们在项目中经常会遇到在service层中各个service类之间互相依赖，虽然springboot解决了循环依赖的问题，但是我总觉得这样不太好。后来我也是看了人家的手册和人家的分层结构，决定拾人牙慧，用上manager。我们可以把互相依赖的那部分方法作为通用方法放在manager层。然后各个service层只需要调用manager就可以了。大言不惭的说一声，这可能就是内聚吧。
-
-## 领域模型POJO
-
-- `POJO`: POJO 专指只有 setter/getter/toString 的简单类，包括 DO/DTO/VO 等
-
-- `Entity`: 此对象与数据库表结构对应，通过 DAO 层向上传输数据源对象，放在entity包下。
-
-- `DTO`: 数据传输对象，controller，service，manager层之间的数据传输对象。
-
-- `VO`: controller层向显示层传输的对象。
-
-- `Query`: 复杂的查询参数对象
-
-### 1. 问题
-
-关于pojo的使用总是有些混乱，每一个层都有自己对应的领域模型，过于追求每一层都用自己的领域模型，就会导致在一次请求中一个对象可能会出现3次甚至4次转换，当返回的时候同样也会出现3-4次转换。如果在开发中真的按照这么来，这种重复无用的逻辑实在是招人烦。
-
-###  2. 最终方案
-
-- controller层用于新增，修改或查询的参数可以使用DTO，VO或者Query来接收，用DTO或者VO来返回。该层不允许使用Entity。数据校验注解也不能出现在Entity中
-- service，manager层可以使用DTO，VO，Query，Entity。但是DTO，VO，Query不允许传入DAO层，同理Entity不允许传入controller层
-
-- 总的来说
-DTO，VO，Query可以出现在controller，service，manager中；
-Entity可以出现在Dao，manager，service中。
-
-
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1003/132419_3a1c864f_1806068.png "611384c204ece.png")
+有关manager层，pojo领域对象规范等详细情况请查看[WIKI文档](https://gitee.com/siumu/springboot-xiumu/wikis/%E5%89%8D%E8%A8%80)
 
 # 版本更新说明
 

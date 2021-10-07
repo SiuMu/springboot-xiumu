@@ -70,4 +70,11 @@ public class ResultJSON {
         this.result = result;
     }
 
+    /**
+     * 返回数据
+     * @param result 返回结果
+     */
+    public static ResultJSON success(Object result) {
+        return new ResultJSON(200,"success",result);
+    }
 }
