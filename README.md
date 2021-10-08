@@ -19,6 +19,9 @@
 
 有关manager层，pojo领域对象规范等详细情况请查看[WIKI文档](https://gitee.com/siumu/springboot-xiumu/wikis/%E5%89%8D%E8%A8%80)
 
+# sql文件
+sql文件放在项目的src/main/resources文件下
+
 # 版本更新说明
 
 我会把每一个版本打一个tag标签。选择不同的标签下载，方便我以及大家下载不同的版本。希望我这个仓库标签越来越多，项目越做越大
