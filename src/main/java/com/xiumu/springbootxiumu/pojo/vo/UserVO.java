@@ -34,4 +34,9 @@ public class UserVO {
      */
     private String email;
 
+    /**
+     * 用户的角色编码
+     */
+    private String roleCode;
+
 }

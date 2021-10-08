@@ -71,10 +71,17 @@ public class ResultJSON {
     }
 
     /**
-     * 返回数据
+     * 成功返回数据
      * @param result 返回结果
      */
     public static ResultJSON success(Object result) {
         return new ResultJSON(200,"success",result);
+    }
+
+    /**
+     * 成功返回，无数据
+     */
+    public static ResultJSON success() {
+        return new ResultJSON(200,"success",null);
     }
 }

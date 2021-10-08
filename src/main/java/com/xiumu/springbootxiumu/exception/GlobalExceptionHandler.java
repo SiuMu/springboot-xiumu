@@ -1,6 +1,7 @@
 package com.xiumu.springbootxiumu.exception;
 
 import cn.dev33.satoken.exception.NotLoginException;
+import cn.dev33.satoken.exception.NotPermissionException;
 import cn.dev33.satoken.exception.NotRoleException;
 import cn.dev33.satoken.exception.SaTokenException;
 import com.xiumu.springbootxiumu.pojo.vo.ResultJSON;
@@ -38,6 +39,9 @@ public class GlobalExceptionHandler {
             // 未登录
             exception = CommonException.NOT_LOGIN;
         }else if (e instanceof NotRoleException){
+            // 没有权限
+            exception = CommonException.AUTHORITY_FAIL;
+        }else if (e instanceof NotPermissionException){
             // 没有权限
             exception = CommonException.AUTHORITY_FAIL;
         }
