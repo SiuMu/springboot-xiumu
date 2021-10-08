@@ -3,6 +3,7 @@ package com.xiumu.springbootxiumu.pojo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.xiumu.springbootxiumu.utils.enums.Gender;
 import com.xiumu.springbootxiumu.utils.enums.YesNo;
 import lombok.Data;
 
@@ -27,6 +28,21 @@ public class User {
      * 密码
      */
     private String password;
+
+    /**
+     * 性别，0男，1女，2未知
+     */
+    private Gender gender;
+
+    /**
+     * 手机号
+     */
+    private String phone;
+
+    /**
+     * 邮箱
+     */
+    private String email;
 
     /**
      * 创建时间

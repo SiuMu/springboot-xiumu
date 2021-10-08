@@ -36,7 +36,7 @@ public class UserController {
     @GetMapping("/getUserInfo")
     public ResultJSON getUserInfo(){
         UserVO userVO = userService.getUserById(StpUtil.getLoginIdAsLong());
-        return ResultJSON.success(StpUtil.getTokenInfo().tokenValue);
+        return ResultJSON.success(userVO);
     }
 
 

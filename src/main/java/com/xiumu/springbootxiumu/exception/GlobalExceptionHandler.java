@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
 
         if (e instanceof NotLoginException){
             // 未登录
-            exception = CommonException.LOGIN_FAIL;
+            exception = CommonException.NOT_LOGIN;
         }else if (e instanceof NotRoleException){
             // 没有权限
             exception = CommonException.AUTHORITY_FAIL;

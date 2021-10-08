@@ -5,6 +5,7 @@ public enum CommonException {
 
 
     LOGIN_FAIL(102, "用户名或者密码有误！"),
+    NOT_LOGIN(102, "登录失效！请重新登录"),
     AUTHORITY_FAIL(403, "没有相关权限！！"),
     SERVE_FAIL(500, "服务器繁忙!");
 
