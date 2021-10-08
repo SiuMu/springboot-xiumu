@@ -49,4 +49,5 @@
 ## v1.1.1说明
 将公共字段如，id，createTime，updateTime，deleteFlag提取为BaseEntity。
 其他实体类继承该基类即可
+其它内容与上一个版本一致。
 
