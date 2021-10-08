@@ -15,6 +15,11 @@ public class UserVO {
     private String username;
 
     /**
+     * 头像
+     */
+    private String avatar;
+
+    /**
      * 性别，0男，1女，2未知
      */
     private Gender gender;
