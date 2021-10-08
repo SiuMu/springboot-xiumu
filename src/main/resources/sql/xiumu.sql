@@ -4,6 +4,10 @@ create table sys_user
         primary key,
     username    varchar(128)                       null comment '用户名',
     password    varchar(255)                       null comment '密码',
+    avatar      varchar(255)                       null comment '头像',
+    gender      tinyint                            null comment '性别，0男，1女，2未知',
+    phone       varchar(32)                        null comment '手机号',
+    email       varchar(128)                       null comment '邮箱',
     create_time datetime default CURRENT_TIMESTAMP null comment '创建时间',
     update_time datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '更新时间',
     delete_flag tinyint  default 0                 null comment '删除标记，0未删除，1已删除'
