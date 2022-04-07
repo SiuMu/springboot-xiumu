@@ -24,7 +24,7 @@ public class UserController {
      */
     @PostMapping("/login")
     public ResultJSON userLogin(@RequestBody UserLoginDTO userLoginDTO){
-        Long userId = userService.userLogin(userLoginDTO);
+        String userId = userService.userLogin(userLoginDTO);
         StpUtil.login(userId);
         return ResultJSON.success(StpUtil.getTokenInfo().tokenValue);
     }

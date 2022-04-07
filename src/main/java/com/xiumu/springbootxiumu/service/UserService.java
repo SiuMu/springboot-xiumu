@@ -1,7 +1,7 @@
 package com.xiumu.springbootxiumu.service;
 
 import com.xiumu.springbootxiumu.exception.BaseException;
-import com.xiumu.springbootxiumu.exception.CommonException;
+import com.xiumu.springbootxiumu.exception.BizException;
 import com.xiumu.springbootxiumu.manager.UserManager;
 import com.xiumu.springbootxiumu.pojo.dto.UserLoginDTO;
 import com.xiumu.springbootxiumu.pojo.entity.User;
@@ -22,11 +22,11 @@ public class UserService {
      * @param userLoginDTO  登录传参
      * @return
      */
-    public Long userLogin(UserLoginDTO userLoginDTO){
+    public String userLogin(UserLoginDTO userLoginDTO){
         User user = userManager.findUserByUsernameAndPassword(userLoginDTO.getUsername(), userLoginDTO.getPassword());
 
         if (user == null){
-            throw new BaseException(CommonException.LOGIN_FAIL);
+            throw new BizException(BaseException.LOGIN_FAIL);
         }
 
         return user.getId();

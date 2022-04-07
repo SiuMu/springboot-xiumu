@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiumu.springbootxiumu.manager.UserManager;
 import com.xiumu.springbootxiumu.mapper.UserMapper;
 import com.xiumu.springbootxiumu.pojo.entity.User;
-import com.xiumu.springbootxiumu.utils.enums.YesNo;
+import com.xiumu.springbootxiumu.enums.YesNo;
 import org.springframework.stereotype.Service;
 
 @Service

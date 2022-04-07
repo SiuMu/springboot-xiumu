@@ -1,6 +1,6 @@
 package com.xiumu.springbootxiumu.pojo.vo;
 
-import com.xiumu.springbootxiumu.utils.enums.Gender;
+import com.xiumu.springbootxiumu.enums.Gender;
 import lombok.Data;
 
 /**

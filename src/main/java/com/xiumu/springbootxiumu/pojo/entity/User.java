@@ -2,7 +2,7 @@ package com.xiumu.springbootxiumu.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xiumu.springbootxiumu.pojo.base.BaseEntity;
-import com.xiumu.springbootxiumu.utils.enums.Gender;
+import com.xiumu.springbootxiumu.enums.Gender;
 import lombok.Data;
 
 @Data

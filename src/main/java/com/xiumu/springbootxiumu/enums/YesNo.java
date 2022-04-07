@@ -1,4 +1,4 @@
-package com.xiumu.springbootxiumu.utils.enums;
+package com.xiumu.springbootxiumu.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import lombok.Getter;

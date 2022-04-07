@@ -2,7 +2,7 @@ package com.xiumu.springbootxiumu.pojo.base;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.xiumu.springbootxiumu.utils.enums.YesNo;
+import com.xiumu.springbootxiumu.enums.YesNo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ public class BaseEntity implements Serializable {
      * 主键
      */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Long id;
+    private String id;
 
     /**
      * 创建时间
