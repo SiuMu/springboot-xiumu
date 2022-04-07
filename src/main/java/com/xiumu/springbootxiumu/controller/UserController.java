@@ -10,6 +10,8 @@ import com.xiumu.springbootxiumu.pojo.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -23,7 +25,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/login")
-    public ResultJSON userLogin(@RequestBody UserLoginDTO userLoginDTO){
+    public ResultJSON userLogin(@Valid @RequestBody UserLoginDTO userLoginDTO){
         String userId = userManager.userLogin(userLoginDTO);
         StpUtil.login(userId);
         return ResultJSON.success(StpUtil.getTokenInfo().tokenValue);
