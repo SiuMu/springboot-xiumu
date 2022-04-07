@@ -39,4 +39,8 @@ public class UserVO {
      */
     private String roleCode;
 
+
+
+
+
 }

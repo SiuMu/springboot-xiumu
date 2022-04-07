@@ -5,8 +5,12 @@ import cn.dev33.satoken.exception.NotPermissionException;
 import cn.dev33.satoken.exception.NotRoleException;
 import cn.dev33.satoken.exception.SaTokenException;
 import com.xiumu.springbootxiumu.pojo.vo.ResultJSON;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.List;
 
 /**
  * 全局异常处理
@@ -47,6 +51,18 @@ public class GlobalExceptionHandler {
         }
 
         return new ResultJSON(exception.getCode(),exception.getMsg());
+    }
+
+    /**
+     * 参数校验异常处理
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResultJSON HandlerParamsValidException(MethodArgumentNotValidException e){
+        // 返回参数校验中定义的错误信息
+        List<ObjectError> errors = e.getBindingResult().getAllErrors();
+        return ResultJSON.failure(errors.get(0).getDefaultMessage());
     }
 
     /**

@@ -9,6 +9,9 @@ mybatis-plus:
   type-enums-package: com.xiumu.springbootxiumu.enums
   global-config:
     banner: false
+  configuration:
+    map-underscore-to-camel-case: true #驼峰命名转换
+  mapperLocations: classpath:mappers/*.xml
 
 # Sa-Token配置
 sa-token:

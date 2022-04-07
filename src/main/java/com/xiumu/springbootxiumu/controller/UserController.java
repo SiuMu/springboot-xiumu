@@ -3,10 +3,10 @@ package com.xiumu.springbootxiumu.controller;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.stp.StpUtil;
+import com.xiumu.springbootxiumu.manager.UserManager;
 import com.xiumu.springbootxiumu.pojo.dto.UserLoginDTO;
 import com.xiumu.springbootxiumu.pojo.vo.ResultJSON;
 import com.xiumu.springbootxiumu.pojo.vo.UserVO;
-import com.xiumu.springbootxiumu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserManager userManager;
 
     /**
      * 登录接口
@@ -24,7 +24,7 @@ public class UserController {
      */
     @PostMapping("/login")
     public ResultJSON userLogin(@RequestBody UserLoginDTO userLoginDTO){
-        String userId = userService.userLogin(userLoginDTO);
+        String userId = userManager.userLogin(userLoginDTO);
         StpUtil.login(userId);
         return ResultJSON.success(StpUtil.getTokenInfo().tokenValue);
     }
@@ -36,7 +36,7 @@ public class UserController {
     @SaCheckLogin
     @GetMapping("/getUserInfo")
     public ResultJSON getUserInfo(){
-        UserVO userVO = userService.getUserById(StpUtil.getLoginIdAsLong());
+        UserVO userVO = userManager.getUserById(StpUtil.getLoginIdAsLong());
         return ResultJSON.success(userVO);
     }
 

@@ -84,4 +84,13 @@ public class ResultJSON {
     public static ResultJSON success() {
         return new ResultJSON(200,"success",null);
     }
+
+    /**
+     * 请求失败返回错误信息
+     * @param msg   错误信息
+     * @return
+     */
+    public static ResultJSON failure(String msg){
+        return new ResultJSON(500, msg, null);
+    }
 }

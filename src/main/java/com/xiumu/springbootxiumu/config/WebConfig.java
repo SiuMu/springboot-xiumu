@@ -10,7 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfig implements WebMvcConfigurer {
 
     /**
-     * 跨域处理，使用SaToken之后在SaToken配置里的过滤器设置允许跨域
+     * 跨域处理，使用 SaToken 之后在 SaToken 过滤器设置允许跨域
+     * {@link com.xiumu.springbootxiumu.config.satoken.SaTokenConfig}
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -20,7 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 注册Sa-Token注解拦截器
+     * 注册 Sa-Token 注解拦截器
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

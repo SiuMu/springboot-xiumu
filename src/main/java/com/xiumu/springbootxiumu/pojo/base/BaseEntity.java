@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 实体必要字段
+ * 实体类必要字段
  *
  */
 @Data

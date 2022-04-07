@@ -5,21 +5,20 @@ import com.xiumu.springbootxiumu.pojo.base.BaseEntity;
 import lombok.Data;
 
 /**
- * 角色表
+ * 用户角色关联表
+ * @author xiumu
  */
-@TableName("sys_role")
 @Data
-public class Role extends BaseEntity {
+@TableName("sys_user_role")
+public class UserRole extends BaseEntity {
 
     /**
-     * 角色名称
+     * 用户ID
      */
-    private String roleName;
+    private String userId;
 
     /**
-     * 角色编码
+     * 角色ID
      */
-    private String roleCode;
-
-
+    private String roleId;
 }
