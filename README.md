@@ -70,3 +70,4 @@ sql文件放在项目的 src/main/resources 文件下
 2. 移动枚举 enums 包的位置
 3. 实现基本的 RBAC, 即用户-角色-权限控制
 4. 更新表结构 sql
+5. 重新定义 manager 层，将通用业务方法放在 service 层，manager 层调用 service 层实现复杂业务
