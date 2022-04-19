@@ -11,9 +11,16 @@ import java.util.List;
 public interface AuthorityService extends IService<Authority> {
 
     /**
-     * 根据用户ID 查询所有的权限
+     * 根据用户 ID 查询所有的权限
      * @param userId 用户
      * @return
      */
     List<Authority> getByUserId(String userId);
+
+    /**
+     * 根据用户 ID 查询所有的权限编码
+     * @param userId 用户
+     * @return
+     */
+    List<String> getAuthCodeByUserId(String userId);
 }

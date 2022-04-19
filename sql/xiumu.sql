@@ -114,7 +114,6 @@ CREATE TABLE `sys_user` (
   `gender` tinyint(4) DEFAULT NULL COMMENT '性别，0男，1女，2未知',
   `phone` varchar(32) DEFAULT NULL COMMENT '手机号',
   `email` varchar(128) DEFAULT NULL COMMENT '邮箱',
-  `role_code` varchar(32) DEFAULT NULL COMMENT '用户所属角色',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记，0未删除，1已删除',

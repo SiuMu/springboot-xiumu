@@ -3,6 +3,7 @@ package com.xiumu.springbootxiumu.manager;
 import com.xiumu.springbootxiumu.exception.BaseException;
 import com.xiumu.springbootxiumu.exception.BizException;
 import com.xiumu.springbootxiumu.pojo.dto.UserLoginDTO;
+import com.xiumu.springbootxiumu.pojo.dto.UserRegisterDTO;
 import com.xiumu.springbootxiumu.pojo.entity.User;
 import com.xiumu.springbootxiumu.pojo.vo.UserVO;
 import com.xiumu.springbootxiumu.service.UserService;
@@ -40,5 +41,19 @@ public class UserManager {
     public UserVO getUserById(Long id) {
         User user = userService.getById(id);
         return INSTANCE.userToUserVo(user);
+    }
+
+    /**
+     * 用户注册
+     * @param userRegisterDTO 注册信息
+     * @return
+     */
+    public boolean userRegister(UserRegisterDTO userRegisterDTO) {
+        // 先判断用户名是否被使用过
+        if (userService.existByUsername(userRegisterDTO.getUsername())) {
+            throw new BizException(BaseException.REPEAT_USERNAME);
+        }
+        User user = INSTANCE.userRegisterToUser(userRegisterDTO);
+        return userService.save(user);
     }
 }

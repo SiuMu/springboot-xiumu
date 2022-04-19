@@ -14,4 +14,18 @@ public interface UserService extends IService<User> {
      */
     User findUserByUsernameAndPassword(String username, String password);
 
+
+    /**
+     * 根据用户名查找用户信息
+     * @param username  用户名
+     * @return
+     */
+    User findUserByUsername(String username);
+
+    /**
+     * 查询该用户名是否存在
+     * @param username 用户名
+     * @return
+     */
+    boolean existByUsername(String username);
 }

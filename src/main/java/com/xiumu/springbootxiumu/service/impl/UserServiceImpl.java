@@ -19,4 +19,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .eq(User::getDeleteFlag, YesNo.NO);
         return this.getOne(queryWrapper);
     }
+
+    @Override
+    public User findUserByUsername(String username) {
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<User>()
+                .eq(User::getUsername, username)
+                .eq(User::getDeleteFlag, YesNo.NO);
+        return this.getOne(queryWrapper);
+    }
+
+    @Override
+    public boolean existByUsername(String username) {
+        User user = findUserByUsername(username);
+        return user == null;
+    }
 }

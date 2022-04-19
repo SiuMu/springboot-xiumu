@@ -1,7 +1,6 @@
 package com.xiumu.springbootxiumu.controller;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
-import cn.dev33.satoken.annotation.SaCheckRole;
 import cn.dev33.satoken.stp.StpUtil;
 import com.xiumu.springbootxiumu.manager.UserManager;
 import com.xiumu.springbootxiumu.pojo.vo.ResultJSON;
@@ -32,19 +31,5 @@ public class UserController {
         UserVO userVO = userManager.getUserById(StpUtil.getLoginIdAsLong());
         return ResultJSON.success(userVO);
     }
-
-    /**
-     * 验证用户是否有 admin 角色
-     * @return
-     */
-    @SaCheckRole("admin")
-    @GetMapping("/verifyRole")
-    public ResultJSON verifyRole(){
-        // 测试 角色验证
-        return ResultJSON.success();
-    }
-
-
-
 
 }

@@ -7,6 +7,7 @@ import com.xiumu.springbootxiumu.service.RoleService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
@@ -14,5 +15,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Override
     public List<Role> getByUserId(String userId) {
         return this.baseMapper.selectRolesByUserId(userId);
+    }
+
+    @Override
+    public List<String> getRoleCodeByUserId(String userId) {
+        return getByUserId(userId).stream().map(Role::getRoleCode).collect(Collectors.toList());
     }
 }

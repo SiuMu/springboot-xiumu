@@ -7,6 +7,7 @@ package com.xiumu.springbootxiumu.exception;
 public enum BaseException {
 
 
+    REPEAT_USERNAME(1004, "用户名已经被注册！！"),
     AUTHORITY_FAIL(1003, "没有相关权限！！"),
     LOGIN_FAIL(1002, "用户名或者密码有误！"),
     NOT_LOGIN(1001, "登录失效！请重新登录"),

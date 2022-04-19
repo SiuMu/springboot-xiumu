@@ -1,22 +1,26 @@
-package com.xiumu.springbootxiumu.pojo.entity;
+package com.xiumu.springbootxiumu.pojo.dto;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.xiumu.springbootxiumu.pojo.base.BaseEntity;
 import com.xiumu.springbootxiumu.enums.Gender;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
+/**
+ * 用户注册传参
+ */
 @Data
-@TableName("sys_user")
-public class User extends BaseEntity {
+public class UserRegisterDTO {
 
     /**
      * 用户名
      */
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     /**
      * 密码
      */
+    @NotBlank(message = "用户名不能为空")
     private String password;
 
     /**

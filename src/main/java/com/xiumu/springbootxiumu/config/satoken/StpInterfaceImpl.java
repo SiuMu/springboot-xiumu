@@ -2,15 +2,12 @@ package com.xiumu.springbootxiumu.config.satoken;
 
 import cn.dev33.satoken.stp.StpInterface;
 import cn.hutool.core.convert.Convert;
-import com.xiumu.springbootxiumu.pojo.entity.Authority;
-import com.xiumu.springbootxiumu.pojo.entity.Role;
 import com.xiumu.springbootxiumu.service.AuthorityService;
 import com.xiumu.springbootxiumu.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 /**
@@ -31,8 +28,7 @@ public class StpInterfaceImpl implements StpInterface {
      */
     @Override
     public List<String> getPermissionList(Object loginId, String loginType) {
-        List<Authority> authorityList = authorityService.getByUserId(Convert.toStr(loginId));
-        return authorityList.stream().map(Authority::getAuthCode).collect(Collectors.toList());
+        return authorityService.getAuthCodeByUserId(Convert.toStr(loginId));
     }
 
     /**
@@ -41,7 +37,6 @@ public class StpInterfaceImpl implements StpInterface {
      */
     @Override
     public List<String> getRoleList(Object loginId, String loginType) {
-        List<Role> roles = roleService.getByUserId(Convert.toStr(loginId));
-        return roles.stream().map(Role::getRoleCode).collect(Collectors.toList());
+        return roleService.getRoleCodeByUserId(Convert.toStr(loginId));
     }
 }

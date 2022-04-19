@@ -3,6 +3,7 @@ package com.xiumu.springbootxiumu.controller;
 import cn.dev33.satoken.stp.StpUtil;
 import com.xiumu.springbootxiumu.manager.UserManager;
 import com.xiumu.springbootxiumu.pojo.dto.UserLoginDTO;
+import com.xiumu.springbootxiumu.pojo.dto.UserRegisterDTO;
 import com.xiumu.springbootxiumu.pojo.vo.ResultJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,5 +35,15 @@ public class AccountController {
         String userId = userManager.userLogin(userLoginDTO);
         StpUtil.login(userId);
         return ResultJSON.success(StpUtil.getTokenInfo().tokenValue);
+    }
+
+    /**
+     * 注册接口
+     * @param userRegisterDTO 注册传参
+     * @return
+     */
+    @PostMapping("/register")
+    public ResultJSON userRegister(@Valid @RequestBody UserRegisterDTO userRegisterDTO){
+        return ResultJSON.success(userManager.userRegister(userRegisterDTO));
     }
 }
