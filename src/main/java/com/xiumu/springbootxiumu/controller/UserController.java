@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 用户相关 API
+ * 需要登录访问
  */
 @SaCheckLogin
 @RestController
@@ -26,7 +27,7 @@ public class UserController {
      * 获取用户的个人信息
      * @return
      */
-    @GetMapping("/getUserInfo")
+    @GetMapping("/info")
     public ResultJSON getUserInfo(){
         UserVO userVO = userManager.getUserById(StpUtil.getLoginIdAsLong());
         return ResultJSON.success(userVO);

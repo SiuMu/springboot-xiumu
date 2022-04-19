@@ -14,7 +14,7 @@ import javax.validation.Valid;
 
 /**
  * 账号登录注册相关 API
- * 不需要登录
+ * 不需要登录访问
  */
 
 @RestController
