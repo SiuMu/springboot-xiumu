@@ -27,10 +27,4 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                 .eq(User::getDeleteFlag, YesNo.NO);
         return this.getOne(queryWrapper);
     }
-
-    @Override
-    public boolean existByUsername(String username) {
-        User user = findUserByUsername(username);
-        return user == null;
-    }
 }

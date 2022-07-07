@@ -1,4 +1,4 @@
-package com.xiumu.springbootxiumu.utils.lang;
+package com.xiumu.springbootxiumu.utils;
 
 import com.xiumu.springbootxiumu.exception.base.XiuMuException;
 import com.xiumu.springbootxiumu.exception.user.UserException;

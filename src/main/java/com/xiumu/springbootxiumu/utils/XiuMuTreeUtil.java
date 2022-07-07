@@ -1,4 +1,4 @@
-package com.xiumu.springbootxiumu.utils.tree;
+package com.xiumu.springbootxiumu.utils;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
@@ -50,31 +50,32 @@ public class XiuMuTreeUtil extends TreeUtil {
         }
 
         // 还原配置
-        configKeys(null,null,null);
+        configKeys(null, null, null);
 
         return build(nodeList, parentId);
     }
 
     /**
      * 配置节点ID的 key
+     *
      * @param idKey       节点ID
      * @param parentIdKey 父节点ID
      * @param weightKey   权重
      */
     public static void configKeys(String idKey, String parentIdKey, String weightKey) {
-        if (StrUtil.isNotBlank(idKey)){
+        if (StrUtil.isNotBlank(idKey)) {
             ID_KEY = idKey;
-        }else {
+        } else {
             ID_KEY = "id";
         }
-        if (StrUtil.isNotBlank(parentIdKey)){
+        if (StrUtil.isNotBlank(parentIdKey)) {
             PARENT_ID_KEY = parentIdKey;
-        }else {
+        } else {
             PARENT_ID_KEY = "parentId";
         }
-        if (StrUtil.isNotBlank(weightKey)){
+        if (StrUtil.isNotBlank(weightKey)) {
             WEIGHT_KEY = weightKey;
-        }else {
+        } else {
             WEIGHT_KEY = "weight";
         }
 
