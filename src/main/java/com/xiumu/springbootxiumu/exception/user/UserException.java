@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * 异常枚举
- * 1000 - 2000
+ * 1000 - 1999
  */
 @Getter
 public enum UserException implements IBaseException {

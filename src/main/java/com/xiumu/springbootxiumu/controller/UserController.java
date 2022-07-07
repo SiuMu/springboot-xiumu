@@ -2,8 +2,8 @@ package com.xiumu.springbootxiumu.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
 import com.xiumu.springbootxiumu.manager.UserManager;
+import com.xiumu.springbootxiumu.pojo.dto.UserDTO;
 import com.xiumu.springbootxiumu.pojo.dto.UserLoginDTO;
-import com.xiumu.springbootxiumu.pojo.dto.UserRegisterDTO;
 import com.xiumu.springbootxiumu.pojo.entity.User;
 import com.xiumu.springbootxiumu.pojo.vo.ResultJSON;
 import com.xiumu.springbootxiumu.pojo.vo.UserVO;
@@ -42,7 +42,7 @@ public class UserController {
      * @return
      */
     @PostMapping("/register")
-    public ResultJSON userRegister(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
+    public ResultJSON userRegister(@Valid @RequestBody UserDTO userRegisterDTO) {
         return ResultJSON.success(userManager.userRegister(userRegisterDTO));
     }
 

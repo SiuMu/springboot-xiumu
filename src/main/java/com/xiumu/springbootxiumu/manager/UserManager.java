@@ -1,8 +1,8 @@
 package com.xiumu.springbootxiumu.manager;
 
 import com.xiumu.springbootxiumu.exception.user.UserException;
+import com.xiumu.springbootxiumu.pojo.dto.UserDTO;
 import com.xiumu.springbootxiumu.pojo.dto.UserLoginDTO;
-import com.xiumu.springbootxiumu.pojo.dto.UserRegisterDTO;
 import com.xiumu.springbootxiumu.pojo.entity.User;
 import com.xiumu.springbootxiumu.pojo.vo.UserVO;
 import com.xiumu.springbootxiumu.service.UserService;
@@ -47,11 +47,11 @@ public class UserManager {
      * @param userRegisterDTO 注册信息
      * @return
      */
-    public boolean userRegister(UserRegisterDTO userRegisterDTO) {
+    public boolean userRegister(UserDTO userRegisterDTO) {
         // 先判断用户名是否被使用过
         User user = userService.findUserByUsername(userRegisterDTO.getUsername());
         AssertUtil.isNull(user, UserException.REPEAT_USERNAME);
-        user = INSTANCE.userRegisterToUser(userRegisterDTO);
+        user = INSTANCE.userDTOToUser(userRegisterDTO);
         return userService.save(user);
     }
 }

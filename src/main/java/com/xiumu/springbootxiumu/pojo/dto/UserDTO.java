@@ -4,12 +4,14 @@ import com.xiumu.springbootxiumu.enums.Gender;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
- * 用户注册传参
+ * 用户
  */
 @Data
-public class UserRegisterDTO {
+public class UserDTO {
 
     /**
      * 用户名
@@ -42,5 +44,11 @@ public class UserRegisterDTO {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 角色
+     */
+    @Size(min = 1, message = "用户角色不能为空")
+    private List<Long> roleList;
 
 }

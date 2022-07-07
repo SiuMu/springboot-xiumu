@@ -1,6 +1,6 @@
 package com.xiumu.springbootxiumu.utils;
 
-import com.xiumu.springbootxiumu.pojo.dto.UserRegisterDTO;
+import com.xiumu.springbootxiumu.pojo.dto.UserDTO;
 import com.xiumu.springbootxiumu.pojo.entity.User;
 import com.xiumu.springbootxiumu.pojo.vo.UserVO;
 import org.mapstruct.Mapper;
@@ -16,5 +16,5 @@ public interface BeanCopyUtil {
 
     UserVO userToUserVo(User user);
 
-    User userRegisterToUser(UserRegisterDTO registerDTO);
+    User userDTOToUser(UserDTO userDTO);
 }

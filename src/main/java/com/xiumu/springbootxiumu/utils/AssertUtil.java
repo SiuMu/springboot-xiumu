@@ -1,7 +1,7 @@
 package com.xiumu.springbootxiumu.utils;
 
+import com.xiumu.springbootxiumu.exception.base.IBaseException;
 import com.xiumu.springbootxiumu.exception.base.XiuMuException;
-import com.xiumu.springbootxiumu.exception.user.UserException;
 
 /**
  * 断言工具类，用于判断并抛出异常
@@ -15,7 +15,7 @@ public class AssertUtil {
      * @param object    对象
      * @param exception 异常枚举
      */
-    public static void notNull(Object object, UserException exception) {
+    public static void notNull(Object object, IBaseException exception) {
         if (object == null) {
             throw new XiuMuException(exception);
         }
@@ -27,7 +27,7 @@ public class AssertUtil {
      * @param object    对象
      * @param exception 异常枚举
      */
-    public static void isNull(Object object, UserException exception) {
+    public static void isNull(Object object, IBaseException exception) {
         if (object != null) {
             throw new XiuMuException(exception);
         }
@@ -39,7 +39,7 @@ public class AssertUtil {
      * @param expression 布尔值
      * @param exception  异常
      */
-    public static void isTrue(boolean expression, UserException exception) {
+    public static void isTrue(boolean expression, IBaseException exception) {
         if (!expression) {
             throw new XiuMuException(exception);
         }
