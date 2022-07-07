@@ -2,7 +2,7 @@ package com.xiumu.springbootxiumu;
 
 import com.xiumu.springbootxiumu.pojo.entity.User;
 import com.xiumu.springbootxiumu.pojo.vo.UserVO;
-import com.xiumu.springbootxiumu.utils.BeanCopyUtil;
+import com.xiumu.springbootxiumu.utils.bean.BeanCopyUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

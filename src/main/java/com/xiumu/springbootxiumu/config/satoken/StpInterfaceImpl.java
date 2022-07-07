@@ -23,7 +23,8 @@ public class StpInterfaceImpl implements StpInterface {
     private AuthorityService authorityService;
 
     /**
-     * 获取权限，该版本没有权限，返回null即可
+     * 获取权限
+     *
      * @return
      */
     @Override
@@ -33,6 +34,7 @@ public class StpInterfaceImpl implements StpInterface {
 
     /**
      * 获取用户角色
+     *
      * @return
      */
     @Override

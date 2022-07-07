@@ -10,7 +10,7 @@ import com.xiumu.springbootxiumu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.xiumu.springbootxiumu.utils.BeanCopyUtil.INSTANCE;
+import static com.xiumu.springbootxiumu.utils.bean.BeanCopyUtil.INSTANCE;
 
 @Service
 public class UserManager {

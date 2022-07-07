@@ -24,10 +24,11 @@ DROP TABLE IF EXISTS `sys_authority`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sys_authority` (
   `id` bigint(20) NOT NULL,
-  `parent_id` bigint(20) unsigned DEFAULT NULL COMMENT '父级ID',
+  `parent_id` bigint(20) DEFAULT NULL COMMENT '父级ID',
   `auth_code` varchar(32) DEFAULT NULL COMMENT '权限编码',
   `auth_name` varchar(128) DEFAULT NULL COMMENT '权限名称',
   `auth_desc` varchar(255) DEFAULT NULL COMMENT '权限描述',
+  `auth_type` tinyint(4) DEFAULT NULL COMMENT '权限类型，0菜单，1按钮，2接口',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   `delete_flag` tinyint(3) unsigned DEFAULT '0' COMMENT '删除标记',
@@ -55,6 +56,7 @@ CREATE TABLE `sys_role` (
   `id` bigint(20) NOT NULL COMMENT '主键ID',
   `role_name` varchar(64) NOT NULL COMMENT '角色名称',
   `role_code` varchar(32) NOT NULL COMMENT '角色编码',
+  `role_desc` varchar(255) DEFAULT NULL COMMENT '角色描述',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记，0未删除，1已删除',
@@ -68,7 +70,7 @@ CREATE TABLE `sys_role` (
 
 LOCK TABLES `sys_role` WRITE;
 /*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
-INSERT INTO `sys_role` VALUES (12345678,'管理员','admin','2021-10-08 22:11:55','2021-10-08 22:11:55',0);
+INSERT INTO `sys_role` VALUES (12345678,'管理员','admin',NULL,'2021-10-08 22:11:55','2021-10-08 22:11:55',0);
 /*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +119,8 @@ CREATE TABLE `sys_user` (
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记，0未删除，1已删除',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sys_user_username_unique_index` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -127,7 +130,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (92193617981,'xiumu','123456','https://avatar.csdnimg.cn/A/2/1/1_siumu__1583842883.jpg',0,'15038935069','1196606665@qq.com','admin','2021-10-08 20:44:51','2021-10-08 22:12:09',0);
+INSERT INTO `sys_user` VALUES (92193617981,'xiumu','123456','https://avatar.csdnimg.cn/A/2/1/1_siumu__1583842883.jpg',0,'15038935069','1196606665@qq.com','2021-10-08 20:44:51','2021-10-08 22:12:09',0);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-07 22:12:07
+-- Dump completed on 2022-07-07 20:53:55

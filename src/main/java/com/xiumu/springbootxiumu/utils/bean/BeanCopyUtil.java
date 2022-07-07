@@ -1,4 +1,4 @@
-package com.xiumu.springbootxiumu.utils;
+package com.xiumu.springbootxiumu.utils.bean;
 
 import com.xiumu.springbootxiumu.pojo.dto.UserRegisterDTO;
 import com.xiumu.springbootxiumu.pojo.entity.User;
