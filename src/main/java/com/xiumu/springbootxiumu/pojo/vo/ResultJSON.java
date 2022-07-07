@@ -72,25 +72,44 @@ public class ResultJSON {
 
     /**
      * 成功返回数据
+     *
      * @param result 返回结果
      */
     public static ResultJSON success(Object result) {
-        return new ResultJSON(200,"success",result);
+        return new ResultJSON(200, "操作成功", result);
     }
 
     /**
      * 成功返回，无数据
      */
     public static ResultJSON success() {
-        return new ResultJSON(200,"success",null);
+        return new ResultJSON(200, "操作成功", null);
+    }
+
+    /**
+     * 请求失败
+     */
+    public static ResultJSON failure() {
+        return new ResultJSON(500, "操作失败", null);
     }
 
     /**
      * 请求失败返回错误信息
-     * @param msg   错误信息
+     *
+     * @param msg 错误信息
      * @return
      */
-    public static ResultJSON failure(String msg){
+    public static ResultJSON failure(String msg) {
         return new ResultJSON(500, msg, null);
+    }
+
+    /**
+     * 请求失败返回错误信息
+     *
+     * @param msg 错误信息
+     * @return
+     */
+    public static ResultJSON failure(Integer code, String msg) {
+        return new ResultJSON(code, msg, null);
     }
 }

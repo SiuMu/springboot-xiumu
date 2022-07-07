@@ -1,7 +1,7 @@
 package com.xiumu.springbootxiumu.manager;
 
-import com.xiumu.springbootxiumu.exception.BaseException;
-import com.xiumu.springbootxiumu.exception.BizException;
+import com.xiumu.springbootxiumu.exception.base.XiuMuException;
+import com.xiumu.springbootxiumu.exception.user.UserException;
 import com.xiumu.springbootxiumu.pojo.dto.UserLoginDTO;
 import com.xiumu.springbootxiumu.pojo.dto.UserRegisterDTO;
 import com.xiumu.springbootxiumu.pojo.entity.User;
@@ -20,14 +20,15 @@ public class UserManager {
 
     /**
      * 用户登录，成功则返回用户ID
-     * @param userLoginDTO  登录传参
+     *
+     * @param userLoginDTO 登录传参
      * @return
      */
-    public String userLogin(UserLoginDTO userLoginDTO){
+    public String userLogin(UserLoginDTO userLoginDTO) {
         User user = userService.findUserByUsernameAndPassword(userLoginDTO.getUsername(), userLoginDTO.getPassword());
 
-        if (user == null){
-            throw new BizException(BaseException.LOGIN_FAIL);
+        if (user == null) {
+            throw new XiuMuException(UserException.LOGIN_FAIL);
         }
 
         return user.getId();
@@ -35,6 +36,7 @@ public class UserManager {
 
     /**
      * 根据用户ID获取用户的个人信息
+     *
      * @param id 用户ID
      * @return
      */
@@ -45,13 +47,14 @@ public class UserManager {
 
     /**
      * 用户注册
+     *
      * @param userRegisterDTO 注册信息
      * @return
      */
     public boolean userRegister(UserRegisterDTO userRegisterDTO) {
         // 先判断用户名是否被使用过
         if (userService.existByUsername(userRegisterDTO.getUsername())) {
-            throw new BizException(BaseException.REPEAT_USERNAME);
+            throw new XiuMuException(UserException.REPEAT_USERNAME);
         }
         User user = INSTANCE.userRegisterToUser(userRegisterDTO);
         return userService.save(user);
