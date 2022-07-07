@@ -5,15 +5,15 @@
     <select id="selectByRoleId" resultType="com.xiumu.springbootxiumu.pojo.entity.Authority">
         select a.*
         from sys_authority a
-            inner join sys_role_auth ra on a.id = ra.auth_id
+                 inner join sys_role_auth ra on a.id = ra.auth_id
         where ra.role_id = #{roleId}
     </select>
 
     <select id="selectByUserId" resultType="com.xiumu.springbootxiumu.pojo.entity.Authority">
         select sa.*
-        from  mssy_admin.sys_user_role sur
-            right join mssy_admin.sys_role_auth sra on sra.role_id = sur.role_id and sur.user_id = #{userId}
-            left join mssy_admin.sys_authority sa on sa.id = sra.auth_id
+        from sys_user_role sur
+                 right join sys_role_auth sra on sra.role_id = sur.role_id and sur.user_id = #{userId}
+                 left join sys_authority sa on sa.id = sra.auth_id
     </select>
 
 </mapper>
