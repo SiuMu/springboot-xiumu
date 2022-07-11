@@ -1,8 +1,9 @@
 package com.xiumu.springbootxiumu.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.xiumu.springbootxiumu.pojo.base.BaseEntity;
 import com.xiumu.springbootxiumu.enums.Gender;
+import com.xiumu.springbootxiumu.enums.YesNo;
+import com.xiumu.springbootxiumu.pojo.base.BaseEntity;
 import lombok.Data;
 
 @Data
@@ -38,5 +39,10 @@ public class User extends BaseEntity {
      * 邮箱
      */
     private String email;
+
+    /**
+     * 是否启用
+     */
+    private YesNo enabled;
 
 }

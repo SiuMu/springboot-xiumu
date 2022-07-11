@@ -6,6 +6,7 @@ import lombok.Data;
 
 /**
  * 用户角色关联表
+ *
  * @author xiumu
  */
 @Data
@@ -15,10 +16,18 @@ public class UserRole extends BaseEntity {
     /**
      * 用户ID
      */
-    private String userId;
+    private Long userId;
 
     /**
      * 角色ID
      */
-    private String roleId;
+    private Long roleId;
+
+    public UserRole() {
+    }
+
+    public UserRole(Long userId, Long roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 
 /**
  * 角色权限关联表
+ *
  * @author xiumu
  */
 @Data
@@ -15,16 +16,16 @@ public class RoleAuth extends BaseEntity {
     /**
      * 角色ID
      */
-    private String roleId;
+    private Long roleId;
     /**
      * 权限ID
      */
-    private String authId;
+    private Long authId;
 
     public RoleAuth() {
     }
 
-    public RoleAuth(String roleId, String authId) {
+    public RoleAuth(Long roleId, Long authId) {
         this.roleId = roleId;
         this.authId = authId;
     }

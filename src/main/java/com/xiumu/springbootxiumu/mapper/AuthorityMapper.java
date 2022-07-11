@@ -14,15 +14,17 @@ public interface AuthorityMapper extends BaseMapper<Authority> {
 
     /**
      * 根据角色ID获取权限
+     *
      * @param roleId 角色ID
      * @return
      */
-    List<Authority> selectByRoleId(String roleId);
+    List<Authority> selectByRoleId(Long roleId);
 
     /**
      * 根据用户ID 查询所有的权限
+     *
      * @param userId 用户
      * @return
      */
-    List<Authority> selectByUserId(String userId);
+    List<Authority> selectByUserId(Long userId);
 }

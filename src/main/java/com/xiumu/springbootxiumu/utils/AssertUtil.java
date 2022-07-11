@@ -45,4 +45,16 @@ public class AssertUtil {
         }
     }
 
+    /**
+     * 断言必须为 False
+     *
+     * @param expression 布尔值
+     * @param exception  异常
+     */
+    public static void isFalse(boolean expression, IBaseException exception) {
+        if (expression) {
+            throw new XiuMuException(exception);
+        }
+    }
+
 }

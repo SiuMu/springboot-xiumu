@@ -10,7 +10,6 @@ import java.util.Date;
 
 /**
  * 实体类必要字段
- *
  */
 @Data
 public class BaseEntity implements Serializable {
@@ -19,7 +18,7 @@ public class BaseEntity implements Serializable {
      * 主键
      */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private String id;
+    private Long id;
 
     /**
      * 创建时间

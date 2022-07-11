@@ -23,12 +23,12 @@ import java.util.stream.Collectors;
 public class AuthorityServiceImpl extends ServiceImpl<AuthorityMapper, Authority> implements AuthorityService {
 
     @Override
-    public List<Authority> getByUserId(String userId) {
+    public List<Authority> getByUserId(Long userId) {
         return this.baseMapper.selectByUserId(userId);
     }
 
     @Override
-    public List<String> getAuthCodeByUserId(String userId) {
+    public List<String> getAuthCodeByUserId(Long userId) {
         return getByUserId(userId).stream().map(Authority::getAuthCode).collect(Collectors.toList());
     }
 

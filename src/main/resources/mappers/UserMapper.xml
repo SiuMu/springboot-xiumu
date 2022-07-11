@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiumu.springbootxiumu.mapper.UserMapper">
+
+    <select id="listPage" resultType="com.xiumu.springbootxiumu.pojo.entity.User">
+        select * from sys_user
+        <where>
+            <if test=" user != null ">
+                <if test=" user.username != null  and user.username != ''  ">
+                    and username = #{user.username}
+                </if>
+                <if test=" user.userPhone != null  and user.userPhone != ''  ">
+                    and user_phone = #{user.userPhone}
+                </if>
+                <if test=" user.email != null  and user.email != ''  ">
+                    and email = #{user.email}
+                </if>
+                <if test=" user.nickName != null and user.nickName != '' ">
+                    and nick_name = #{user.nickName}
+                </if>
+                <if test=" user.gender != null  ">
+                    and gender = #{user.gender.code}
+                </if>
+                <if test=" user.enabled != null  ">
+                    and enabled = #{user.enabled.code}
+                </if>
+            </if>
+            and delete_flag = 0
+        </where>
+        order by create_time desc
+    </select>
+
+</mapper>

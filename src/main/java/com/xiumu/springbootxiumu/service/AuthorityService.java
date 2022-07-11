@@ -17,7 +17,7 @@ public interface AuthorityService extends IService<Authority> {
      * @param userId 用户
      * @return
      */
-    List<Authority> getByUserId(String userId);
+    List<Authority> getByUserId(Long userId);
 
     /**
      * 根据用户 ID 查询所有的权限编码
@@ -25,7 +25,7 @@ public interface AuthorityService extends IService<Authority> {
      * @param userId 用户
      * @return
      */
-    List<String> getAuthCodeByUserId(String userId);
+    List<String> getAuthCodeByUserId(Long userId);
 
     /**
      * 根据权限编码查询权限
