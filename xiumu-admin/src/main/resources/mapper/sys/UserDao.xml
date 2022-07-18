@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiumu.service.sys.dao.UserDao">
+
+    <sql id="userQuery">
+        <if test=" user != null ">
+                <if test=" user.username != null  and user.username != ''  ">
+                    and username = #{user.username}
+                </if>
+                <if test=" user.password != null  and user.password != ''  ">
+                    and password = #{user.password}
+                </if>
+                <if test=" user.avatar != null  and user.avatar != ''  ">
+                    and avatar = #{user.avatar}
+                </if>
+                <if test=" user.gender != null  ">
+                    and gender = #{user.gender}
+                </if>
+                <if test=" user.phone != null  and user.phone != ''  ">
+                    and phone = #{user.phone}
+                </if>
+                <if test=" user.email != null  and user.email != ''  ">
+                    and email = #{user.email}
+                </if>
+        </if>
+    </sql>
+
+    <select id="selectPage" resultType="com.xiumu.pojo.sys.entity.User">
+        select * from sys_user
+        <where>
+            <include refid="userQuery"></include>
+            and delete_flag = 0
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectByUser" resultType="com.xiumu.pojo.sys.entity.User">
+        select * from sys_user
+        <where>
+            <include refid="userQuery"></include>
+            and delete_flag = 0
+        </where>
+        order by create_time desc
+    </select>
+
+    <update id="updateById">
+        update sys_user
+        <trim prefix="SET" suffixOverrides=",">
+                <if test=" user.username != null ">
+                    username = #{user.username}
+                </if>
+                <if test=" user.password != null ">
+                    password = #{user.password}
+                </if>
+                <if test=" user.avatar != null ">
+                    avatar = #{user.avatar}
+                </if>
+                <if test=" user.gender != null ">
+                    gender = #{user.gender}
+                </if>
+                <if test=" user.phone != null ">
+                    phone = #{user.phone}
+                </if>
+                <if test=" user.email != null ">
+                    email = #{user.email}
+                </if>
+        </trim>
+    </update>
+</mapper>

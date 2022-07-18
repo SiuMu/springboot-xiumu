@@ -30,7 +30,9 @@ CREATE TABLE `sys_authority` (
   `auth_desc` varchar(255) DEFAULT NULL COMMENT '权限描述',
   `auth_type` tinyint(4) DEFAULT NULL COMMENT '权限类型，0菜单，1按钮，2接口',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_By` varchar(32) DEFAULT NULL COMMENT '创建人',
+  `update_By` varchar(32) DEFAULT NULL COMMENT '更新人',
   `delete_flag` tinyint(3) unsigned DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='权限表';
@@ -59,6 +61,8 @@ CREATE TABLE `sys_role` (
   `role_desc` varchar(255) DEFAULT NULL COMMENT '角色描述',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_By` varchar(32) DEFAULT NULL COMMENT '创建人',
+  `update_By` varchar(32) DEFAULT NULL COMMENT '更新人',
   `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记，0未删除，1已删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
@@ -70,7 +74,7 @@ CREATE TABLE `sys_role` (
 
 LOCK TABLES `sys_role` WRITE;
 /*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
-INSERT INTO `sys_role` VALUES (12345678,'管理员','admin',NULL,'2021-10-08 22:11:55','2021-10-08 22:11:55',0);
+INSERT INTO `sys_role` VALUES (12345678,'管理员','admin',NULL,'2021-10-08 22:11:55','2022-07-16 17:36:10',NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,6 +91,8 @@ CREATE TABLE `sys_role_auth` (
   `auth_id` bigint(20) DEFAULT NULL COMMENT '权限ID',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_By` varchar(32) DEFAULT NULL COMMENT '创建人',
+  `update_By` varchar(32) DEFAULT NULL COMMENT '更新人',
   `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='角色权限关联';
@@ -118,6 +124,8 @@ CREATE TABLE `sys_user` (
   `email` varchar(128) DEFAULT NULL COMMENT '邮箱',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_By` varchar(32) DEFAULT NULL COMMENT '创建人',
+  `update_By` varchar(32) DEFAULT NULL COMMENT '更新人',
   `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记，0未删除，1已删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `sys_user_username_unique_index` (`username`)
@@ -130,7 +138,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (92193617981,'xiumu','123456','https://avatar.csdnimg.cn/A/2/1/1_siumu__1583842883.jpg',0,'15038935069','1196606665@qq.com','2021-10-08 20:44:51','2021-10-08 22:12:09',0);
+INSERT INTO `sys_user` VALUES (92193617981,'xiumu','123456','https://avatar.csdnimg.cn/A/2/1/1_siumu__1583842883.jpg',0,'15038935069','1196606665@qq.com','2021-10-08 20:44:51','2022-07-16 17:36:24',NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,6 +155,8 @@ CREATE TABLE `sys_user_role` (
   `role_id` bigint(20) DEFAULT NULL COMMENT '角色ID',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_By` varchar(32) DEFAULT NULL COMMENT '创建人',
+  `update_By` varchar(32) DEFAULT NULL COMMENT '更新人',
   `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户与角色关联';
@@ -158,6 +168,7 @@ CREATE TABLE `sys_user_role` (
 
 LOCK TABLES `sys_user_role` WRITE;
 /*!40000 ALTER TABLE `sys_user_role` DISABLE KEYS */;
+INSERT INTO `sys_user_role` VALUES (1,1544938096448716802,1544938096448716802,'2022-07-16 11:23:57','2022-07-16 17:36:27',NULL,NULL,0),(2,1544938096448716803,1544938096448716803,'2022-07-16 11:23:58','2022-07-16 17:36:27',NULL,NULL,0),(3,1544938096448716803,1544938096448716803,'2022-07-16 11:23:58','2022-07-16 17:36:27',NULL,NULL,0),(4,1544938096448716812,1544938096448716812,'2022-07-16 11:23:58','2022-07-16 17:36:27',NULL,NULL,0),(5,1544938096448716822,1544938096448716822,'2022-07-16 11:23:58','2022-07-16 17:36:27',NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-07 20:53:55
+-- Dump completed on 2022-07-16 17:38:36

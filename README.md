@@ -18,9 +18,7 @@
 - `service:` 具体的业务处理，逻辑处理层。
 - `utils:` 一些通用的工具类封装。
 
-有关 manager 层，pojo 领域对象规范等详细情况请查看[WIKI文档](https://gitee.com/siumu/springboot-xiumu/wikis/%E5%89%8D%E8%A8%80)
-
 # sql文件
 
-sql文件放在项目的 src/main/resources 文件下
+sql文件放在项目的 sql 文件下
 

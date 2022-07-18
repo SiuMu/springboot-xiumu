@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="${servicePackageName}.${moduleName}.dao.${ClassName}Dao">
+
+    <sql id="${className}Query">
+        <if test=" ${className} != null ">
+            #foreach ($column in $columns)
+                <if test=" ${className}.$column.javaField != null #if($column.javaType ==
+                    'String' ) and ${className}.$column.javaField.trim() != '' #end ">
+                    and $column.columnName = #{${className}.$column.javaField}
+                </if>
+            #end
+        </if>
+    </sql>
+
+    <select id="selectPage" resultType="${pojoPackageName}.${moduleName}.entity.${ClassName}">
+        select * from ${tableName}
+        <where>
+            <include refid="${className}Query"></include>
+            and delete_flag = 0
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectBy${ClassName}" resultType="${pojoPackageName}.${moduleName}.entity.${ClassName}">
+        select * from ${tableName}
+        <where>
+            <include refid="${className}Query"></include>
+            and delete_flag = 0
+        </where>
+        order by create_time desc
+    </select>
+
+    <update id="updateById">
+        update ${tableName}
+        <trim prefix="SET" suffixOverrides=",">
+            #foreach ($column in $columns)
+                <if test=" ${className}.$column.javaField != null ">
+                    $column.columnName = #{${className}.$column.javaField}
+                </if>
+            #end
+        </trim>
+    </update>
+</mapper>

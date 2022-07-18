@@ -1,0 +1,38 @@
+package ${pojoPackageName}.${moduleName}.entity;
+
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import com.xiumu.common.core.entity.BaseEntity;
+#foreach ($column in $columns)
+    #if($column.javaType == 'Date')
+    import java.util.Date;
+        #break
+    #end
+    #if($column.javaType == 'BigDecimal')
+    import java.math.BigDecimal;
+        #break
+    #end
+#end
+
+/**
+ * Entity 表示与数据库一一对应的实体，不能出现数据库没有的字段。
+ * 也不能与数据库无关的注解或者方法，比如 POI 注解， 参数校验注解，都不能出现
+ *
+ * ${functionName} 对象 ${tableName}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+@TableName("${tableName}")
+public class ${ClassName} extends BaseEntity{
+
+#foreach ($column in $columns)
+/**
+ *  $column.columnComment
+ */
+private $column.javaType $column.javaField;
+#end
+
+}
+

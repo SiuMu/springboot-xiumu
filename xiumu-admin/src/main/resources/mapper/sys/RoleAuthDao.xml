@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiumu.service.sys.dao.RoleAuthDao">
+
+    <sql id="roleAuthQuery">
+        <if test=" roleAuth != null ">
+                <if test=" roleAuth.roleId != null  ">
+                    and role_id = #{roleAuth.roleId}
+                </if>
+                <if test=" roleAuth.authId != null  ">
+                    and auth_id = #{roleAuth.authId}
+                </if>
+        </if>
+    </sql>
+
+    <select id="selectPage" resultType="com.xiumu.pojo.sys.entity.RoleAuth">
+        select * from sys_role_auth
+        <where>
+            <include refid="roleAuthQuery"></include>
+            and delete_flag = 0
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectByRoleAuth" resultType="com.xiumu.pojo.sys.entity.RoleAuth">
+        select * from sys_role_auth
+        <where>
+            <include refid="roleAuthQuery"></include>
+            and delete_flag = 0
+        </where>
+        order by create_time desc
+    </select>
+
+    <update id="updateById">
+        update sys_role_auth
+        <trim prefix="SET" suffixOverrides=",">
+                <if test=" roleAuth.roleId != null ">
+                    role_id = #{roleAuth.roleId}
+                </if>
+                <if test=" roleAuth.authId != null ">
+                    auth_id = #{roleAuth.authId}
+                </if>
+        </trim>
+    </update>
+</mapper>
