@@ -1,31 +1,17 @@
 package com.xiumu.controller.sys;
 
-import org.springframework.validation.annotation.Validated;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.entity.User;
 import com.xiumu.pojo.sys.model.dto.UserDTO;
 import com.xiumu.pojo.sys.model.query.UserQuery;
-import com.xiumu.service.sys.service.UserService;
+import com.xiumu.service.sys.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
- * 使用 restful 风格。
- * URI 使用资源名称，而不是动作来描述：
- * 理论上 URI 不应该有动作，但是分页查询与全部查询怎么分开？
- * 错误命名:
- * GET     /getUser/1    查询 ID 是 1 的用户
- * POST    /createUser   新建一个用户
- * PUT     /updateUser/1 修改 ID 是 1 的用户
- * DELETE  /deleteUser/1 删除 ID 是 1 的用户
- * 正确命名:
- * GET     /user/1 查询 ID 是 1 的用户
- * POST    /user   新建一个用户
- * PUT     /user/1 修改 ID 是 1 的用户
- * DELETE  /user/1 删除 ID 是 1 的用户
- *
  * 用户 Controller
  *
  * @author XiuMu
@@ -89,7 +75,7 @@ public class UserController {
      * 根据传递的参数更新，字段为空则不更新
      *
      * @param userDTO 更新内容
-     * @param id 主键 ID
+     * @param id      主键 ID
      * @return
      */
     @PutMapping("/user/{id}")

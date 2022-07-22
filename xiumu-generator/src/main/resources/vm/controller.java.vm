@@ -8,24 +8,10 @@ import com.xiumu.common.core.result.ResultJSON;
 import ${pojoPackageName}.${moduleName}.entity.${ClassName};
 import ${pojoPackageName}.${moduleName}.model.dto.${ClassName}DTO;
 import ${pojoPackageName}.${moduleName}.model.query.${ClassName}Query;
-import ${servicePackageName}.${moduleName}.service.${ClassName}Service;
+import ${servicePackageName}.service.${moduleName}.${ClassName}Service;
 
 
 /**
- * 使用 restful 风格。
- * URI 使用资源名称，而不是动作来描述：
- * 理论上 URI 不应该有动作，但是分页查询与全部查询怎么分开？
- * 错误命名:
- * GET     /getUser/1    查询 ID 是 1 的用户
- * POST    /createUser   新建一个用户
- * PUT     /updateUser/1 修改 ID 是 1 的用户
- * DELETE  /deleteUser/1 删除 ID 是 1 的用户
- * 正确命名:
- * GET     /user/1 查询 ID 是 1 的用户
- * POST    /user   新建一个用户
- * PUT     /user/1 修改 ID 是 1 的用户
- * DELETE  /user/1 删除 ID 是 1 的用户
- *
  * ${functionName} Controller
  *
  * @author ${author}
@@ -93,7 +79,7 @@ public class ${ClassName}Controller {
      * @return
      */
     @PutMapping("/${businessName}/{id}")
-    public ResultJSON update(@Validated @RequestBody ${ClassName}DTO ${className}DTO, @PathVariable Long id) {
+    public ResultJSON update(@Validated @RequestBody ${ClassName}DTO ${className}DTO, @PathVariable String id) {
         return ResultJSON.success(${className}Service.updateById(${className}DTO, id));
     }
 
@@ -104,7 +90,7 @@ public class ${ClassName}Controller {
      * @return
      */
     @DeleteMapping("/${businessName}/{id}")
-    public ResultJSON delete(@PathVariable Long id) {
+    public ResultJSON delete(@PathVariable String id) {
         return ResultJSON.success(${className}Service.deleteById(id));
     }
 }

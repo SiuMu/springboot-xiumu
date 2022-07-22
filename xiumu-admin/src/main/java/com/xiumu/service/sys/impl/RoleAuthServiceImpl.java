@@ -1,20 +1,20 @@
-package com.xiumu.service.sys.service.impl;
+package com.xiumu.service.sys.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.xiumu.common.core.enums.YesNo;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.enums.YesNo;
+import com.xiumu.common.core.page.PageQuery;
+import com.xiumu.dao.sys.RoleAuthDao;
 import com.xiumu.pojo.sys.entity.RoleAuth;
 import com.xiumu.pojo.sys.model.dto.RoleAuthDTO;
 import com.xiumu.pojo.sys.model.query.RoleAuthQuery;
-import com.xiumu.service.sys.dao.RoleAuthDao;
-import com.xiumu.service.sys.service.RoleAuthService;
-import com.xiumu.common.core.page.PageQuery;
+import com.xiumu.service.sys.RoleAuthService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import java.util.List;
  * @date 2022-07-16 17:27:06
  */
 @Service
-public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao,RoleAuth> implements RoleAuthService {
+public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao, RoleAuth> implements RoleAuthService {
 
     @Override
     public IPage<RoleAuth> listPage(PageQuery<RoleAuthQuery, RoleAuth> pageQuery) {
@@ -40,7 +40,7 @@ public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao,RoleAuth> imple
     @Override
     @Transactional
     public boolean create(RoleAuthDTO roleAuthDTO) {
-        RoleAuth roleAuth =BeanUtil.toBean(roleAuthDTO, RoleAuth. class);
+        RoleAuth roleAuth = BeanUtil.toBean(roleAuthDTO, RoleAuth.class);
         return this.save(roleAuth);
     }
 
@@ -60,17 +60,19 @@ public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao,RoleAuth> imple
 
     /**
      * 重写 list 方法，查询未逻辑删除的记录
+     *
      * @return
      */
     @Override
     public List<RoleAuth> list() {
         LambdaQueryWrapper<RoleAuth> queryWrapper = new LambdaQueryWrapper<RoleAuth>().eq(RoleAuth::getDeleteFlag, YesNo.
-        NO);
+                NO);
         return this.baseMapper.selectList(queryWrapper);
     }
 
     /**
      * 重写 list 方法，查询未逻辑删除的记录
+     *
      * @return
      */
     public List<RoleAuth> list(LambdaQueryWrapper<RoleAuth> queryWrapper) {

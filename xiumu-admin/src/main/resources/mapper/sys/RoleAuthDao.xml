@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xiumu.service.sys.dao.RoleAuthDao">
+<mapper namespace="com.xiumu.dao.sys.RoleAuthDao">
 
     <sql id="roleAuthQuery">
         <if test=" roleAuth != null ">
-                <if test=" roleAuth.roleId != null  ">
-                    and role_id = #{roleAuth.roleId}
-                </if>
-                <if test=" roleAuth.authId != null  ">
-                    and auth_id = #{roleAuth.authId}
-                </if>
+            <if test=" roleAuth.roleId != null  ">
+                and role_id = #{roleAuth.roleId}
+            </if>
+            <if test=" roleAuth.authId != null  ">
+                and auth_id = #{roleAuth.authId}
+            </if>
         </if>
     </sql>
 
@@ -34,12 +34,12 @@
     <update id="updateById">
         update sys_role_auth
         <trim prefix="SET" suffixOverrides=",">
-                <if test=" roleAuth.roleId != null ">
-                    role_id = #{roleAuth.roleId}
-                </if>
-                <if test=" roleAuth.authId != null ">
-                    auth_id = #{roleAuth.authId}
-                </if>
+            <if test=" roleAuth.roleId != null ">
+                role_id = #{roleAuth.roleId}
+            </if>
+            <if test=" roleAuth.authId != null ">
+                auth_id = #{roleAuth.authId}
+            </if>
         </trim>
     </update>
 </mapper>

@@ -1,20 +1,20 @@
-package com.xiumu.service.sys.service.impl;
+package com.xiumu.service.sys.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.xiumu.common.core.enums.YesNo;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.enums.YesNo;
+import com.xiumu.common.core.page.PageQuery;
+import com.xiumu.dao.sys.AuthorityDao;
 import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.model.dto.AuthorityDTO;
 import com.xiumu.pojo.sys.model.query.AuthorityQuery;
-import com.xiumu.service.sys.dao.AuthorityDao;
-import com.xiumu.service.sys.service.AuthorityService;
-import com.xiumu.common.core.page.PageQuery;
+import com.xiumu.service.sys.AuthorityService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import java.util.List;
  * @date 2022-07-16 17:25:15
  */
 @Service
-public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao,Authority> implements AuthorityService {
+public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> implements AuthorityService {
 
     @Override
     public IPage<Authority> listPage(PageQuery<AuthorityQuery, Authority> pageQuery) {
@@ -40,7 +40,7 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao,Authority> im
     @Override
     @Transactional
     public boolean create(AuthorityDTO authorityDTO) {
-        Authority authority =BeanUtil.toBean(authorityDTO, Authority. class);
+        Authority authority = BeanUtil.toBean(authorityDTO, Authority.class);
         return this.save(authority);
     }
 
@@ -60,17 +60,19 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao,Authority> im
 
     /**
      * 重写 list 方法，查询未逻辑删除的记录
+     *
      * @return
      */
     @Override
     public List<Authority> list() {
         LambdaQueryWrapper<Authority> queryWrapper = new LambdaQueryWrapper<Authority>().eq(Authority::getDeleteFlag, YesNo.
-        NO);
+                NO);
         return this.baseMapper.selectList(queryWrapper);
     }
 
     /**
      * 重写 list 方法，查询未逻辑删除的记录
+     *
      * @return
      */
     public List<Authority> list(LambdaQueryWrapper<Authority> queryWrapper) {

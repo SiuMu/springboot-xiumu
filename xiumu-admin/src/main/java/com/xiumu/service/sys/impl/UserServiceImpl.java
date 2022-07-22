@@ -1,20 +1,20 @@
-package com.xiumu.service.sys.service.impl;
+package com.xiumu.service.sys.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.xiumu.common.core.enums.YesNo;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.enums.YesNo;
+import com.xiumu.common.core.page.PageQuery;
+import com.xiumu.dao.sys.UserDao;
 import com.xiumu.pojo.sys.entity.User;
 import com.xiumu.pojo.sys.model.dto.UserDTO;
 import com.xiumu.pojo.sys.model.query.UserQuery;
-import com.xiumu.service.sys.dao.UserDao;
-import com.xiumu.service.sys.service.UserService;
-import com.xiumu.common.core.page.PageQuery;
+import com.xiumu.service.sys.UserService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import java.util.List;
  * @date 2022-07-16 17:27:37
  */
 @Service
-public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserService {
 
     @Override
     public IPage<User> listPage(PageQuery<UserQuery, User> pageQuery) {
@@ -40,7 +40,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserSe
     @Override
     @Transactional
     public boolean create(UserDTO userDTO) {
-        User user =BeanUtil.toBean(userDTO, User. class);
+        User user = BeanUtil.toBean(userDTO, User.class);
         return this.save(user);
     }
 
@@ -60,17 +60,19 @@ public class UserServiceImpl extends ServiceImpl<UserDao,User> implements UserSe
 
     /**
      * 重写 list 方法，查询未逻辑删除的记录
+     *
      * @return
      */
     @Override
     public List<User> list() {
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<User>().eq(User::getDeleteFlag, YesNo.
-        NO);
+                NO);
         return this.baseMapper.selectList(queryWrapper);
     }
 
     /**
      * 重写 list 方法，查询未逻辑删除的记录
+     *
      * @return
      */
     public List<User> list(LambdaQueryWrapper<User> queryWrapper) {

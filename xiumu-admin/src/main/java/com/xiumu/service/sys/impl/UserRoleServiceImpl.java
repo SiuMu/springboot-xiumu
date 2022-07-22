@@ -1,4 +1,4 @@
-package com.xiumu.service.sys.service.impl;
+package com.xiumu.service.sys.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -12,8 +12,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiumu.pojo.sys.entity.UserRole;
 import com.xiumu.pojo.sys.model.dto.UserRoleDTO;
 import com.xiumu.pojo.sys.model.query.UserRoleQuery;
-import com.xiumu.service.sys.dao.UserRoleDao;
-import com.xiumu.service.sys.service.UserRoleService;
+import com.xiumu.dao.sys.UserRoleDao;
+import com.xiumu.service.sys.UserRoleService;
 import com.xiumu.common.core.page.PageQuery;
 
 import java.util.List;
@@ -22,7 +22,7 @@ import java.util.List;
  * 用户角色关联 Service 业务层处理
  *
  * @author XiuMu
- * @date 2022-07-16 17:28:18
+ * @date 2022-07-23 01:07:42
  */
 @Service
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleDao,UserRole> implements UserRoleService {
@@ -46,12 +46,15 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleDao,UserRole> imple
 
     @Override
     @Transactional
-    public boolean updateById(UserRoleDTO userRoleDTO, Long id) {
-        return this.baseMapper.updateById(id, userRoleDTO);
+    public boolean updateById(UserRoleDTO userRoleDTO, String id) {
+        UserRole userRole =BeanUtil.copyProperties(userRoleDTO, UserRole. class);
+        userRole.setId(id);
+        return updateById(userRole);
     }
 
     @Override
-    public boolean deleteById(Long id) {
+    @Transactional
+    public boolean deleteById(String id) {
         LambdaUpdateWrapper<UserRole> updateWrapper = new LambdaUpdateWrapper<UserRole>()
                 .set(UserRole::getDeleteFlag, YesNo.YES)
                 .eq(UserRole::getId, id);

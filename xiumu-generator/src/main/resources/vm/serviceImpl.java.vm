@@ -1,4 +1,4 @@
-package ${servicePackageName}.${moduleName}.service.impl;
+package ${servicePackageName}.service.${moduleName}.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
@@ -12,8 +12,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import ${pojoPackageName}.${moduleName}.entity.${ClassName};
 import ${pojoPackageName}.${moduleName}.model.dto.${ClassName}DTO;
 import ${pojoPackageName}.${moduleName}.model.query.${ClassName}Query;
-import ${servicePackageName}.${moduleName}.dao.${ClassName}Dao;
-import ${servicePackageName}.${moduleName}.service.${ClassName}Service;
+import ${servicePackageName}.dao.${moduleName}.${ClassName}Dao;
+import ${servicePackageName}.service.${moduleName}.${ClassName}Service;
 import com.xiumu.common.core.page.PageQuery;
 
 import java.util.List;
@@ -46,12 +46,15 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Dao,${Class
 
     @Override
     @Transactional
-    public boolean updateById(${ClassName}DTO ${className}DTO, Long id) {
-        return this.baseMapper.updateById(id, ${className}DTO);
+    public boolean updateById(${ClassName}DTO ${className}DTO, String id) {
+        ${ClassName} ${className} =BeanUtil.copyProperties(${className}DTO, ${ClassName}. class);
+        ${className}.setId(id);
+        return updateById(${className});
     }
 
     @Override
-    public boolean deleteById(Long id) {
+    @Transactional
+    public boolean deleteById(String id) {
         LambdaUpdateWrapper<${ClassName}> updateWrapper = new LambdaUpdateWrapper<${ClassName}>()
                 .set(${ClassName}::getDeleteFlag, YesNo.YES)
                 .eq(${ClassName}::getId, id);

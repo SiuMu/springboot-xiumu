@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xiumu.service.sys.dao.RoleDao">
+<mapper namespace="com.xiumu.dao.sys.RoleDao">
 
     <sql id="roleQuery">
         <if test=" role != null ">
-                <if test=" role.roleName != null  and role.roleName != ''  ">
-                    and role_name = #{role.roleName}
-                </if>
-                <if test=" role.roleCode != null  and role.roleCode != ''  ">
-                    and role_code = #{role.roleCode}
-                </if>
-                <if test=" role.roleDesc != null  and role.roleDesc != ''  ">
-                    and role_desc = #{role.roleDesc}
-                </if>
+            <if test=" role.roleName != null  and role.roleName != ''  ">
+                and role_name = #{role.roleName}
+            </if>
+            <if test=" role.roleCode != null  and role.roleCode != ''  ">
+                and role_code = #{role.roleCode}
+            </if>
+            <if test=" role.roleDesc != null  and role.roleDesc != ''  ">
+                and role_desc = #{role.roleDesc}
+            </if>
         </if>
     </sql>
 
@@ -37,15 +37,15 @@
     <update id="updateById">
         update sys_role
         <trim prefix="SET" suffixOverrides=",">
-                <if test=" role.roleName != null ">
-                    role_name = #{role.roleName}
-                </if>
-                <if test=" role.roleCode != null ">
-                    role_code = #{role.roleCode}
-                </if>
-                <if test=" role.roleDesc != null ">
-                    role_desc = #{role.roleDesc}
-                </if>
+            <if test=" role.roleName != null ">
+                role_name = #{role.roleName}
+            </if>
+            <if test=" role.roleCode != null ">
+                role_code = #{role.roleCode}
+            </if>
+            <if test=" role.roleDesc != null ">
+                role_desc = #{role.roleDesc}
+            </if>
         </trim>
     </update>
 </mapper>

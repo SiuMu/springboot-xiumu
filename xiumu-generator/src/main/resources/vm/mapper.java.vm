@@ -1,4 +1,4 @@
-package ${servicePackageName}.${moduleName}.dao;
+package ${servicePackageName}.dao.${moduleName};
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -12,12 +12,6 @@ import com.xiumu.common.core.page.PageQuery;
 import java.util.List;
 
 /**
- * dao 层方法命名尽量以 sql 语义命名，方法应当与业务无关
- * 插入 insertXXX
- * 更新 updateXXX
- * 查询 selectXXX
- * 删除 deleteXXX
- *
  * ${functionName} Mapper 接口
  *
  * @author ${author}
@@ -28,6 +22,7 @@ public interface ${ClassName}Dao extends BaseMapper<${ClassName}> {
 
     /**
      * 分页查询
+     *
      * @param query 分页条件
      * @param ${className} 查询条件
      * @return
@@ -36,17 +31,10 @@ public interface ${ClassName}Dao extends BaseMapper<${ClassName}> {
 
     /**
      * 根据条件查询 ${functionName}
+     *
      * @param ${className} 查询条件
      * @return
      */
     List<${ClassName}> selectBy${ClassName}(@Param("${className}") ${ClassName}Query ${className});
 
-    /**
-     * 根据 ID 更新 权限信息
-     *
-     * @param id           ID
-     * @param ${className} 权限信息, 空字段则不更新
-     * @return
-     */
-    boolean updateById(@Param("id") Long id, @Param("${className}") ${ClassName}DTO ${className});
 }

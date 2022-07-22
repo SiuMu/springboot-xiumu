@@ -1,4 +1,4 @@
-package com.xiumu.service.sys.dao;
+package com.xiumu.dao.sys;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -12,12 +12,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * dao 层方法命名尽量以 sql 语义命名，方法应当与业务无关
- * 插入 insertXXX
- * 更新 updateXXX
- * 查询 selectXXX
- * 删除 deleteXXX
- * <p>
  * 权限 Mapper 接口
  *
  * @author XiuMu
