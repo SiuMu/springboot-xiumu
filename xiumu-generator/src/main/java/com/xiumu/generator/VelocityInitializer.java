@@ -34,8 +34,4 @@ public class VelocityInitializer {
             throw new RuntimeException(e);
         }
     }
-
-    public static void main(String[] args) {
-
-    }
 }

@@ -1,4 +1,4 @@
-package com.xiumu.common.core.enums;
+package com.xiumu.enums;
 
 
 import com.baomidou.mybatisplus.annotation.EnumValue;

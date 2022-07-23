@@ -6,7 +6,7 @@ spring:
     active: dev
 
 mybatis-plus:
-  type-enums-package: com.xiumu.common.core.enums
+  type-enums-package: com.xiumu.enums
   global-config:
     banner: false
   configuration:
