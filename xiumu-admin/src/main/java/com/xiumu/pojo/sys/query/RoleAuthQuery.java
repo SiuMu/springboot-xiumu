@@ -1,4 +1,4 @@
-package com.xiumu.pojo.sys.model.query;
+package com.xiumu.pojo.sys.query;
 
 import lombok.Data;
 
@@ -13,14 +13,14 @@ import lombok.Data;
 @Data
 public class RoleAuthQuery {
 
-        /**
-         *  角色ID
-         */
-        private Long roleId;
-        /**
-         *  权限ID
-         */
-        private Long authId;
+    /**
+     *  角色ID
+     */
+    private Long roleId;
+    /**
+     *  权限ID
+     */
+    private Long authId;
 
 }
 

@@ -14,7 +14,7 @@ import lombok.Getter;
 public enum SysException implements IBaseException {
 
     PASSWD_ERROR(100, "用户名或者密码有误！"),
-    NOT_LOGIN(200, "登录失效！请重新登录"),
+    NOT_LOGIN(200, "未登录！请先登录"),
     NOT_AUTHORITY(300, "没有相关权限！！"),
     SERVE_FAIL(500, "服务器繁忙! 请稍后再试！");
 

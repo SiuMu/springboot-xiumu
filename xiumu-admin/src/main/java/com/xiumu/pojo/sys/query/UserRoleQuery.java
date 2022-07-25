@@ -1,4 +1,4 @@
-package com.xiumu.pojo.sys.model.query;
+package com.xiumu.pojo.sys.query;
 
 import lombok.Data;
 

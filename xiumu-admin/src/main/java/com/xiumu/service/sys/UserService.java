@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.pojo.sys.entity.User;
-import com.xiumu.pojo.sys.model.dto.LoginDTO;
-import com.xiumu.pojo.sys.model.dto.UserDTO;
-import com.xiumu.pojo.sys.model.query.UserQuery;
+import com.xiumu.pojo.sys.dto.LoginDTO;
+import com.xiumu.pojo.sys.dto.UserDTO;
+import com.xiumu.pojo.sys.query.UserQuery;
+import com.xiumu.pojo.sys.vo.UserRoleAuthVO;
 
 import java.util.List;
 
@@ -66,4 +67,12 @@ public interface UserService extends IService<User> {
      * @return
      */
     String login(LoginDTO loginDTO);
+
+    /**
+     * 获取用户的信息，角色以及权限
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    UserRoleAuthVO findUserRoleAuthVOByUserId(String userId);
 }

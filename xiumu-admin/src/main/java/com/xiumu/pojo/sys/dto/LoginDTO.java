@@ -1,4 +1,4 @@
-package com.xiumu.pojo.sys.model.dto;
+package com.xiumu.pojo.sys.dto;
 
 import lombok.Data;
 

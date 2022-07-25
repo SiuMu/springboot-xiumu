@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.pojo.sys.entity.User;
-import com.xiumu.pojo.sys.model.query.UserQuery;
+import com.xiumu.pojo.sys.query.UserQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

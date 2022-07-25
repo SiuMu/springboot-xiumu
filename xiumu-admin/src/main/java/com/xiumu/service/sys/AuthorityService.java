@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.pojo.sys.entity.Authority;
-import com.xiumu.pojo.sys.model.dto.AuthorityDTO;
-import com.xiumu.pojo.sys.model.query.AuthorityQuery;
+import com.xiumu.pojo.sys.dto.AuthorityDTO;
+import com.xiumu.pojo.sys.query.AuthorityQuery;
 
 import java.util.List;
 

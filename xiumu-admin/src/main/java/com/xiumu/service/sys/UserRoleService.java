@@ -2,8 +2,8 @@ package com.xiumu.service.sys;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiumu.pojo.sys.entity.UserRole;
-import com.xiumu.pojo.sys.model.dto.UserRoleDTO;
-import com.xiumu.pojo.sys.model.query.UserRoleQuery;
+import com.xiumu.pojo.sys.dto.UserRoleDTO;
+import com.xiumu.pojo.sys.query.UserRoleQuery;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 

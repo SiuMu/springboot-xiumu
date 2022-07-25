@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.pojo.sys.entity.RoleAuth;
-import com.xiumu.pojo.sys.model.dto.RoleAuthDTO;
-import com.xiumu.pojo.sys.model.query.RoleAuthQuery;
+import com.xiumu.pojo.sys.dto.RoleAuthDTO;
+import com.xiumu.pojo.sys.query.RoleAuthQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

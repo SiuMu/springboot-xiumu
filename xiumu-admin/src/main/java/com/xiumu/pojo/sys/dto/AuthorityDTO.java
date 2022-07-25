@@ -1,22 +1,20 @@
-package com.xiumu.pojo.sys.model.query;
+package com.xiumu.pojo.sys.dto;
 
 import lombok.Data;
 
 /**
- * Query 对象，表示查询传参，需要查询并传递参数的时候，封装成该对象
- * <p>
- * 查询 权限 对象
+ * 权限 对象 DTO
  *
  * @author XiuMu
  * @date 2022-07-16 17:25:15
  */
 @Data
-public class AuthorityQuery {
+public class AuthorityDTO {
 
     /**
      * 父级ID
      */
-    private Long parentId;
+    private String parentId;
     /**
      * 权限编码
      */
@@ -30,7 +28,7 @@ public class AuthorityQuery {
      */
     private String authDesc;
     /**
-     * 权限类型，0菜单，1按钮，2接口
+     * 权限类型，0 菜单，1 按钮，2 接口
      */
     private Integer authType;
 

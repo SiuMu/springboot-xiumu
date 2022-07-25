@@ -1,10 +1,30 @@
-###  TokenController 接口测试
+###  TokenController 登录接口测试
 GET http://localhost:8080/token
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "zhihaobo"
+  "username": "xiumu",
+  "password": "123456"
 }
 
-###
+###  TokenController 用户角色权限接口测试
+GET http://localhost:8080/userRoleAuth
+Content-Type: application/json
+XiuMuToken: c7035887-23a1-4f5e-9b49-ae54afe73aaf
+
+
+###  TokenController 接口测试
+
+
+###  UserController 接口测试
+GET http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "username": "xiumu",
+  "password": "123456"
+}
+
+###  接口测试
+
+

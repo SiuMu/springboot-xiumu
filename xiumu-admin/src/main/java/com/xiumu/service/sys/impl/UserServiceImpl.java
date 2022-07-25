@@ -14,11 +14,16 @@ import com.xiumu.common.core.exception.sys.SysException;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.utils.AssertUtil;
 import com.xiumu.dao.sys.UserDao;
+import com.xiumu.exception.user.UserException;
+import com.xiumu.pojo.sys.dto.LoginDTO;
+import com.xiumu.pojo.sys.dto.UserDTO;
 import com.xiumu.pojo.sys.entity.User;
-import com.xiumu.pojo.sys.model.dto.LoginDTO;
-import com.xiumu.pojo.sys.model.dto.UserDTO;
-import com.xiumu.pojo.sys.model.query.UserQuery;
+import com.xiumu.pojo.sys.query.UserQuery;
+import com.xiumu.pojo.sys.vo.UserRoleAuthVO;
+import com.xiumu.service.sys.AuthorityService;
+import com.xiumu.service.sys.RoleService;
 import com.xiumu.service.sys.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,6 +37,12 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserService {
+
+    @Autowired
+    private AuthorityService authorityService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public IPage<User> listPage(PageQuery<UserQuery, User> pageQuery) {
@@ -76,6 +87,16 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         StpUtil.login(user.getId());
         StpUtil.getSession().set(XiuMuConst.USERNAME, user.getUsername());
         return StpUtil.getTokenInfo().tokenValue;
+    }
+
+    @Override
+    public UserRoleAuthVO findUserRoleAuthVOByUserId(String userId) {
+        User user = this.getById(userId);
+        AssertUtil.notNull(user, UserException.NOT_EXIT);
+        UserRoleAuthVO userRoleAuthVO = BeanUtil.copyProperties(user, UserRoleAuthVO.class);
+        userRoleAuthVO.setRoleList(roleService.listRoleCodeByUserId(userId));
+        userRoleAuthVO.setAuthList(authorityService.listAuthCodeByUserId(userId));
+        return userRoleAuthVO;
     }
 
     /**

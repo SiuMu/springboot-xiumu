@@ -1,21 +1,17 @@
-package com.xiumu.pojo.sys.entity;
+package com.xiumu.pojo.sys.query;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.xiumu.common.core.entity.BaseEntity;
 import lombok.Data;
 
 /**
- * Entity 表示与数据库一一对应的实体，不能出现数据库没有的字段。
- * 也不能与数据库无关的注解或者方法，比如 POI 注解， 参数校验注解，都不能出现
+ * Query 对象，表示查询传参，需要查询并传递参数的时候，封装成该对象
  * <p>
- * 用户 对象 sys_user
+ * 查询 用户 对象
  *
  * @author XiuMu
  * @date 2022-07-16 17:27:37
  */
 @Data
-@TableName("sys_user")
-public class User extends BaseEntity {
+public class UserQuery {
 
     /**
      * 用户名

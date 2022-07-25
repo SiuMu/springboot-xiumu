@@ -1,4 +1,4 @@
-package com.xiumu.pojo.sys.model.dto;
+package com.xiumu.pojo.sys.dto;
 
 import lombok.Data;
 
@@ -15,6 +15,10 @@ public class UserDTO {
      * 用户名
      */
     private String username;
+    /**
+     * 昵称
+     */
+    private String nickName;
     /**
      * 密码
      */
