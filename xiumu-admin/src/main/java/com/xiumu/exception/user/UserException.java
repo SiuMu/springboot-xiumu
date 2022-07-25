@@ -1,4 +1,4 @@
-package com.xiumu.common.core.exception.user;
+package com.xiumu.exception.user;
 
 import com.xiumu.common.core.exception.base.IBaseException;
 import lombok.Getter;
@@ -17,10 +17,7 @@ public enum UserException implements IBaseException {
     NOT_EXIT(1007, "用户不存在"),
     CONFIRM_PASSWORD_ERROR(1006, "两次密码输入不一致"),
     NOT_ENABLED(1005, "用户已经被禁用！！"),
-    EXITED(1004, "用户名已经被注册！！"),
-    AUTHORITY_FAIL(1003, "没有相关权限！！"),
-    PASSWD_ERROR(1002, "用户名或者密码有误！"),
-    NOT_LOGIN(1001, "登录失效！请重新登录");
+    EXITED(1004, "用户名已经被注册！！");
 
 
     private final Integer code;

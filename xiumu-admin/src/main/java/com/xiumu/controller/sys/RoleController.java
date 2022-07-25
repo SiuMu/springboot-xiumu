@@ -79,7 +79,7 @@ public class RoleController {
      * @return
      */
     @PutMapping("/role/{id}")
-    public ResultJSON update(@Validated @RequestBody RoleDTO roleDTO, @PathVariable Long id) {
+    public ResultJSON update(@Validated @RequestBody RoleDTO roleDTO, @PathVariable String id) {
         return ResultJSON.success(roleService.updateById(roleDTO, id));
     }
 
@@ -90,7 +90,7 @@ public class RoleController {
      * @return
      */
     @DeleteMapping("/role/{id}")
-    public ResultJSON delete(@PathVariable Long id) {
+    public ResultJSON delete(@PathVariable String id) {
         return ResultJSON.success(roleService.deleteById(id));
     }
 }

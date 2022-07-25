@@ -1,4 +1,4 @@
-package com.xiumu.common.core.exception.user;
+package com.xiumu.exception.user;
 
 import com.xiumu.common.core.exception.base.IBaseException;
 

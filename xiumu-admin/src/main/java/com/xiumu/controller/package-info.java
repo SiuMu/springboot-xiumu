@@ -1,5 +1,5 @@
 /**
- * controller 层使用 restful 风格。<br/>
+ * controller 层使用 restful 风格。不做任何的业务逻辑操作<br/>
  * URI 使用资源名称，而不是动作来描述：<br/>
  * 错误命名: <br/>
  * GET     /getUser/1    查询 ID 是 1 的用户<br/>

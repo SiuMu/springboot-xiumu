@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.pojo.sys.entity.User;
+import com.xiumu.pojo.sys.model.dto.LoginDTO;
 import com.xiumu.pojo.sys.model.dto.UserDTO;
 import com.xiumu.pojo.sys.model.query.UserQuery;
 
@@ -57,4 +58,12 @@ public interface UserService extends IService<User> {
      * @return
      */
     boolean deleteById(Long id);
+
+    /**
+     * 用户登录方法
+     *
+     * @param loginDTO 登录凭证
+     * @return
+     */
+    String login(LoginDTO loginDTO);
 }

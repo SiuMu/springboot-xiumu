@@ -1,15 +1,21 @@
 package com.xiumu.service.sys.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.constants.XiuMuConst;
 import com.xiumu.common.core.enums.YesNo;
+import com.xiumu.common.core.exception.sys.SysException;
 import com.xiumu.common.core.page.PageQuery;
+import com.xiumu.common.core.utils.AssertUtil;
 import com.xiumu.dao.sys.UserDao;
 import com.xiumu.pojo.sys.entity.User;
+import com.xiumu.pojo.sys.model.dto.LoginDTO;
 import com.xiumu.pojo.sys.model.dto.UserDTO;
 import com.xiumu.pojo.sys.model.query.UserQuery;
 import com.xiumu.service.sys.UserService;
@@ -58,6 +64,18 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
                 .set(User::getDeleteFlag, YesNo.YES)
                 .eq(User::getId, id);
         return this.update(updateWrapper);
+    }
+
+    @Override
+    public String login(LoginDTO loginDTO) {
+        LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<User>()
+                .eq(User::getUsername, loginDTO.getUsername())
+                .eq(User::getPassword, SecureUtil.md5(loginDTO.getPassword()));
+        User user = this.getOne(queryWrapper);
+        AssertUtil.notNull(user, SysException.PASSWD_ERROR);
+        StpUtil.login(user.getId());
+        StpUtil.getSession().set(XiuMuConst.USERNAME, user.getUsername());
+        return StpUtil.getTokenInfo().tokenValue;
     }
 
     /**

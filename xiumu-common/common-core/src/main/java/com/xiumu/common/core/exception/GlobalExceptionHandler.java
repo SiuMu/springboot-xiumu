@@ -7,7 +7,6 @@ import cn.dev33.satoken.exception.SaTokenException;
 import com.xiumu.common.core.exception.base.IBaseException;
 import com.xiumu.common.core.exception.base.XiuMuException;
 import com.xiumu.common.core.exception.sys.SysException;
-import com.xiumu.common.core.exception.user.UserException;
 import com.xiumu.common.core.result.ResultJSON;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -50,13 +49,13 @@ public class GlobalExceptionHandler {
 
         if (e instanceof NotLoginException) {
             // 未登录
-            exception = UserException.NOT_LOGIN;
+            exception = SysException.NOT_LOGIN;
         } else if (e instanceof NotRoleException) {
             // 没有权限
-            exception = UserException.AUTHORITY_FAIL;
+            exception = SysException.NOT_AUTHORITY;
         } else if (e instanceof NotPermissionException) {
             // 没有权限
-            exception = UserException.AUTHORITY_FAIL;
+            exception = SysException.NOT_AUTHORITY;
         }
 
         return ResultJSON.failure(exception.getCode(), exception.getMessage());
