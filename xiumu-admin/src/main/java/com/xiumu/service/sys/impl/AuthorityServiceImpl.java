@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.AuthorityDao;
-import com.xiumu.enums.YesNo;
 import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.model.dto.AuthorityDTO;
 import com.xiumu.pojo.sys.model.query.AuthorityQuery;
