@@ -1,4 +1,4 @@
-package ${pojoPackageName}.${moduleName}.model.dto;
+package ${pojoPackageName}.${moduleName}.dto;
 
 import lombok.Data;
 #foreach ($column in $columns)

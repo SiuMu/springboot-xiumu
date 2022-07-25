@@ -2,8 +2,8 @@ package ${servicePackageName}.service.${moduleName};
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import ${pojoPackageName}.${moduleName}.entity.${ClassName};
-import ${pojoPackageName}.${moduleName}.model.dto.${ClassName}DTO;
-import ${pojoPackageName}.${moduleName}.model.query.${ClassName}Query;
+import ${pojoPackageName}.${moduleName}.dto.${ClassName}DTO;
+import ${pojoPackageName}.${moduleName}.query.${ClassName}Query;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 

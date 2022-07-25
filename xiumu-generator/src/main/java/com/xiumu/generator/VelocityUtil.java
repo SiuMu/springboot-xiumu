@@ -75,9 +75,9 @@ public class VelocityUtil {
         if (template.contains("entity.java.vm")) {
             fileName = javaPath + "/" + moduleName + "/entity/" + className + ".java";
         } else if (template.contains("entityDTO.java.vm")) {
-            fileName = javaPath + "/" + moduleName + "/model/dto/" + className + "DTO.java";
+            fileName = javaPath + "/" + moduleName + "/dto/" + className + "DTO.java";
         } else if (template.contains("entityQuery.java.vm")) {
-            fileName = javaPath + "/" + moduleName + "/model/query/" + className + "Query.java";
+            fileName = javaPath + "/" + moduleName + "/query/" + className + "Query.java";
         } else if (template.contains("mapper.xml.vm")) {
             fileName = mybatisPath + "/" + className + "Dao.xml";
         } else if (template.contains("mapper.java.vm")) {

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import ${pojoPackageName}.${moduleName}.entity.${ClassName};
-import ${pojoPackageName}.${moduleName}.model.dto.${ClassName}DTO;
-import ${pojoPackageName}.${moduleName}.model.query.${ClassName}Query;
+import ${pojoPackageName}.${moduleName}.dto.${ClassName}DTO;
+import ${pojoPackageName}.${moduleName}.query.${ClassName}Query;
 import ${servicePackageName}.service.${moduleName}.${ClassName}Service;
 
 

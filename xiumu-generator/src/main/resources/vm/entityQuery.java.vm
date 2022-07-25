@@ -1,4 +1,4 @@
-package ${pojoPackageName}.${moduleName}.model.query;
+package ${pojoPackageName}.${moduleName}.query;
 
 import lombok.Data;
 #foreach ($column in $columns)
