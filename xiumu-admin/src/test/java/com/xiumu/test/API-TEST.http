@@ -10,10 +10,16 @@ Content-Type: application/json
 ###  TokenController 用户角色权限接口测试
 GET http://localhost:8080/userRoleAuth
 Content-Type: application/json
-XiuMuToken: c7035887-23a1-4f5e-9b49-ae54afe73aaf
+XiuMuToken: 3e1f1c84-7f98-41b8-8cf2-9619cf6bfe49
+
+###  TokenController 退出登录 接口测试
+GET http://localhost:8080/logout
+Content-Type: application/json
+XiuMuToken: 3e1f1c84-7f98-41b8-8cf2-9619cf6bfe49
 
 
 ###  TokenController 接口测试
+
 
 
 ###  UserController 接口测试

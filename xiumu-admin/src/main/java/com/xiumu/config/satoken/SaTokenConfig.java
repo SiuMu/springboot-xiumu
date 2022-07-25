@@ -39,8 +39,7 @@ public class SaTokenConfig {
                     if ("OPTIONS".equals(SaHolder.getRequest().getMethod())) {
                         SaRouter.back();
                     }
-                })
-                ;
+                });
     }
 
 
