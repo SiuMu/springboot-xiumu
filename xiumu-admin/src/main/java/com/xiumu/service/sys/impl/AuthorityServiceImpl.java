@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 权限 Service 业务层处理
@@ -38,6 +39,12 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
     }
 
     @Override
+    public List<String> listAuthCodeByUserId(String userId) {
+        List<Authority> authorities = this.baseMapper.selectByUserId(userId);
+        return authorities.stream().map(Authority::getAuthCode).collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     public boolean create(AuthorityDTO authorityDTO) {
         Authority authority = BeanUtil.toBean(authorityDTO, Authority.class);
@@ -46,7 +53,7 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
 
     @Override
     @Transactional
-    public boolean updateById(AuthorityDTO authorityDTO, Long id) {
+    public boolean updateById(AuthorityDTO authorityDTO, String id) {
         return this.baseMapper.updateById(id, authorityDTO);
     }
 

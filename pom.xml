@@ -25,7 +25,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.6.6</spring-boot.version>
-        <mssql-jdbc.version>5.1.47</mssql-jdbc.version>
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <hutool.version>5.7.20</hutool.version>
         <satoken.version>1.26.0</satoken.version>

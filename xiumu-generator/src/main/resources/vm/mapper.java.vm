@@ -37,4 +37,5 @@ public interface ${ClassName}Dao extends BaseMapper<${ClassName}> {
      */
     List<${ClassName}> selectBy${ClassName}(@Param("${className}") ${ClassName}Query ${className});
 
+
 }

@@ -48,7 +48,7 @@ public interface UserService extends IService<User> {
      * @param id      主键 ID
      * @return
      */
-    boolean updateById(UserDTO userDTO, Long id);
+    boolean updateById(UserDTO userDTO, String id);
 
     /**
      * 根据 id 逻辑删除

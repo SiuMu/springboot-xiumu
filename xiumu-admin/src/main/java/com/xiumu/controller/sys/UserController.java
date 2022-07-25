@@ -79,7 +79,7 @@ public class UserController {
      * @return
      */
     @PutMapping("/user/{id}")
-    public ResultJSON update(@Validated @RequestBody UserDTO userDTO, @PathVariable Long id) {
+    public ResultJSON update(@Validated @RequestBody UserDTO userDTO, @PathVariable String id) {
         return ResultJSON.success(userService.updateById(userDTO, id));
     }
 

@@ -46,8 +46,10 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     @Override
     @Transactional
-    public boolean updateById(UserDTO userDTO, Long id) {
-        return this.baseMapper.updateById(id, userDTO);
+    public boolean updateById(UserDTO userDTO, String id) {
+        User user = BeanUtil.copyProperties(userDTO, User.class);
+        user.setId(id);
+        return updateById(user);
     }
 
     @Override

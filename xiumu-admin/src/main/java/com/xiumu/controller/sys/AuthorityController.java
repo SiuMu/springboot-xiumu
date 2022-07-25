@@ -79,7 +79,7 @@ public class AuthorityController {
      * @return
      */
     @PutMapping("/authority/{id}")
-    public ResultJSON update(@Validated @RequestBody AuthorityDTO authorityDTO, @PathVariable Long id) {
+    public ResultJSON update(@Validated @RequestBody AuthorityDTO authorityDTO, @PathVariable String id) {
         return ResultJSON.success(authorityService.updateById(authorityDTO, id));
     }
 

@@ -34,6 +34,14 @@ public interface AuthorityService extends IService<Authority> {
     List<Authority> listByAuthority(AuthorityQuery authority);
 
     /**
+     * 根据 用户ID 查询该用户所拥有的权限 Code
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    List<String> listAuthCodeByUserId(String userId);
+
+    /**
      * 创建 权限
      *
      * @param authorityDTO authority 信息
@@ -48,7 +56,7 @@ public interface AuthorityService extends IService<Authority> {
      * @param id           主键 ID
      * @return
      */
-    boolean updateById(AuthorityDTO authorityDTO, Long id);
+    boolean updateById(AuthorityDTO authorityDTO, String id);
 
     /**
      * 根据 id 逻辑删除

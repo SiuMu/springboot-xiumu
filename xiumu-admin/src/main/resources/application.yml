@@ -6,7 +6,7 @@ spring:
     active: dev
 
 mybatis-plus:
-  type-enums-package: com.xiumu.enums
+  type-enums-package: com.xiumu.common.core.enums;com.xiumu.enums;
   global-config:
     banner: false
   configuration:
@@ -39,7 +39,7 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql:///xiumu?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: root
@@ -55,7 +55,7 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql:///xiumu?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: root
