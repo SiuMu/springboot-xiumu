@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.enums.YesNo;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.AuthorityDao;
 import com.xiumu.pojo.sys.entity.Authority;
@@ -71,8 +72,7 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
      */
     @Override
     public List<Authority> list() {
-        LambdaQueryWrapper<Authority> queryWrapper = new LambdaQueryWrapper<Authority>().eq(Authority::getDeleteFlag, YesNo.
-                NO);
+        LambdaQueryWrapper<Authority> queryWrapper = new LambdaQueryWrapper<Authority>().eq(Authority::getDeleteFlag, YesNo.NO);
         return this.baseMapper.selectList(queryWrapper);
     }
 

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.enums.YesNo;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.RoleAuthDao;
 import com.xiumu.pojo.sys.entity.RoleAuth;
@@ -64,8 +65,7 @@ public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao, RoleAuth> impl
      */
     @Override
     public List<RoleAuth> list() {
-        LambdaQueryWrapper<RoleAuth> queryWrapper = new LambdaQueryWrapper<RoleAuth>().eq(RoleAuth::getDeleteFlag, YesNo.
-                NO);
+        LambdaQueryWrapper<RoleAuth> queryWrapper = new LambdaQueryWrapper<RoleAuth>().eq(RoleAuth::getDeleteFlag, YesNo.NO);
         return this.baseMapper.selectList(queryWrapper);
     }
 

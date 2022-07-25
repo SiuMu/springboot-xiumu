@@ -62,17 +62,18 @@ public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Dao,${Class
 
     /**
      * 重写 list 方法，查询未逻辑删除的记录
+     *
      * @return
      */
     @Override
     public List<${ClassName}> list() {
-        LambdaQueryWrapper<${ClassName}> queryWrapper = new LambdaQueryWrapper<${ClassName}>().eq(${ClassName}::getDeleteFlag, YesNo.
-        NO);
+        LambdaQueryWrapper<${ClassName}> queryWrapper = new LambdaQueryWrapper<${ClassName}>().eq(${ClassName}::getDeleteFlag, YesNo.NO);
         return this.baseMapper.selectList(queryWrapper);
     }
 
     /**
      * 重写 list 方法，查询未逻辑删除的记录
+     *
      * @return
      */
     public List<${ClassName}> list(LambdaQueryWrapper<${ClassName}> queryWrapper) {

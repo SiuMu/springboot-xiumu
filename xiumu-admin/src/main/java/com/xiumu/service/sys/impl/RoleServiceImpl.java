@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.enums.YesNo;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.RoleDao;
 import com.xiumu.pojo.sys.entity.Role;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 角色 Service 业务层处理
@@ -37,6 +39,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
     }
 
     @Override
+    public List<String> listRoleCodeByUserId(String userId) {
+        List<Role> roles = this.baseMapper.selectByUserId(userId);
+        return roles.stream().map(Role::getRoleCode).collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     public boolean create(RoleDTO roleDTO) {
         Role role = BeanUtil.toBean(roleDTO, Role.class);
@@ -45,12 +53,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
 
     @Override
     @Transactional
-    public boolean updateById(RoleDTO roleDTO, Long id) {
-        return this.baseMapper.updateById(id, roleDTO);
+    public boolean updateById(RoleDTO roleDTO, String id) {
+        Role role = BeanUtil.copyProperties(roleDTO, Role.class);
+        role.setId(id);
+        return updateById(role);
     }
 
     @Override
-    public boolean deleteById(Long id) {
+    public boolean deleteById(String id) {
         LambdaUpdateWrapper<Role> updateWrapper = new LambdaUpdateWrapper<Role>()
                 .set(Role::getDeleteFlag, YesNo.YES)
                 .eq(Role::getId, id);

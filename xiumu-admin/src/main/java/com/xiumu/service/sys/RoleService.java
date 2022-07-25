@@ -34,6 +34,14 @@ public interface RoleService extends IService<Role> {
     List<Role> listByRole(RoleQuery role);
 
     /**
+     * 根据 用户ID 查询角色编码
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    List<String> listRoleCodeByUserId(String userId);
+
+    /**
      * 创建 角色
      *
      * @param roleDTO role 信息
@@ -48,7 +56,7 @@ public interface RoleService extends IService<Role> {
      * @param id      主键 ID
      * @return
      */
-    boolean updateById(RoleDTO roleDTO, Long id);
+    boolean updateById(RoleDTO roleDTO, String id);
 
     /**
      * 根据 id 逻辑删除
@@ -56,5 +64,5 @@ public interface RoleService extends IService<Role> {
      * @param id id
      * @return
      */
-    boolean deleteById(Long id);
+    boolean deleteById(String id);
 }

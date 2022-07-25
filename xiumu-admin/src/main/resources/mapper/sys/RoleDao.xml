@@ -34,18 +34,10 @@
         order by create_time desc
     </select>
 
-    <update id="updateById">
-        update sys_role
-        <trim prefix="SET" suffixOverrides=",">
-            <if test=" role.roleName != null ">
-                role_name = #{role.roleName}
-            </if>
-            <if test=" role.roleCode != null ">
-                role_code = #{role.roleCode}
-            </if>
-            <if test=" role.roleDesc != null ">
-                role_desc = #{role.roleDesc}
-            </if>
-        </trim>
-    </update>
+
+    <select id="selectByUserId" resultType="com.xiumu.pojo.sys.entity.Role">
+        select r.*
+        from sys_role r
+                 inner join sys_user_role ur on ur.role_id = r.id and ur.user_id = #{userId}
+    </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.xiumu.config.satoken;
 
 import cn.dev33.satoken.stp.StpInterface;
+import cn.hutool.core.convert.Convert;
 import com.xiumu.service.sys.AuthorityService;
 import com.xiumu.service.sys.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class StpInterfaceImpl implements StpInterface {
      */
     @Override
     public List<String> getPermissionList(Object loginId, String loginType) {
-        return null;
+        return authorityService.listAuthCodeByUserId(Convert.toStr(loginId));
     }
 
     /**
@@ -38,6 +39,6 @@ public class StpInterfaceImpl implements StpInterface {
      */
     @Override
     public List<String> getRoleList(Object loginId, String loginType) {
-        return null;
+        return roleService.listRoleCodeByUserId(Convert.toStr(loginId));
     }
 }
