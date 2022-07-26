@@ -1,11 +1,7 @@
 ###  TokenController 登录接口测试
-GET http://localhost:8080/token
-Content-Type: application/json
+GET http://localhost:8080/token?username=xiumu
+Accept: application/json
 
-{
-  "username": "xiumu",
-  "password": "123456"
-}
 
 ###  TokenController 用户角色权限接口测试
 GET http://localhost:8080/userRoleAuth

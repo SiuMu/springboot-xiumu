@@ -2,8 +2,8 @@ package com.xiumu.controller.sys;
 
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
-import com.xiumu.pojo.sys.entity.User;
 import com.xiumu.pojo.sys.dto.UserDTO;
+import com.xiumu.pojo.sys.entity.User;
 import com.xiumu.pojo.sys.query.UserQuery;
 import com.xiumu.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/page")
-    public ResultJSON page(@Validated @RequestBody PageQuery<UserQuery, User> pageQuery) {
+    public ResultJSON page( PageQuery<UserQuery, User> pageQuery) {
         return ResultJSON.success(userService.listPage(pageQuery));
     }
 
@@ -44,7 +44,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/user")
-    public ResultJSON list(@RequestBody UserQuery user) {
+    public ResultJSON list( UserQuery user) {
         return ResultJSON.success(userService.listByUser(user));
     }
 

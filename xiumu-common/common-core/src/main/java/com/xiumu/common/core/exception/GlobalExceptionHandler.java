@@ -8,8 +8,8 @@ import com.xiumu.common.core.exception.base.IBaseException;
 import com.xiumu.common.core.exception.base.XiuMuException;
 import com.xiumu.common.core.exception.sys.SysException;
 import com.xiumu.common.core.result.ResultJSON;
+import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -67,10 +67,10 @@ public class GlobalExceptionHandler {
      * @param e 异常
      * @return
      */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResultJSON HandlerParamsValidException(MethodArgumentNotValidException e) {
+    @ExceptionHandler(BindException.class)
+    public ResultJSON HandlerParamsValidException(BindException e) {
         // 返回参数校验中定义的错误信息
-        List<ObjectError> errors = e.getBindingResult().getAllErrors();
+        List<ObjectError> errors = e.getAllErrors();
         return ResultJSON.failure(errors.get(0).getDefaultMessage());
     }
 
@@ -82,7 +82,8 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResultJSON handlerException(Exception e) {
-        System.out.println("不可预知的错误：" + e.getMessage());
+        System.out.println("不可预知的错误：");
+        e.printStackTrace();
         return ResultJSON.failure(SysException.SERVE_FAIL.getCode(), SysException.SERVE_FAIL.getMessage());
     }
 }

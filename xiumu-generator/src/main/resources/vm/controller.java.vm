@@ -32,7 +32,7 @@ public class ${ClassName}Controller {
      * @return
      */
     @GetMapping("/${businessName}/page")
-    public ResultJSON page(@Validated @RequestBody PageQuery<${ClassName}Query, ${ClassName}> pageQuery) {
+    public ResultJSON page( PageQuery<${ClassName}Query, ${ClassName}> pageQuery) {
         return ResultJSON.success(${className}Service.listPage(pageQuery));
     }
 
@@ -44,7 +44,7 @@ public class ${ClassName}Controller {
      * @return
      */
     @GetMapping("/${businessName}")
-    public ResultJSON list(@RequestBody ${ClassName}Query ${className}) {
+    public ResultJSON list( ${ClassName}Query ${className}) {
         return ResultJSON.success(${className}Service.listBy${ClassName}(${className}));
     }
 

@@ -11,6 +11,7 @@
  * POST    /user   新建一个用户<br/>
  * PUT     /user/1 修改 ID 是 1 的用户<br/>
  * DELETE  /user/1 删除 ID 是 1 的用户<br/>
+ * 注意：get 请求不能将参数放在 body 中, 有可能会被忽略 </br>
  * 待讨论：<br/>
  * 理论上 URI 不应该有动作，但是分页查询与全部查询如何区分？<br/>
  * /user/page 与  /user , page 算是动作吗？
