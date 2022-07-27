@@ -21,8 +21,6 @@ Content-Type: application/json
 XiuMuToken: b0b59a60-1613-4eb4-ba36-548226d90de9
 
 
-
-
 ###  RoleController 接口测试
 
 
@@ -31,6 +29,11 @@ XiuMuToken: b0b59a60-1613-4eb4-ba36-548226d90de9
 GET http://localhost:8080/user/92193617981/role
 Content-Type: application/json
 XiuMuToken: b0b59a60-1613-4eb4-ba36-548226d90de9
+
+###  UserController 接口测试
+GET http://localhost:8080/user/page?eyJjdXJyZW50IjoxLCJzaXplIjoxMCwidG90YWwiOjAsImNvbmRpdGlvbiI6eyJ1c2VybmFtZSI6IiIsInVzZXJQaG9uZSI6IiJ9fQ==
+Content-Type: application/x-www-form-urlencoded
+XiuMuToken: ae7731fb-9125-4bbd-a186-34024a3dcbeb
 
 
 ###  UserController 接口测试

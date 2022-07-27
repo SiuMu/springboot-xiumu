@@ -1,5 +1,6 @@
 package com.xiumu.controller.sys;
 
+import com.xiumu.common.core.annotation.RequestJson;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.dto.UserDTO;
@@ -36,7 +37,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/page")
-    public ResultJSON page( PageQuery<UserQuery, User> pageQuery) {
+    public ResultJSON page( @RequestJson PageQuery<UserQuery, User> pageQuery) {
         return ResultJSON.success(userService.listPage(pageQuery));
     }
 

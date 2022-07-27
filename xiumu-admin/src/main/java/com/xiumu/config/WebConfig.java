@@ -1,10 +1,13 @@
 package com.xiumu.config;
 
 import cn.dev33.satoken.interceptor.SaAnnotationInterceptor;
-import cn.dev33.satoken.interceptor.SaRouteInterceptor;
+import com.xiumu.common.core.utils.HandlerRequestJsonArgumentResolver;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -15,9 +18,14 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new SaAnnotationInterceptor());
-        registry.addInterceptor(new SaRouteInterceptor())
-                .addPathPatterns("/**")
-                .excludePathPatterns("/token");
+//        registry.addInterceptor(new SaRouteInterceptor())
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/token");
     }
 
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new HandlerRequestJsonArgumentResolver());
+//        WebMvcConfigurer.super.addArgumentResolvers(resolvers);
+    }
 }
