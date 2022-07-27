@@ -16,12 +16,6 @@ public class SaTokenConfig {
     public SaServletFilter getSaServletFilter() {
         return new SaServletFilter()
                 .addInclude("/**").addExclude("/favicon.ico")
-                .setAuth(r -> {
-                    // System.out.println("---------- sa全局认证");
-                })
-                .setError(e -> {
-                    return "";
-                })
                 // 前置函数：在每次认证函数之前执行
                 .setBeforeAuth(r -> {
                     // ---------- 设置跨域响应头 ----------
