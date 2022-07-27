@@ -3,8 +3,8 @@ package com.xiumu.service.sys;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiumu.common.core.page.PageQuery;
-import com.xiumu.pojo.sys.entity.Role;
 import com.xiumu.pojo.sys.dto.RoleDTO;
+import com.xiumu.pojo.sys.entity.Role;
 import com.xiumu.pojo.sys.query.RoleQuery;
 
 import java.util.List;
@@ -65,4 +65,12 @@ public interface RoleService extends IService<Role> {
      * @return
      */
     boolean deleteById(String id);
+
+    /**
+     * 通过 用户ID 查询用户的角色
+     *
+     * @param userId 用户ID
+     * @return
+     */
+    List<Role> listByUserId(String userId);
 }

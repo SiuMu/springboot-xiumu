@@ -5,6 +5,7 @@ import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.dto.UserDTO;
 import com.xiumu.pojo.sys.entity.User;
 import com.xiumu.pojo.sys.query.UserQuery;
+import com.xiumu.service.sys.RoleService;
 import com.xiumu.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -22,6 +23,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
 
     /**
@@ -57,6 +61,18 @@ public class UserController {
     @GetMapping("/user/{id}")
     public ResultJSON find(@PathVariable String id) {
         return ResultJSON.success(userService.getById(id));
+    }
+
+
+    /**
+     * 通过 ID 查询用户下的角色
+     *
+     * @param id ID
+     * @return
+     */
+    @GetMapping("/user/{id}/role")
+    public ResultJSON roleList(@PathVariable String id) {
+        return ResultJSON.success(roleService.listByUserId(id));
     }
 
     /**

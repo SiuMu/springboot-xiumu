@@ -2,9 +2,10 @@ package com.xiumu.controller.sys;
 
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
-import com.xiumu.pojo.sys.entity.Role;
 import com.xiumu.pojo.sys.dto.RoleDTO;
+import com.xiumu.pojo.sys.entity.Role;
 import com.xiumu.pojo.sys.query.RoleQuery;
+import com.xiumu.service.sys.AuthorityService;
 import com.xiumu.service.sys.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +24,8 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private AuthorityService authorityService;
 
     /**
      * 分页查询
@@ -57,6 +60,17 @@ public class RoleController {
     @GetMapping("/role/{id}")
     public ResultJSON find(@PathVariable String id) {
         return ResultJSON.success(roleService.getById(id));
+    }
+
+    /**
+     * 通过 ID 查询角色下的权限
+     *
+     * @param id ID
+     * @return
+     */
+    @GetMapping("/role/{id}/auth")
+    public ResultJSON authList(@PathVariable String id) {
+        return ResultJSON.success(authorityService.listByRoleId(id));
     }
 
     /**

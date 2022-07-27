@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiumu.common.core.enums.YesNo;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.AuthorityDao;
-import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.dto.AuthorityDTO;
+import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.query.AuthorityQuery;
 import com.xiumu.service.sys.AuthorityService;
 import org.springframework.stereotype.Service;
@@ -63,6 +63,11 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
                 .set(Authority::getDeleteFlag, YesNo.YES)
                 .eq(Authority::getId, id);
         return this.update(updateWrapper);
+    }
+
+    @Override
+    public List<Authority> listByRoleId(String roleId) {
+        return this.baseMapper.selectByRoleId(roleId);
     }
 
     /**

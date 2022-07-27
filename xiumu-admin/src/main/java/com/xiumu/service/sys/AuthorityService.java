@@ -3,8 +3,8 @@ package com.xiumu.service.sys;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiumu.common.core.page.PageQuery;
-import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.dto.AuthorityDTO;
+import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.query.AuthorityQuery;
 
 import java.util.List;
@@ -65,4 +65,9 @@ public interface AuthorityService extends IService<Authority> {
      * @return
      */
     boolean deleteById(Long id);
+    /**
+     * 通过 角色Id 查询角色下的权限
+     * @param roleId 角色ID
+     */
+    List<Authority> listByRoleId(String roleId);
 }

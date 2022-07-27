@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiumu.common.core.enums.YesNo;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.RoleDao;
-import com.xiumu.pojo.sys.entity.Role;
 import com.xiumu.pojo.sys.dto.RoleDTO;
+import com.xiumu.pojo.sys.entity.Role;
 import com.xiumu.pojo.sys.query.RoleQuery;
 import com.xiumu.service.sys.RoleService;
 import org.springframework.stereotype.Service;
@@ -40,8 +40,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
 
     @Override
     public List<String> listRoleCodeByUserId(String userId) {
-        List<Role> roles = this.baseMapper.selectByUserId(userId);
-        return roles.stream().map(Role::getRoleCode).collect(Collectors.toList());
+        return listByUserId(userId).stream().map(Role::getRoleCode).collect(Collectors.toList());
     }
 
     @Override
@@ -67,6 +66,11 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
         return this.update(updateWrapper);
     }
 
+    @Override
+    public List<Role> listByUserId(String userId) {
+        return this.baseMapper.selectByUserId(userId);
+    }
+
     /**
      * 重写 list 方法，查询未逻辑删除的记录
      *
@@ -74,8 +78,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
      */
     @Override
     public List<Role> list() {
-        LambdaQueryWrapper<Role> queryWrapper = new LambdaQueryWrapper<Role>().eq(Role::getDeleteFlag, YesNo.
-                NO);
+        LambdaQueryWrapper<Role> queryWrapper = new LambdaQueryWrapper<Role>().eq(Role::getDeleteFlag, YesNo.NO);
         return this.baseMapper.selectList(queryWrapper);
     }
 
