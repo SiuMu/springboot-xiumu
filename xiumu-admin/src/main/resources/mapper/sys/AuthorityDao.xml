@@ -17,7 +17,7 @@
                 and auth_desc = #{authority.authDesc}
             </if>
             <if test=" authority.authType != null  ">
-                and auth_type = #{authority.authType}
+                and auth_type = #{authority.authType.code}
             </if>
         </if>
     </sql>

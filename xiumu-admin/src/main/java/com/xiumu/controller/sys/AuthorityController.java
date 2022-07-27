@@ -2,8 +2,8 @@ package com.xiumu.controller.sys;
 
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
-import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.dto.AuthorityDTO;
+import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.query.AuthorityQuery;
 import com.xiumu.service.sys.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class AuthorityController {
      * @return
      */
     @GetMapping("/authority/page")
-    public ResultJSON page(@Validated @RequestBody PageQuery<AuthorityQuery, Authority> pageQuery) {
+    public ResultJSON page( PageQuery<AuthorityQuery, Authority> pageQuery) {
         return ResultJSON.success(authorityService.listPage(pageQuery));
     }
 
@@ -44,7 +44,7 @@ public class AuthorityController {
      * @return
      */
     @GetMapping("/authority")
-    public ResultJSON list(@RequestBody AuthorityQuery authority) {
+    public ResultJSON list(AuthorityQuery authority) {
         return ResultJSON.success(authorityService.listByAuthority(authority));
     }
 
