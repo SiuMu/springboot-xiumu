@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.pojo.sys.entity.Authority;
-import com.xiumu.pojo.sys.dto.AuthorityDTO;
 import com.xiumu.pojo.sys.query.AuthorityQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -36,15 +35,6 @@ public interface AuthorityDao extends BaseMapper<Authority> {
      * @return
      */
     List<Authority> selectByAuthority(@Param("authority") AuthorityQuery authority);
-
-    /**
-     * 根据 ID 更新 权限信息
-     *
-     * @param id        ID
-     * @param authority 权限信息, 空字段则不更新
-     * @return
-     */
-    boolean updateById(@Param("id") String id, @Param("authority") AuthorityDTO authority);
 
     /**
      * 根据角色ID获取权限

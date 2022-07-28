@@ -1,5 +1,6 @@
 package com.xiumu.controller.sys;
 
+import com.xiumu.common.core.annotation.RequestJson;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.dto.AuthorityDTO;
@@ -32,7 +33,7 @@ public class AuthorityController {
      * @return
      */
     @GetMapping("/authority/page")
-    public ResultJSON page( PageQuery<AuthorityQuery, Authority> pageQuery) {
+    public ResultJSON page( @RequestJson PageQuery<AuthorityQuery, Authority> pageQuery) {
         return ResultJSON.success(authorityService.listPage(pageQuery));
     }
 

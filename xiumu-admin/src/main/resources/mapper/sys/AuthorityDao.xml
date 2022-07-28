@@ -40,27 +40,6 @@
         order by create_time desc
     </select>
 
-    <update id="updateById">
-        update sys_authority
-        <trim prefix="SET" suffixOverrides=",">
-            <if test=" authority.parentId != null ">
-                parent_id = #{authority.parentId}
-            </if>
-            <if test=" authority.authCode != null ">
-                auth_code = #{authority.authCode}
-            </if>
-            <if test=" authority.authName != null ">
-                auth_name = #{authority.authName}
-            </if>
-            <if test=" authority.authDesc != null ">
-                auth_desc = #{authority.authDesc}
-            </if>
-            <if test=" authority.authType != null ">
-                auth_type = #{authority.authType}
-            </if>
-        </trim>
-    </update>
-
     <select id="selectByRoleId" resultType="com.xiumu.pojo.sys.entity.Authority">
         select a.*
         from sys_authority a

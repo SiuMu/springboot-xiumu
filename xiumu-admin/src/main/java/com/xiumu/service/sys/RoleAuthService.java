@@ -3,8 +3,8 @@ package com.xiumu.service.sys;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiumu.common.core.page.PageQuery;
-import com.xiumu.pojo.sys.entity.RoleAuth;
 import com.xiumu.pojo.sys.dto.RoleAuthDTO;
+import com.xiumu.pojo.sys.entity.RoleAuth;
 import com.xiumu.pojo.sys.query.RoleAuthQuery;
 
 import java.util.List;
@@ -41,14 +41,6 @@ public interface RoleAuthService extends IService<RoleAuth> {
      */
     boolean create(RoleAuthDTO roleAuthDTO);
 
-    /**
-     * 更新 角色权限关联
-     *
-     * @param roleAuthDTO 更新内容
-     * @param id          主键 ID
-     * @return
-     */
-    boolean updateById(RoleAuthDTO roleAuthDTO, Long id);
 
     /**
      * 根据 id 逻辑删除

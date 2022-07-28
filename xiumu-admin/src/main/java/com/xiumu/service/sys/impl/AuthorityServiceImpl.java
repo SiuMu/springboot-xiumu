@@ -54,7 +54,9 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
     @Override
     @Transactional
     public boolean updateById(AuthorityDTO authorityDTO, String id) {
-        return this.baseMapper.updateById(id, authorityDTO);
+        Authority authority = BeanUtil.copyProperties(authorityDTO, Authority.class);
+        authority.setId(id);
+        return updateById(authority);
     }
 
     @Override

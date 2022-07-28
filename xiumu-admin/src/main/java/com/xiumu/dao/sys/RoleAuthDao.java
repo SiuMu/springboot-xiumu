@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.pojo.sys.entity.RoleAuth;
-import com.xiumu.pojo.sys.dto.RoleAuthDTO;
 import com.xiumu.pojo.sys.query.RoleAuthQuery;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -37,12 +36,4 @@ public interface RoleAuthDao extends BaseMapper<RoleAuth> {
      */
     List<RoleAuth> selectByRoleAuth(@Param("roleAuth") RoleAuthQuery roleAuth);
 
-    /**
-     * 根据 ID 更新 权限信息
-     *
-     * @param id       ID
-     * @param roleAuth 权限信息, 空字段则不更新
-     * @return
-     */
-    boolean updateById(@Param("id") Long id, @Param("roleAuth") RoleAuthDTO roleAuth);
 }

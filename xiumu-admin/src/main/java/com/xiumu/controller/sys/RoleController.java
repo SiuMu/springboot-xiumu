@@ -1,5 +1,6 @@
 package com.xiumu.controller.sys;
 
+import com.xiumu.common.core.annotation.RequestJson;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.dto.RoleDTO;
@@ -35,7 +36,7 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/page")
-    public ResultJSON page(@Validated @RequestBody PageQuery<RoleQuery, Role> pageQuery) {
+    public ResultJSON page(@RequestJson PageQuery<RoleQuery, Role> pageQuery) {
         return ResultJSON.success(roleService.listPage(pageQuery));
     }
 
@@ -47,7 +48,7 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role")
-    public ResultJSON list(@RequestBody RoleQuery role) {
+    public ResultJSON list(RoleQuery role) {
         return ResultJSON.success(roleService.listByRole(role));
     }
 

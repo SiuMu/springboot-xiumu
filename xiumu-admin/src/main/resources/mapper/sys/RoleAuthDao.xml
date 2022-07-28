@@ -30,16 +30,4 @@
         </where>
         order by create_time desc
     </select>
-
-    <update id="updateById">
-        update sys_role_auth
-        <trim prefix="SET" suffixOverrides=",">
-            <if test=" roleAuth.roleId != null ">
-                role_id = #{roleAuth.roleId}
-            </if>
-            <if test=" roleAuth.authId != null ">
-                auth_id = #{roleAuth.authId}
-            </if>
-        </trim>
-    </update>
 </mapper>

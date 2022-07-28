@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiumu.common.core.enums.YesNo;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.RoleAuthDao;
-import com.xiumu.pojo.sys.entity.RoleAuth;
 import com.xiumu.pojo.sys.dto.RoleAuthDTO;
+import com.xiumu.pojo.sys.entity.RoleAuth;
 import com.xiumu.pojo.sys.query.RoleAuthQuery;
 import com.xiumu.service.sys.RoleAuthService;
 import org.springframework.stereotype.Service;
@@ -42,12 +42,6 @@ public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao, RoleAuth> impl
     public boolean create(RoleAuthDTO roleAuthDTO) {
         RoleAuth roleAuth = BeanUtil.toBean(roleAuthDTO, RoleAuth.class);
         return this.save(roleAuth);
-    }
-
-    @Override
-    @Transactional
-    public boolean updateById(RoleAuthDTO roleAuthDTO, Long id) {
-        return this.baseMapper.updateById(id, roleAuthDTO);
     }
 
     @Override
