@@ -29,6 +29,7 @@ CREATE TABLE `sys_authority` (
   `auth_name` varchar(128) DEFAULT NULL COMMENT '权限名称',
   `auth_desc` varchar(255) DEFAULT NULL COMMENT '权限描述',
   `auth_type` tinyint(4) DEFAULT NULL COMMENT '权限类型，0菜单，1按钮',
+  `weight` smallint(6) DEFAULT '1' COMMENT '排序权重，越小越靠前',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `create_By` varchar(32) DEFAULT NULL COMMENT '创建人',
@@ -44,7 +45,7 @@ CREATE TABLE `sys_authority` (
 
 LOCK TABLES `sys_authority` WRITE;
 /*!40000 ALTER TABLE `sys_authority` DISABLE KEYS */;
-INSERT INTO `sys_authority` VALUES (1,0,'*:*:*','权限菜单','权限菜单',0,'2022-07-25 22:08:56','2022-07-25 22:08:56',NULL,NULL,0);
+INSERT INTO `sys_authority` VALUES (1,0,'*:*:*','权限菜单','权限菜单',0,1,'2022-07-25 22:08:56','2022-07-26 22:28:38',NULL,NULL,1),(1552637514433519617,0,'sys:*:*','系统设置','系统设置',0,1,'2022-07-28 20:50:04','2022-07-28 21:48:28',NULL,NULL,0),(1552653157606117377,1552637514433519617,'sys:user:*','用户管理','用户管理',0,3,'2022-07-28 21:52:14','2022-07-28 22:24:47',NULL,NULL,0),(1552654641198563330,1552637514433519617,'sys:role:*','角色管理','角色管理',0,1,'2022-07-28 21:58:08','2022-07-28 22:24:39',NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_authority` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,7 +142,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (92193617981,'xiumu','朽木','e10adc3949ba59abbe56e057f20f883e','https://avatar.csdnimg.cn/A/2/1/1_siumu__1583842883.jpg',0,'15038935069','1196606665@qq.com','2021-10-08 20:44:51','2022-07-25 22:03:46',NULL,NULL,0);
+INSERT INTO `sys_user` VALUES (92193617981,'xiumu','朽木','e10adc3949ba59abbe56e057f20f883e','https://siumu.github.io/img/avatar.jpg',0,'15038935069','1196606665@qq.com','2021-10-08 20:44:51','2022-07-26 21:22:42',NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-25 22:12:43
+-- Dump completed on 2022-07-28 22:26:02

@@ -39,5 +39,10 @@ public class Authority extends BaseEntity {
      */
     private AuthType authType;
 
+    /**
+     * 排序权重，值越小越靠前，最大值 30000
+     */
+    private Integer weight;
+
 }
 
