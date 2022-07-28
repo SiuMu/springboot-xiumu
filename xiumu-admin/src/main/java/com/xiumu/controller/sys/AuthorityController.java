@@ -3,6 +3,7 @@ package com.xiumu.controller.sys;
 import com.xiumu.common.core.annotation.RequestJson;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
+import com.xiumu.common.core.tree.XiuMuTreeUtil;
 import com.xiumu.pojo.sys.dto.AuthorityDTO;
 import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.query.AuthorityQuery;
@@ -10,6 +11,8 @@ import com.xiumu.service.sys.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -46,7 +49,8 @@ public class AuthorityController {
      */
     @GetMapping("/authority")
     public ResultJSON list(AuthorityQuery authority) {
-        return ResultJSON.success(authorityService.listByAuthority(authority));
+        List<Authority> authorityList = authorityService.listByAuthority(authority);
+        return ResultJSON.success(XiuMuTreeUtil.buildTree(authorityList,"0"));
     }
 
     /**
