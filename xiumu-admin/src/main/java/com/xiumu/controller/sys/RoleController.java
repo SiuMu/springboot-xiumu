@@ -82,7 +82,7 @@ public class RoleController {
      */
     @PostMapping("/role")
     public ResultJSON create(@Validated @RequestBody RoleDTO roleDTO) {
-        return ResultJSON.success(roleService.create(roleDTO));
+        return ResultJSON.postSuccess(roleService.create(roleDTO));
     }
 
     /**
@@ -95,7 +95,7 @@ public class RoleController {
      */
     @PutMapping("/role/{id}")
     public ResultJSON update(@Validated @RequestBody RoleDTO roleDTO, @PathVariable String id) {
-        return ResultJSON.success(roleService.updateById(roleDTO, id));
+        return ResultJSON.putSuccess(roleService.updateById(roleDTO, id));
     }
 
     /**
@@ -106,6 +106,6 @@ public class RoleController {
      */
     @DeleteMapping("/role/{id}")
     public ResultJSON delete(@PathVariable String id) {
-        return ResultJSON.success(roleService.deleteById(id));
+        return ResultJSON.deleteSuccess(roleService.deleteById(id));
     }
 }

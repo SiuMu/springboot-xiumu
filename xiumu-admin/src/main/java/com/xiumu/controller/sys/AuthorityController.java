@@ -68,7 +68,7 @@ public class AuthorityController {
      */
     @PostMapping("/authority")
     public ResultJSON create(@Validated @RequestBody AuthorityDTO authorityDTO) {
-        return ResultJSON.success(authorityService.create(authorityDTO));
+        return ResultJSON.postSuccess(authorityService.create(authorityDTO));
     }
 
     /**
@@ -81,7 +81,7 @@ public class AuthorityController {
      */
     @PutMapping("/authority/{id}")
     public ResultJSON update(@Validated @RequestBody AuthorityDTO authorityDTO, @PathVariable String id) {
-        return ResultJSON.success(authorityService.updateById(authorityDTO, id));
+        return ResultJSON.putSuccess(authorityService.updateById(authorityDTO, id));
     }
 
     /**
@@ -92,6 +92,6 @@ public class AuthorityController {
      */
     @DeleteMapping("/authority/{id}")
     public ResultJSON delete(@PathVariable Long id) {
-        return ResultJSON.success(authorityService.deleteById(id));
+        return ResultJSON.deleteSuccess(authorityService.deleteById(id));
     }
 }

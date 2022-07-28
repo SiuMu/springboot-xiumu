@@ -84,7 +84,7 @@ public class UserController {
      */
     @PostMapping("/user")
     public ResultJSON create(@Validated @RequestBody UserDTO userDTO) {
-        return ResultJSON.success(userService.create(userDTO));
+        return ResultJSON.postSuccess(userService.create(userDTO));
     }
 
     /**
@@ -97,7 +97,7 @@ public class UserController {
      */
     @PutMapping("/user/{id}")
     public ResultJSON update(@Validated @RequestBody UserDTO userDTO, @PathVariable String id) {
-        return ResultJSON.success(userService.updateById(userDTO, id));
+        return ResultJSON.putSuccess(userService.updateById(userDTO, id));
     }
 
     /**
@@ -108,6 +108,6 @@ public class UserController {
      */
     @DeleteMapping("/user/{id}")
     public ResultJSON delete(@PathVariable Long id) {
-        return ResultJSON.success(userService.deleteById(id));
+        return ResultJSON.deleteSuccess(userService.deleteById(id));
     }
 }

@@ -79,9 +79,37 @@ public class ResultJSON {
      *
      * @param result 返回结果
      */
-    public static ResultJSON success(Object result) {
-        return new ResultJSON(200, "操作成功", result);
+    public static ResultJSON postSuccess(Object result) {
+        return new ResultJSON(200, "创建成功", result);
     }
+
+    /**
+     * 成功返回数据
+     *
+     * @param result 返回结果
+     */
+    public static ResultJSON putSuccess(Object result) {
+        return new ResultJSON(200, "修改成功", result);
+    }
+
+    /**
+     * 成功返回数据
+     *
+     * @param result 返回结果
+     */
+    public static ResultJSON deleteSuccess(Object result) {
+        return new ResultJSON(200, "删除成功", result);
+    }
+
+    /**
+     * 成功返回数据
+     *
+     * @param result 返回结果
+     */
+    public static ResultJSON success(Object result) {
+        return new ResultJSON(200, "删除成功", result);
+    }
+
 
     /**
      * 成功返回，无数据
@@ -116,4 +144,5 @@ public class ResultJSON {
     public static ResultJSON failure(Integer code, String msg) {
         return new ResultJSON(code, msg, null);
     }
+
 }

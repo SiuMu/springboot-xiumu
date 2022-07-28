@@ -67,7 +67,7 @@ public class ${ClassName}Controller {
      */
     @PostMapping("/${businessName}")
     public ResultJSON create(@Validated @RequestBody ${ClassName}DTO ${className}DTO) {
-        return ResultJSON.success(${className}Service.create(${className}DTO));
+        return ResultJSON.postSuccess(${className}Service.create(${className}DTO));
     }
 
     /**
@@ -80,7 +80,7 @@ public class ${ClassName}Controller {
      */
     @PutMapping("/${businessName}/{id}")
     public ResultJSON update(@Validated @RequestBody ${ClassName}DTO ${className}DTO, @PathVariable String id) {
-        return ResultJSON.success(${className}Service.updateById(${className}DTO, id));
+        return ResultJSON.putSuccess(${className}Service.updateById(${className}DTO, id));
     }
 
     /**
@@ -91,6 +91,6 @@ public class ${ClassName}Controller {
      */
     @DeleteMapping("/${businessName}/{id}")
     public ResultJSON delete(@PathVariable String id) {
-        return ResultJSON.success(${className}Service.deleteById(id));
+        return ResultJSON.deleteSuccess(${className}Service.deleteById(id));
     }
 }
