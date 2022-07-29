@@ -24,6 +24,9 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/token");
     }
 
+    /**
+     * 注册自定义参数解析器
+     */
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new HandlerRequestJsonArgumentResolver());

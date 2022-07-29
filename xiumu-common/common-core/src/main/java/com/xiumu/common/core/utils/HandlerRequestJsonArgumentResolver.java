@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 自定义参数解析器，请求参数使用该注解 {@link RequestJson} 就会使用以下解析方式。
  * 为了解决 get 请求无法传递复杂参数, 又不能将参数放入请求体中的问题。
- * 说明：将参数序列化成 json，再经过 Base64 编码之后放在 url 上传输
+ * 说明：前端将参数序列化成 json，再经过 Base64 编码之后放在 url 上传输。
+ * 后端 Base64 解码之后，再通过 json 工具将参数反序列化为对象
  * 例如：http://localhost:8080/user/page?eyJjdXJyZW50IjoxLCJzaXplIjoxMCwidG90YWwiaG9uZSI6IiJ9fQ==
  */
 @Slf4j
