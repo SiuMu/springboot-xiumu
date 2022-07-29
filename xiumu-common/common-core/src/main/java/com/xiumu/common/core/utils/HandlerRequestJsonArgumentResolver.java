@@ -23,21 +23,29 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class HandlerRequestJsonArgumentResolver implements HandlerMethodArgumentResolver {
 
+    /**
+     * 该方法判断是否要使用该参数解析器。这里我们就判断 有没有使用 @RequestJson 注解来判断是否使用该解析器
+     * 如果返回 true 就运行 resolveArgument 方法来解析参数
+     * 如果返回 false 使用其他参数解析器来解析参数，springframework 有很多参数解析器
+     */
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        // 判断参数上时候使用了 RequestJson 注解
         return parameter.hasParameterAnnotation(RequestJson.class);
     }
 
+    /**
+     * 该方法真正用来解析参数。
+     * 先使用 Hutool 的 Base64 工具将 json 字符串解析出来
+     * 再使用 Hutool 的 JSONUtil 工具将 json 转成 Bean 对象
+     */
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
         try {
-            // Base64 解码之后，再通过 json 反序列化成对象
             String json = Base64.decodeStr(request.getQueryString());
             return JSONUtil.toBean(json, parameter.getGenericParameterType(),false);
         } catch (Exception e) {
-            log.error("请求参数解析失败，请检查！");
+            log.error("请求参数解析失败，请检查！" + e.getMessage());
             throw new XiuMuException(SysException.SERVE_FAIL);
         }
     }
