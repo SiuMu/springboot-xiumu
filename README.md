@@ -25,6 +25,8 @@
 
 ### 前端：
 
+前端代码仓库： `https://gitee.com/siumu/xiumu-admin-ui`
+
 | 框架 | 说明                   | 官网                     |
 | ---- | ---------------------- | ------------------------ |
 | Vue3 | 渐进式 JavaScript 框架 | https://v3.cn.vuejs.org/ |
