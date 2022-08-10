@@ -104,6 +104,7 @@ public class VelocityUtil {
 
         VelocityContext context = VelocityUtil.buildContext(new GenTableDO(table, tableColumns));
 
+
         for (String template : Constants.VM_LIST) {
             // 渲染模板
             StringWriter sw = new StringWriter();

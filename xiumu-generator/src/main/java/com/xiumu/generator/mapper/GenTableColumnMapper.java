@@ -3,6 +3,7 @@ package com.xiumu.generator.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xiumu.generator.entity.GenTableColumn;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,5 +24,6 @@ public interface GenTableColumnMapper extends BaseMapper<GenTableColumn> {
      * @param databaseName 数据库名称
      * @return
      */
+    @Select("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_COMMENT from information_schema.COLUMNS where TABLE_NAME = #{tableName} and TABLE_SCHEMA = #{databaseName} order by ORDINAL_POSITION")
     List<GenTableColumn> selectTableColumnByName(@Param("tableName") String tableName, @Param("databaseName") String databaseName);
 }

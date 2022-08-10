@@ -29,4 +29,18 @@ public class Constants {
      */
     public static String[] VM_LIST = {};
 
+    /**
+     * 自定义数据源
+     */
+    public static final String DS = "XiuMuDS";
+
+    /**
+     * 初始化项目必备数据库
+     */
+    public static final String MY_DATABASE = "XIUMU";
+
+    /**
+     * 初始化项目必备数据库中的必备表
+     */
+    public static final String MY_TABLE = MY_DATABASE;
 }

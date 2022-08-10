@@ -1,11 +1,14 @@
 package com.xiumu.generator.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.dynamic.datasource.annotation.DS;
+import com.xiumu.common.core.utils.AssertUtil;
 import com.xiumu.generator.VelocityUtil;
 import com.xiumu.generator.constants.Constants;
 import com.xiumu.generator.entity.GenTable;
 import com.xiumu.generator.entity.GenTableColumn;
 import com.xiumu.generator.entity.GeneratorBO;
+import com.xiumu.generator.exception.GenException;
 import com.xiumu.generator.mapper.GenTableColumnMapper;
 import com.xiumu.generator.mapper.GenTableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,7 @@ public class GeneratorService {
      *
      * @param generatorBO 配置信息
      */
+    @DS(Constants.DS)
     public void createCode(GeneratorBO generatorBO) throws Exception {
         // 获取表的每一列信息
         List<GenTableColumn> tableColumns = columnMapper.selectTableColumnByName(generatorBO.getTableName(), generatorBO.getDatabaseName());
@@ -49,4 +53,17 @@ public class GeneratorService {
         }
     }
 
+    /**
+     * 初始化操作
+     */
+    public void init() {
+        // 验证数据库中是否有 xiumu 表结构
+        Integer count = genTableMapper.countTableByName(Constants.MY_TABLE);
+        // 如果未创建 就先创建该数据库
+        if (count > 0) {
+
+        }
+        AssertUtil.isTrue(count > 0, GenException.NOT_EXIT_MY_TABLE);
+
+    }
 }

@@ -3,6 +3,7 @@ package com.xiumu.generator.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xiumu.generator.entity.GenTable;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * @param databaseName 数据库名称
      * @return
      */
+    @Select("select TABLE_NAME, TABLE_COMMENT from information_schema.TABLES where TABLE_NAME = #{tableName} and TABLE_SCHEMA = #{databaseName}")
     GenTable selectGenTableByName(@Param("tableName") String tableName, @Param("databaseName") String databaseName);
 
     /**
@@ -31,5 +33,24 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * @param databaseName 数据库名称
      * @return
      */
+    @Select("select TABLE_NAME, TABLE_COMMENT from information_schema.TABLES where TTABLE_SCHEMA = #{databaseName}")
     List<GenTable> selectAllByDatabaseName(String databaseName);
+
+    /**
+     * 查询 databaseName 数据库的数量
+     *
+     * @param databaseName 数据库名称
+     * @return
+     */
+    @Select("select count(*) from information_schema.SCHEMATA where SCHEMA_NAME = #{databaseName}")
+    Integer countDatabaseByName(String databaseName);
+
+    /**
+     * 查询 数据库的中 tableName 表的数量
+     *
+     * @param tableName    表名称
+     * @return
+     */
+    @Select("select count(*) from information_schema.TABLES where TABLE_SCHEMA = #{databaseName}")
+    Integer countTableByName(@Param("tableName") String tableName);
 }

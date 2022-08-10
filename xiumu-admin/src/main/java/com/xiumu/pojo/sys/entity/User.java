@@ -2,6 +2,7 @@ package com.xiumu.pojo.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xiumu.common.core.entity.BaseEntity;
+import com.xiumu.enums.Gender;
 import lombok.Data;
 
 /**
@@ -36,7 +37,7 @@ public class User extends BaseEntity {
     /**
      * 性别，0男，1女，2未知
      */
-    private Integer gender;
+    private Gender gender;
     /**
      * 手机号
      */
