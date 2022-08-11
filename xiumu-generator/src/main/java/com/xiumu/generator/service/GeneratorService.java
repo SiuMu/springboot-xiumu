@@ -1,20 +1,20 @@
 package com.xiumu.generator.service;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.xiumu.common.core.utils.AssertUtil;
 import com.xiumu.generator.VelocityUtil;
 import com.xiumu.generator.constants.Constants;
 import com.xiumu.generator.entity.GenTable;
 import com.xiumu.generator.entity.GenTableColumn;
 import com.xiumu.generator.entity.GeneratorBO;
-import com.xiumu.generator.exception.GenException;
+import com.xiumu.generator.mapper.CodeTemplateMapper;
+import com.xiumu.generator.mapper.DatabaseMapper;
 import com.xiumu.generator.mapper.GenTableColumnMapper;
 import com.xiumu.generator.mapper.GenTableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class GeneratorService {
@@ -25,12 +25,17 @@ public class GeneratorService {
     @Autowired
     private GenTableColumnMapper columnMapper;
 
+    @Autowired
+    private CodeTemplateMapper codeTemplateMapper;
+
+    @Autowired
+    private DatabaseMapper databaseMapper;
+
     /**
      * 生成某个表的代码
      *
      * @param generatorBO 配置信息
      */
-    @DS(Constants.DS)
     public void createCode(GeneratorBO generatorBO) throws Exception {
         // 获取表的每一列信息
         List<GenTableColumn> tableColumns = columnMapper.selectTableColumnByName(generatorBO.getTableName(), generatorBO.getDatabaseName());
@@ -57,13 +62,16 @@ public class GeneratorService {
      * 初始化操作
      */
     public void init() {
-        // 验证数据库中是否有 xiumu 表结构
-        Integer count = genTableMapper.countTableByName(Constants.MY_TABLE);
-        // 如果未创建 就先创建该数据库
-        if (count > 0) {
-
+        // 验证数据库中是否有 以下两个表结构，如果没有就创建
+        int count = genTableMapper.countTableByName(Constants.CODE_TEMPLATE_TABLE);
+        count = genTableMapper.countTableByName(Constants.CODE_TEMPLATE_TABLE.toUpperCase(Locale.ROOT));
+        if (count < 1) {
+            codeTemplateMapper.createCodeTemplate();
         }
-        AssertUtil.isTrue(count > 0, GenException.NOT_EXIT_MY_TABLE);
-
+        count = genTableMapper.countTableByName(Constants.DATABASE_TABLE);
+        count = genTableMapper.countTableByName(Constants.DATABASE_TABLE.toUpperCase(Locale.ROOT));
+        if (count < 1) {
+            databaseMapper.createDatabase();
+        }
     }
 }

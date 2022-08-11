@@ -29,18 +29,62 @@ public class Constants {
      */
     public static String[] VM_LIST = {};
 
-    /**
-     * 自定义数据源
-     */
-    public static final String DS = "XiuMuDS";
 
     /**
-     * 初始化项目必备数据库
+     * 代码生成器模板信息表
      */
-    public static final String MY_DATABASE = "XIUMU";
+    public static final String CODE_TEMPLATE_TABLE = "xiumu_code_template";
 
     /**
-     * 初始化项目必备数据库中的必备表
+     * 代码生成器模板信息表
      */
-    public static final String MY_TABLE = MY_DATABASE;
+    public static final String DATABASE_TABLE = "xiumu_database";
+
+    /**
+     * mysql 数据源连接 URL 前缀
+     */
+    public static final String MYSQL_URL_PREFIX = "jdbc:mysql://";
+
+    /**
+     * mysql 数据源连接 URL 后缀
+     */
+    public static final String MYSQL_URL_SUFFIX = "?useUnicode=true&characterEncoding=utf8&useSSL=false";
+
+
+    /**
+     * mysql 数据源连接 driver-class-name
+     */
+    public static final String MYSQL_DRIVER_CLASS = "com.mysql.cj.jdbc.Driver";
+
+    /**
+     * H2 数据源连接 driver-class-name
+     */
+    public static final String H2_DRIVER_CLASS = "org.h2.Driver";
+
+    /**
+     * H2 数据源连接 URL 前缀
+     */
+    public static final String H2_URL_PREFIX = "jdbc:h2:";
+
+    /**
+     * H2 数据源连接 URL 后缀
+     */
+    public static final String H2_URL_SUFFIX = "jdbc:h2:";
+
+    /**
+     * oracle 数据源连接 driver-class-name
+     */
+    public static final String ORACLE_DRIVER_CLASS = "oracle.jdbc.OracleDriver";
+
+
+    /**
+     * H2 数据源连接 URL 前缀
+     */
+    public static final String ORACLE_URL_PREFIX = "jdbc:oracle:thin:@";
+
+    /**
+     * H2 数据源连接 URL 后缀
+     */
+    public static final String ORACLE_URL_SUFFIX = "";
+
 }

@@ -51,6 +51,7 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * @param tableName    表名称
      * @return
      */
-    @Select("select count(*) from information_schema.TABLES where TABLE_SCHEMA = #{databaseName}")
+    @Select("select COUNT(*) from information_schema.TABLES where TABLE_NAME = #{tableName}")
     Integer countTableByName(@Param("tableName") String tableName);
+
 }

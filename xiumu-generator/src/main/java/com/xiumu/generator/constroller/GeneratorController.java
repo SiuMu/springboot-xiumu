@@ -1,9 +1,13 @@
 package com.xiumu.generator.constroller;
 
 import com.xiumu.common.core.result.ResultJSON;
+import com.xiumu.generator.entity.Database;
+import com.xiumu.generator.service.DatabaseService;
 import com.xiumu.generator.service.GeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,10 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2022/8/10
  **/
 @RestController
-public class InitController {
+public class GeneratorController {
 
     @Autowired
     private GeneratorService generatorService;
+
+    @Autowired
+    private DatabaseService databaseService;
 
     /**
      * 初始化项目
@@ -26,6 +33,18 @@ public class InitController {
     @GetMapping("/init")
     public ResultJSON init(){
         generatorService.init();
+        return ResultJSON.success();
+    }
+
+
+    /**
+     * 初始化一个数据源
+     *
+     * @return
+     */
+    @PostMapping("/init/datasource")
+    public ResultJSON initDataSource(@RequestBody Database database){
+        databaseService.createDataSource(database);
         return ResultJSON.success();
     }
 }

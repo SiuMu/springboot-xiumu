@@ -1,6 +1,6 @@
 package com.xiumu.generator;
 
-import com.xiumu.generator.config.GeneratorConfig;
+import com.xiumu.generator.constants.GeneratorConfig;
 import com.xiumu.generator.entity.GeneratorBO;
 import com.xiumu.generator.service.GeneratorService;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.xiumu.generator.entity;
 
-import com.xiumu.generator.config.GeneratorConfig;
+import com.xiumu.generator.constants.GeneratorConfig;
 import lombok.Data;
 import lombok.experimental.Accessors;
 

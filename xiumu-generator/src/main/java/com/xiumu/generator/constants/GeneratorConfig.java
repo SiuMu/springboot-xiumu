@@ -1,4 +1,4 @@
-package com.xiumu.generator.config;
+package com.xiumu.generator.constants;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

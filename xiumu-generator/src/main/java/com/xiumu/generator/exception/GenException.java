@@ -9,8 +9,8 @@ import lombok.Getter;
  */
 @Getter
 public enum GenException implements IBaseException {
-    NOT_EXIT_MY_DATABASE(-999, "xiumu 数据库未创建，请先创建数据库"),
-    NOT_EXIT_MY_TABLE(-888, "xiumu 表结构未创建，请先创建表结构")
+
+    DATABASE_EXIST(-999, "该数据源已经存在")
     ;
 
     private final Integer code;
