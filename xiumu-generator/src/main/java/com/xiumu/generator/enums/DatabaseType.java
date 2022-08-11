@@ -37,8 +37,8 @@ public enum DatabaseType {
         this.code = code;
         this.desc = desc;
         this.driverClassName = driverClassName;
-        this.urlPrefix = driverClassName;
-        this.urlSuffix = driverClassName;
+        this.urlPrefix = urlPrefix;
+        this.urlSuffix = urlSuffix;
     }
 
     /**

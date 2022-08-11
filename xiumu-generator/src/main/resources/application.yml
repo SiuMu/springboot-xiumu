@@ -23,6 +23,7 @@ spring:
 
 
 mybatis-plus:
+  type-enums-package: com.xiumu.common.core.enums;com.xiumu.generator.enums;
   global-config:
     banner: false
   configuration:

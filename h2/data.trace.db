@@ -244,3 +244,25 @@ select COUNT(*) from information_schema.TABLES where TABLE_NAME = xiumu_code_tem
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.lang.Thread.run(Thread.java:748)
+2022-08-12 00:05:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "'MYSQL' (XIUMU_DATABASE: ""DATABASE_TYPE"" TINYINT)"; SQL statement:
+INSERT INTO xiumu_database  ( id,
+create_time,
+update_time,
+database_name,
+database_type,
+data_source,
+ip_port,
+username,
+password )  VALUES  ( ?,
+?,
+?,
+?,
+?,
+?,
+?,
+?,
+? ) [22018-200]
+2022-08-12 00:15:53 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "XIUMU_DATXIUMU_DATABASE" not found; SQL statement:
+DELETE  FROM XIUMU_DATXIUMU_DATABASE ABASE WHERE ID = 1557762263451017218 [42102-200]

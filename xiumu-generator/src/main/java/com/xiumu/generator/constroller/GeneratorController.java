@@ -1,7 +1,9 @@
 package com.xiumu.generator.constroller;
 
+import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.generator.entity.Database;
+import com.xiumu.generator.mapper.GenTableMapper;
 import com.xiumu.generator.service.DatabaseService;
 import com.xiumu.generator.service.GeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class GeneratorController {
     @Autowired
     private DatabaseService databaseService;
 
+    @Autowired
+    private GenTableMapper genTableMapper;
+
     /**
      * 初始化项目
      *
@@ -42,9 +47,13 @@ public class GeneratorController {
      *
      * @return
      */
-    @PostMapping("/init/datasource")
+    @PostMapping("/create/datasource")
     public ResultJSON initDataSource(@RequestBody Database database){
         databaseService.createDataSource(database);
-        return ResultJSON.success();
+        // 测试数据库是否可以连接
+        DynamicDataSourceContextHolder.push(database.getDataSource());
+        Integer integer = genTableMapper.countDatabaseByName(database.getDatabaseName());
+        DynamicDataSourceContextHolder.clear();
+        return integer > 0 ? ResultJSON.success() : ResultJSON.failure();
     }
 }
