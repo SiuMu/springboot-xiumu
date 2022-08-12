@@ -31,6 +31,11 @@ public class Constants {
 
 
     /**
+     * 代码生成器模板信息，数据源信息等所在的数据源
+     */
+    public static final String GENERATOR_DATASOURCE = "xiumu";
+
+    /**
      * 代码生成器模板信息表
      */
     public static final String CODE_TEMPLATE_TABLE = "xiumu_code_template";

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @MapperScan({"com.xiumu.generator.mapper"})
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.xiumu"})
 public class XiuMuGeneratorApplication {
 
     public static void main(String[] args) {

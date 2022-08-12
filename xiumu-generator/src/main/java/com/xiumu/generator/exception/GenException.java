@@ -10,7 +10,9 @@ import lombok.Getter;
 @Getter
 public enum GenException implements IBaseException {
 
-    DATABASE_EXIST(-999, "该数据源已经存在")
+    DATABASE_EXIST(-999, "该数据源已经存在"),
+    DATABASE_ERROR_PASSWORD(-999, "该数据源密码不对，无法连接"),
+    DATABASE_NOT_CONNECT(-999, "该数据源连接超时，无法连接")
     ;
 
     private final Integer code;

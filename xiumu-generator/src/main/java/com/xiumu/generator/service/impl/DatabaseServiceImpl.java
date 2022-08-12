@@ -50,7 +50,6 @@ public class DatabaseServiceImpl extends ServiceImpl<DatabaseMapper, Database> i
                 .setLazy(true);
         DataSource dataSource = dataSourceCreator.createDataSource(property);
         dynamicRoutingDataSource.addDataSource( database.getIpPort() + database.getDatabaseName(), dataSource);
-        System.out.println("添加数据源：" + database.getIpPort() + database.getDatabaseName());
         System.out.println("添加数据源：" + property.getUrl());
     }
 }
