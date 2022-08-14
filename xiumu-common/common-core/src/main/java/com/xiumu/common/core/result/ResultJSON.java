@@ -107,7 +107,7 @@ public class ResultJSON {
      * @param result 返回结果
      */
     public static ResultJSON success(Object result) {
-        return new ResultJSON(200, "删除成功", result);
+        return new ResultJSON(200, "请求成功", result);
     }
 
 
@@ -115,14 +115,14 @@ public class ResultJSON {
      * 成功返回，无数据
      */
     public static ResultJSON success() {
-        return new ResultJSON(200, "操作成功", null);
+        return new ResultJSON(200, "请求成功", null);
     }
 
     /**
      * 请求失败
      */
     public static ResultJSON failure() {
-        return new ResultJSON(500, "操作失败", null);
+        return new ResultJSON(500, "请求失败", null);
     }
 
     /**

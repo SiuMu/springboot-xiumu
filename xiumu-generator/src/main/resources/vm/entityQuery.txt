@@ -1,4 +1,4 @@
-package ${pojoPackageName}.${moduleName}.dto;
+package ${pojoPackageName}.${moduleName}.query;
 
 import lombok.Data;
 #foreach ($column in $columns)
@@ -13,19 +13,20 @@ import lombok.Data;
 #end
 
 /**
- * ${functionName} 对象 DTO
+ * 查询 ${functionName} 对象
  *
  * @author ${author}
  * @date ${datetime}
  */
 @Data
-public class ${ClassName}DTO {
-#foreach ($column in $columns)
-    /**
-     *  $column.columnComment
-     */
-    private $column.javaType $column.javaField;
-#end
+public class ${ClassName}Query {
+
+    #foreach ($column in $columns)
+        /**
+         *  $column.columnComment
+         */
+        private $column.javaType $column.javaField;
+    #end
 
 }
 

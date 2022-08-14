@@ -1,0 +1,60 @@
+package ${servicePackageName}.service.${moduleName};
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import ${pojoPackageName}.${moduleName}.entity.${ClassName};
+import ${pojoPackageName}.${moduleName}.dto.${ClassName}DTO;
+import ${pojoPackageName}.${moduleName}.query.${ClassName}Query;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xiumu.common.core.page.PageQuery;
+
+import java.util.List;
+
+/**
+ * ${functionName} Service 接口
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface ${ClassName}Service extends IService<${ClassName}> {
+
+    /**
+     * 分页查询
+     *
+     * @param pageQuery 分页条件
+     * @return
+     */
+    IPage<${ClassName}> listPage(PageQuery<${ClassName}Query, ${ClassName}> pageQuery);
+
+    /**
+     * 根据条件查询 ${functionName}
+     *
+     * @param ${className} 查询条件
+     * @return
+     */
+    List<${ClassName}> listBy${ClassName}(${ClassName}Query ${className});
+
+    /**
+     * 创建 ${functionName}
+     *
+     * @param ${className}DTO ${className} 信息
+     * @return
+     */
+    boolean create(${ClassName}DTO ${className}DTO);
+
+    /**
+     * 更新 ${functionName}
+     *
+     * @param ${className}DTO 更新内容
+     * @param id 主键 ID
+     * @return
+     */
+    boolean updateById(${ClassName}DTO ${className}DTO, String id);
+
+    /**
+     * 根据 id 逻辑删除
+     *
+     * @param id id
+     * @return
+     */
+    boolean deleteById(String id);
+}

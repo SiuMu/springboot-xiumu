@@ -4,6 +4,8 @@ server:
 spring:
   profiles:
     active: dev
+  main:
+    allow-circular-references: true
 
 mybatis-plus:
   type-enums-package: com.xiumu.common.core.enums;com.xiumu.enums;

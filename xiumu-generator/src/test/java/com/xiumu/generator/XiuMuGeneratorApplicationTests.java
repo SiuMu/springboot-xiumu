@@ -1,5 +1,6 @@
 package com.xiumu.generator;
 
+import cn.hutool.core.io.FileUtil;
 import com.xiumu.generator.constants.GeneratorConfig;
 import com.xiumu.generator.entity.GeneratorBO;
 import com.xiumu.generator.service.GeneratorService;
@@ -7,13 +8,17 @@ import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @MapperScan({"com.xiumu.generator.mapper"})
-@SpringBootTest
+@SpringBootTest("com.xiumu")
 public class XiuMuGeneratorApplicationTests {
 
     @Autowired
@@ -81,5 +86,22 @@ public class XiuMuGeneratorApplicationTests {
                 config.setClassName("UserRole").setFunctionName("用户角色关联").setBusinessName("user")));
 
         generatorService.createCode(generatorBOList);
+    }
+
+
+    @Test
+    void path(){
+        try {
+            String vmPath = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX+"vm").getPath();
+            System.out.println(vmPath);
+            String[] templateNames = new File(vmPath).list();
+            for (String templateName : templateNames) {
+                String content = FileUtil.readString(vmPath + File.separatorChar + templateName, Charset.defaultCharset());
+                System.out.println(content);
+                return;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

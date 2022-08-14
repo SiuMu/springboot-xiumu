@@ -33,7 +33,7 @@ public interface GenTableMapper extends BaseMapper<GenTable> {
      * @param databaseName 数据库名称
      * @return
      */
-    @Select("select TABLE_NAME, TABLE_COMMENT from information_schema.TABLES where TTABLE_SCHEMA = #{databaseName}")
+    @Select("select TABLE_NAME, TABLE_COMMENT from information_schema.TABLES where TABLE_SCHEMA = #{databaseName}")
     List<GenTable> selectAllByDatabaseName(String databaseName);
 
     /**

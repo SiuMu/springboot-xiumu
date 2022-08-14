@@ -20,9 +20,10 @@ import lombok.Data;
  */
 @Data
 public class ${ClassName}DTO {
+
 #foreach ($column in $columns)
     /**
-     *  $column.columnComment
+      *  $column.columnComment
      */
     private $column.javaType $column.javaField;
 #end

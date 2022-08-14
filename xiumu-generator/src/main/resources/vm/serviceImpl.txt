@@ -1,0 +1,86 @@
+package ${servicePackageName}.service.${moduleName}.impl;
+
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xiumu.enums.YesNo;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import ${pojoPackageName}.${moduleName}.entity.${ClassName};
+import ${pojoPackageName}.${moduleName}.dto.${ClassName}DTO;
+import ${pojoPackageName}.${moduleName}.query.${ClassName}Query;
+import ${servicePackageName}.dao.${moduleName}.${ClassName}Dao;
+import ${servicePackageName}.service.${moduleName}.${ClassName}Service;
+import com.xiumu.common.core.page.PageQuery;
+
+import java.util.List;
+
+/**
+ * ${functionName} Service 业务层处理
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${ClassName}ServiceImpl extends ServiceImpl<${ClassName}Dao,${ClassName}> implements ${ClassName}Service {
+
+    @Override
+    public IPage<${ClassName}> listPage(PageQuery<${ClassName}Query, ${ClassName}> pageQuery) {
+        return this.baseMapper.selectPage(pageQuery, pageQuery.getCondition());
+    }
+
+    @Override
+    public List<${ClassName}> listBy${ClassName}(${ClassName}Query ${className}) {
+        return this.baseMapper.selectBy${ClassName}(${className});
+    }
+
+    @Override
+    @Transactional
+    public boolean create(${ClassName}DTO ${className}DTO) {
+        ${ClassName} ${className} =BeanUtil.toBean(${className}DTO, ${ClassName}. class);
+        return this.save(${className});
+    }
+
+    @Override
+    @Transactional
+    public boolean updateById(${ClassName}DTO ${className}DTO, String id) {
+        ${ClassName} ${className} =BeanUtil.copyProperties(${className}DTO, ${ClassName}. class);
+        ${className}.setId(id);
+        return updateById(${className});
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteById(String id) {
+        LambdaUpdateWrapper<${ClassName}> updateWrapper = new LambdaUpdateWrapper<${ClassName}>()
+                .set(${ClassName}::getDeleteFlag, YesNo.YES)
+                .eq(${ClassName}::getId, id);
+        return this.update(updateWrapper);
+    }
+
+    /**
+     * 重写 list 方法，查询未逻辑删除的记录
+     *
+     * @return
+     */
+    @Override
+    public List<${ClassName}> list() {
+        LambdaQueryWrapper<${ClassName}> queryWrapper = new LambdaQueryWrapper<${ClassName}>().eq(${ClassName}::getDeleteFlag, YesNo.NO);
+        return this.baseMapper.selectList(queryWrapper);
+    }
+
+    /**
+     * 重写 list 方法，查询未逻辑删除的记录
+     *
+     * @return
+     */
+    public List<${ClassName}> list(LambdaQueryWrapper<${ClassName}> queryWrapper) {
+        if (ObjectUtil.isNull(queryWrapper)) {
+            queryWrapper = new LambdaQueryWrapper<${ClassName}>();
+        }
+        queryWrapper.eq(${ClassName}::getDeleteFlag, YesNo.NO);
+        return this.baseMapper.selectList(queryWrapper);
+    }
+}

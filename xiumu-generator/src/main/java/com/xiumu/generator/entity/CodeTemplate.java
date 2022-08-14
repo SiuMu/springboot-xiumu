@@ -49,4 +49,13 @@ public class CodeTemplate {
      * 开发语言
      */
     private Language language;
+
+    public CodeTemplate() {
+    }
+
+    public CodeTemplate(String templateName, String templateContent, Language language) {
+        this.templateName = templateName;
+        this.templateContent = templateContent;
+        this.language = language;
+    }
 }

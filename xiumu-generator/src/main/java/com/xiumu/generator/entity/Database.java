@@ -68,13 +68,21 @@ public class Database {
      */
     private String password;
 
+
     public String getIpPort() {
         switch (databaseType) {
             case MYSQL:
-                return ipPort + "/";
+                if ('/' != ipPort.charAt(ipPort.length() - 1)) {
+                    ipPort += "/";
+                }
+                break;
             case ORACLE:
-                return ipPort + ":";
+                if (':' != ipPort.charAt(ipPort.length() - 1)) {
+                    ipPort += ":";
+                }
+                break;
         }
         return ipPort;
     }
+
 }
