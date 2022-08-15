@@ -22,6 +22,7 @@ import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -97,6 +98,7 @@ public class GeneratorService {
         }
         // 获取 vm 文件夹下面所有的文件名
         String[] templateNames = new File(vmPath).list();
+        System.out.println(Arrays.asList(templateNames));
         // 将模板信息保存到数据库
         if (templateNames != null){
             for (String templateName : templateNames) {

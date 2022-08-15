@@ -57,5 +57,7 @@ public class CodeTemplate {
         this.templateName = templateName;
         this.templateContent = templateContent;
         this.language = language;
+        this.createTime = new Date();
+        this.updateTime = new Date();
     }
 }
