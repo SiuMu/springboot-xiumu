@@ -11,7 +11,6 @@ import com.xiumu.generator.mapper.GenTableMapper;
 import com.xiumu.generator.service.CodeTemplateService;
 import com.xiumu.generator.service.DatabaseService;
 import com.xiumu.generator.service.GeneratorService;
-import org.mybatis.spring.MyBatisSystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,13 +57,13 @@ public class GeneratorController {
     @PostMapping("/datasource")
     public ResultJSON initDataSource(@RequestBody Database database) {
         databaseService.createDataSource(database);
-        generatorService.addDatasource(database);
-        // 测试数据库是否可以连接
-        DynamicDataSourceContextHolder.push(database.getDataSource());
         Integer integer = 0;
         try {
+            generatorService.addDatasource(database);
+            // 测试数据库是否可以连接
+            DynamicDataSourceContextHolder.push(database.getDataSource());
             integer = genTableMapper.countDatabaseByName(database.getDatabaseName());
-        } catch (MyBatisSystemException exception) {
+        } catch (Exception exception) {
             // 连接失败，删除数据源
             DynamicDataSourceContextHolder.push(Constants.GENERATOR_DATASOURCE);
             databaseService.removeById(database);
@@ -88,7 +87,10 @@ public class GeneratorController {
      */
     @GetMapping("/database")
     public ResultJSON database() {
-        return ResultJSON.success(databaseService.list());
+        DynamicDataSourceContextHolder.push(Constants.GENERATOR_DATASOURCE);
+        List<Database> databaseList = databaseService.list();
+        DynamicDataSourceContextHolder.clear();
+        return ResultJSON.success(databaseList);
     }
 
     /**

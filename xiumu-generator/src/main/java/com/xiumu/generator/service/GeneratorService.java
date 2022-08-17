@@ -122,7 +122,6 @@ public class GeneratorService {
                 .setUrl(database.getDatabaseType().getUrlPrefix() + database.getIpPort() + database.getDatabaseName() + database.getDatabaseType().getUrlSuffix())
                 .setUsername(database.getUsername())
                 .setPassword(database.getPassword());
-        System.out.println("添加数据源：" + database.getDatabaseType().getUrlPrefix() + database.getIpPort() + database.getDatabaseName() + database.getDatabaseType().getUrlSuffix());
         System.out.println("添加数据源：" + property.getUrl());
         DataSource dataSource = dataSourceCreator.createDataSource(property);
         dynamicRoutingDataSource.addDataSource(database.getIpPort() + database.getDatabaseName(), dataSource);
