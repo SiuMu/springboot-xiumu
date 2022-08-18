@@ -4,6 +4,7 @@ import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.xiumu.common.core.exception.base.XiuMuException;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.generator.constants.Constants;
+import com.xiumu.generator.entity.CodeConfig;
 import com.xiumu.generator.entity.Database;
 import com.xiumu.generator.entity.GenTable;
 import com.xiumu.generator.exception.GenException;
@@ -117,5 +118,18 @@ public class GeneratorController {
     public ResultJSON template() {
         return ResultJSON.success(codeTemplateService.list());
     }
+
+
+
+    /**
+     * 根据模板生成代码
+     *
+     * @return
+     */
+    @PostMapping("/code")
+    public ResultJSON createCode(@RequestBody CodeConfig config) {
+        return ResultJSON.success(generatorService.createCode(config));
+    }
+
 
 }

@@ -2,6 +2,7 @@ package com.xiumu.generator.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xiumu.generator.entity.CodeTemplate;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
@@ -30,5 +31,8 @@ public interface CodeTemplateMapper extends BaseMapper<CodeTemplate> {
             "    update_time     datetime                           null  \n" +
             ")")
     Integer createCodeTemplate();
+
+    @Select("select * from xiumu_code_template where template_name = #{templateName}")
+    CodeTemplate selectByTemplateName(String templateName);
 
 }
