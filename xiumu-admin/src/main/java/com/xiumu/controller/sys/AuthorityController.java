@@ -1,5 +1,7 @@
 package com.xiumu.controller.sys;
 
+import cn.hutool.core.lang.tree.Tree;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.common.core.tree.XiuMuTreeUtil;
@@ -35,8 +37,8 @@ public class AuthorityController {
      * @return
      */
     @PostMapping("/authority/page")
-    public ResultJSON page(@RequestBody PageQuery<AuthorityQuery, Authority> pageQuery) {
-        return ResultJSON.success(authorityService.listPage(pageQuery));
+    public ResultJSON<IPage<Authority>> page(@RequestBody PageQuery<AuthorityQuery, Authority> pageQuery) {
+        return ResultJSON.querySuccess(authorityService.listPage(pageQuery));
     }
 
     /**
@@ -47,9 +49,9 @@ public class AuthorityController {
      * @return
      */
     @GetMapping("/authority")
-    public ResultJSON list(AuthorityQuery authority) {
+    public ResultJSON<List<Tree<String>>> list(AuthorityQuery authority) {
         List<Authority> authorityList = authorityService.listByAuthority(authority);
-        return ResultJSON.success(XiuMuTreeUtil.buildTree(authorityList,"0"));
+        return ResultJSON.querySuccess(XiuMuTreeUtil.buildTree(authorityList,"0"));
     }
 
     /**
@@ -59,8 +61,8 @@ public class AuthorityController {
      * @return
      */
     @GetMapping("/authority/{id}")
-    public ResultJSON find(@PathVariable String id) {
-        return ResultJSON.success(authorityService.getById(id));
+    public ResultJSON<Authority> find(@PathVariable String id) {
+        return ResultJSON.querySuccess(authorityService.getById(id));
     }
 
     /**
@@ -70,8 +72,8 @@ public class AuthorityController {
      * @return
      */
     @PostMapping("/authority")
-    public ResultJSON create(@Validated @RequestBody AuthorityDTO authorityDTO) {
-        return ResultJSON.postSuccess(authorityService.create(authorityDTO));
+    public ResultJSON<Boolean> create(@Validated @RequestBody AuthorityDTO authorityDTO) {
+        return ResultJSON.createSuccess(authorityService.create(authorityDTO));
     }
 
     /**
@@ -83,8 +85,8 @@ public class AuthorityController {
      * @return
      */
     @PutMapping("/authority/{id}")
-    public ResultJSON update(@Validated @RequestBody AuthorityDTO authorityDTO, @PathVariable String id) {
-        return ResultJSON.putSuccess(authorityService.updateById(authorityDTO, id));
+    public ResultJSON<Boolean> update(@Validated @RequestBody AuthorityDTO authorityDTO, @PathVariable String id) {
+        return ResultJSON.modifySuccess(authorityService.updateById(authorityDTO, id));
     }
 
     /**
@@ -94,7 +96,7 @@ public class AuthorityController {
      * @return
      */
     @DeleteMapping("/authority/{id}")
-    public ResultJSON delete(@PathVariable Long id) {
+    public ResultJSON<Boolean> delete(@PathVariable Long id) {
         return ResultJSON.deleteSuccess(authorityService.deleteById(id));
     }
 }

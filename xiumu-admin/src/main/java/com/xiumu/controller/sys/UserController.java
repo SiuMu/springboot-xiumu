@@ -1,15 +1,21 @@
 package com.xiumu.controller.sys;
 
+import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.dto.UserDTO;
+import com.xiumu.pojo.sys.entity.Role;
 import com.xiumu.pojo.sys.entity.User;
 import com.xiumu.pojo.sys.query.UserQuery;
+import com.xiumu.pojo.sys.vo.UserRoleAuthVO;
 import com.xiumu.service.sys.RoleService;
 import com.xiumu.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -36,8 +42,8 @@ public class UserController {
      * @return
      */
     @PostMapping("/user/page")
-    public ResultJSON page(@RequestBody PageQuery<UserQuery, User> pageQuery) {
-        return ResultJSON.success(userService.listPage(pageQuery));
+    public ResultJSON<IPage<User>> page(@RequestBody PageQuery<UserQuery, User> pageQuery) {
+        return ResultJSON.querySuccess(userService.listPage(pageQuery));
     }
 
     /**
@@ -48,8 +54,8 @@ public class UserController {
      * @return
      */
     @GetMapping("/user")
-    public ResultJSON list( UserQuery user) {
-        return ResultJSON.success(userService.listByUser(user));
+    public ResultJSON<List<User>> list(UserQuery user) {
+        return ResultJSON.querySuccess(userService.listByUser(user));
     }
 
     /**
@@ -59,10 +65,9 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/{id}")
-    public ResultJSON find(@PathVariable String id) {
-        return ResultJSON.success(userService.getById(id));
+    public ResultJSON<User> find(@PathVariable String id) {
+        return ResultJSON.querySuccess(userService.getById(id));
     }
-
 
     /**
      * 通过 ID 查询用户下的角色
@@ -71,8 +76,8 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/{id}/role")
-    public ResultJSON roleList(@PathVariable String id) {
-        return ResultJSON.success(roleService.listByUserId(id));
+    public ResultJSON<List<Role>> roleList(@PathVariable String id) {
+        return ResultJSON.querySuccess(roleService.listByUserId(id));
     }
 
     /**
@@ -82,8 +87,8 @@ public class UserController {
      * @return
      */
     @PostMapping("/user")
-    public ResultJSON create(@Validated @RequestBody UserDTO userDTO) {
-        return ResultJSON.postSuccess(userService.create(userDTO));
+    public ResultJSON<Boolean> create(@Validated @RequestBody UserDTO userDTO) {
+        return ResultJSON.createSuccess(userService.create(userDTO));
     }
 
     /**
@@ -95,8 +100,8 @@ public class UserController {
      * @return
      */
     @PutMapping("/user/{id}")
-    public ResultJSON update(@Validated @RequestBody UserDTO userDTO, @PathVariable String id) {
-        return ResultJSON.putSuccess(userService.updateById(userDTO, id));
+    public ResultJSON<Boolean> update(@Validated @RequestBody UserDTO userDTO, @PathVariable String id) {
+        return ResultJSON.modifySuccess(userService.updateById(userDTO, id));
     }
 
     /**
@@ -106,7 +111,18 @@ public class UserController {
      * @return
      */
     @DeleteMapping("/user/{id}")
-    public ResultJSON delete(@PathVariable Long id) {
+    public ResultJSON<Boolean> delete(@PathVariable Long id) {
         return ResultJSON.deleteSuccess(userService.deleteById(id));
+    }
+
+
+    /**
+     * 获取用户的信息，角色以及权限
+     *
+     * @return
+     */
+    @GetMapping("/user/user&role&auth")
+    public ResultJSON<UserRoleAuthVO> userRoleAuth() {
+        return ResultJSON.querySuccess(userService.findUserRoleAuthVOByUserId(StpUtil.getLoginIdAsString()));
     }
 }

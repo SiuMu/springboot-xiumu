@@ -1,8 +1,10 @@
 package com.xiumu.controller.sys;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.dto.RoleDTO;
+import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.entity.Role;
 import com.xiumu.pojo.sys.query.RoleQuery;
 import com.xiumu.service.sys.AuthorityService;
@@ -10,6 +12,8 @@ import com.xiumu.service.sys.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 /**
@@ -35,8 +39,8 @@ public class RoleController {
      * @return
      */
     @PostMapping("/role/page")
-    public ResultJSON page(@RequestBody PageQuery<RoleQuery, Role> pageQuery) {
-        return ResultJSON.success(roleService.listPage(pageQuery));
+    public ResultJSON<IPage<Role>> page(@RequestBody PageQuery<RoleQuery, Role> pageQuery) {
+        return ResultJSON.querySuccess(roleService.listPage(pageQuery));
     }
 
     /**
@@ -47,8 +51,8 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role")
-    public ResultJSON list(RoleQuery role) {
-        return ResultJSON.success(roleService.listByRole(role));
+    public ResultJSON<List<Role>> list(RoleQuery role) {
+        return ResultJSON.querySuccess(roleService.listByRole(role));
     }
 
     /**
@@ -58,8 +62,8 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/{id}")
-    public ResultJSON find(@PathVariable String id) {
-        return ResultJSON.success(roleService.getById(id));
+    public ResultJSON<Role> find(@PathVariable String id) {
+        return ResultJSON.querySuccess(roleService.getById(id));
     }
 
     /**
@@ -69,8 +73,8 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/{id}/auth")
-    public ResultJSON authList(@PathVariable String id) {
-        return ResultJSON.success(authorityService.listByRoleId(id));
+    public ResultJSON<List<Authority>> authList(@PathVariable String id) {
+        return ResultJSON.querySuccess(authorityService.listByRoleId(id));
     }
 
     /**
@@ -80,8 +84,8 @@ public class RoleController {
      * @return
      */
     @PostMapping("/role")
-    public ResultJSON create(@Validated @RequestBody RoleDTO roleDTO) {
-        return ResultJSON.postSuccess(roleService.create(roleDTO));
+    public ResultJSON<Boolean> create(@Validated @RequestBody RoleDTO roleDTO) {
+        return ResultJSON.createSuccess(roleService.create(roleDTO));
     }
 
     /**
@@ -93,8 +97,8 @@ public class RoleController {
      * @return
      */
     @PutMapping("/role/{id}")
-    public ResultJSON update(@Validated @RequestBody RoleDTO roleDTO, @PathVariable String id) {
-        return ResultJSON.putSuccess(roleService.updateById(roleDTO, id));
+    public ResultJSON<Boolean> update(@Validated @RequestBody RoleDTO roleDTO, @PathVariable String id) {
+        return ResultJSON.modifySuccess(roleService.updateById(roleDTO, id));
     }
 
     /**
@@ -104,7 +108,7 @@ public class RoleController {
      * @return
      */
     @DeleteMapping("/role/{id}")
-    public ResultJSON delete(@PathVariable String id) {
+    public ResultJSON<Boolean> delete(@PathVariable String id) {
         return ResultJSON.deleteSuccess(roleService.deleteById(id));
     }
 }

@@ -1,16 +1,24 @@
 package com.xiumu.common.core.result;
 
+import com.xiumu.common.core.enums.RequestOperateType;
 import lombok.Data;
 
 /**
  * 返回统一JSON信息
+ * 返回的具体数据使用泛型
  *
  * @Author XiuMu
  * @Date 2022/7/16
  **/
 
 @Data
-public class ResultJSON {
+public class ResultJSON<T> {
+
+    /**
+     * 请求的操作类型，查询、新增、修改、删除
+     */
+    private RequestOperateType operateType;
+
     /**
      * 返回的状态码
      */
@@ -21,11 +29,12 @@ public class ResultJSON {
      */
     private String msg;
 
-
     /**
      * 返回的数据
      */
-    private Object result;
+    private T result;
+
+
 
     public ResultJSON() {
     }
@@ -39,39 +48,68 @@ public class ResultJSON {
         this.code = code;
     }
 
-    /**
-     * 不返回数据的构造方法
-     *
-     * @param code 状态码
-     * @param msg  信息
-     */
-    public ResultJSON(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
-    }
-
-    /**
-     * 返回数据的构造方法
-     *
-     * @param code   状态码
-     * @param msg    信息
-     * @param result 数据
-     */
-    public ResultJSON(Integer code, String msg, Object result) {
+    public ResultJSON(Integer code, String msg, T result, RequestOperateType operateType) {
         this.code = code;
         this.msg = msg;
         this.result = result;
+        this.operateType = operateType;
     }
 
     /**
-     * 返回状态码和数据
+     * 查询成功
      *
-     * @param code   状态码
-     * @param result 数据
+     * @param result 返回结果
      */
-    public ResultJSON(Integer code, Object result) {
-        this.code = code;
-        this.result = result;
+    public static <T> ResultJSON<T> querySuccess(T result) {
+        return new ResultJSON<T>(200, "查询成功", result, RequestOperateType.QUERY);
+    }
+
+    /**
+     * 创建成功
+     *
+     */
+    public static <T> ResultJSON<T> createSuccess() {
+        return new ResultJSON<>(200, "创建成功", null, RequestOperateType.CREATE);
+    }
+
+    /**
+     * 创建成功
+     *
+     */
+    public static <T> ResultJSON<T> createSuccess(T result) {
+        return new ResultJSON<>(200, "创建成功", result, RequestOperateType.CREATE);
+    }
+
+    /**
+     * 修改成功
+     *
+     */
+    public static <T> ResultJSON<T> modifySuccess() {
+        return new ResultJSON<>(200, "修改成功", null, RequestOperateType.MODIFY);
+    }
+
+    /**
+     * 修改成功
+     *
+     */
+    public static <T> ResultJSON<T> modifySuccess(T result) {
+        return new ResultJSON<>(200, "修改成功", result, RequestOperateType.MODIFY);
+    }
+
+    /**
+     * 删除成功
+     *
+     */
+    public static <T> ResultJSON<T> deleteSuccess() {
+        return new ResultJSON<>(200, "删除成功", null, RequestOperateType.DELETE);
+    }
+
+    /**
+     * 删除成功
+     *
+     */
+    public static <T> ResultJSON<T> deleteSuccess(T result) {
+        return new ResultJSON<>(200, "删除成功", result, RequestOperateType.DELETE);
     }
 
     /**
@@ -79,70 +117,15 @@ public class ResultJSON {
      *
      * @param result 返回结果
      */
-    public static ResultJSON postSuccess(Object result) {
-        return new ResultJSON(200, "创建成功", result);
-    }
-
-    /**
-     * 成功返回数据
-     *
-     * @param result 返回结果
-     */
-    public static ResultJSON putSuccess(Object result) {
-        return new ResultJSON(200, "修改成功", result);
-    }
-
-    /**
-     * 成功返回数据
-     *
-     * @param result 返回结果
-     */
-    public static ResultJSON deleteSuccess(Object result) {
-        return new ResultJSON(200, "删除成功", result);
-    }
-
-    /**
-     * 成功返回数据
-     *
-     * @param result 返回结果
-     */
-    public static ResultJSON success(Object result) {
-        return new ResultJSON(200, "请求成功", result);
-    }
-
-
-    /**
-     * 成功返回，无数据
-     */
-    public static ResultJSON success() {
-        return new ResultJSON(200, "请求成功", null);
+    public static <T> ResultJSON<T> success(T result, RequestOperateType operateType) {
+        return new ResultJSON<>(200, "请求成功", result, operateType);
     }
 
     /**
      * 请求失败
      */
-    public static ResultJSON failure() {
-        return new ResultJSON(500, "请求失败", null);
-    }
-
-    /**
-     * 请求失败返回错误信息
-     *
-     * @param msg 错误信息
-     * @return
-     */
-    public static ResultJSON failure(String msg) {
-        return new ResultJSON(500, msg, null);
-    }
-
-    /**
-     * 请求失败返回错误信息
-     *
-     * @param msg 错误信息
-     * @return
-     */
-    public static ResultJSON failure(Integer code, String msg) {
-        return new ResultJSON(code, msg, null);
+    public static ResultJSON<Boolean> failure(Integer code, String msg) {
+        return new ResultJSON<>(code, msg, false, RequestOperateType.QUERY);
     }
 
 }

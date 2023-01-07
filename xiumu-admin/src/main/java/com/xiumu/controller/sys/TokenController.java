@@ -1,6 +1,7 @@
 package com.xiumu.controller.sys;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.xiumu.common.core.enums.RequestOperateType;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.dto.LoginDTO;
 import com.xiumu.service.sys.UserService;
@@ -30,8 +31,8 @@ public class TokenController {
      * @return
      */
     @GetMapping("/token")
-    public ResultJSON list(@Validated LoginDTO loginDTO) {
-        return ResultJSON.success(userService.login(loginDTO));
+    public ResultJSON<String> list(@Validated LoginDTO loginDTO) {
+        return ResultJSON.success(userService.login(loginDTO), RequestOperateType.LOGIN);
     }
 
     /**
@@ -40,19 +41,10 @@ public class TokenController {
      * @return
      */
     @GetMapping("/logout")
-    public ResultJSON logout() {
+    public ResultJSON<Boolean> logout() {
         System.out.println("退出" + StpUtil.getSession());
         StpUtil.logout();
-        return ResultJSON.success();
+        return ResultJSON.success(true, RequestOperateType.LOGOUT);
     }
 
-    /**
-     * 获取用户的信息，角色以及权限
-     *
-     * @return
-     */
-    @GetMapping("/userRoleAuth")
-    public ResultJSON userRoleAuth() {
-        return ResultJSON.success(userService.findUserRoleAuthVOByUserId(StpUtil.getLoginIdAsString()));
-    }
 }
