@@ -1,6 +1,5 @@
 package com.xiumu.controller.sys;
 
-import com.xiumu.common.core.annotation.RequestJson;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.pojo.sys.dto.RoleDTO;
@@ -35,8 +34,8 @@ public class RoleController {
      * @param pageQuery 分页条件，查询参数
      * @return
      */
-    @GetMapping("/role/page")
-    public ResultJSON page(@RequestJson PageQuery<RoleQuery, Role> pageQuery) {
+    @PostMapping("/role/page")
+    public ResultJSON page(@RequestBody PageQuery<RoleQuery, Role> pageQuery) {
         return ResultJSON.success(roleService.listPage(pageQuery));
     }
 

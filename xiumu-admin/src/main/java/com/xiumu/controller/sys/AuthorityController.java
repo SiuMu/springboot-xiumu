@@ -1,6 +1,5 @@
 package com.xiumu.controller.sys;
 
-import com.xiumu.common.core.annotation.RequestJson;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.common.core.tree.XiuMuTreeUtil;
@@ -35,8 +34,8 @@ public class AuthorityController {
      * @param pageQuery 分页条件，查询参数
      * @return
      */
-    @GetMapping("/authority/page")
-    public ResultJSON page( @RequestJson PageQuery<AuthorityQuery, Authority> pageQuery) {
+    @PostMapping("/authority/page")
+    public ResultJSON page(@RequestBody PageQuery<AuthorityQuery, Authority> pageQuery) {
         return ResultJSON.success(authorityService.listPage(pageQuery));
     }
 

@@ -9,7 +9,6 @@
 
     <modules>
         <module>xiumu-common</module>
-        <module>xiumu-generator</module>
         <module>xiumu-admin</module>
     </modules>
 
