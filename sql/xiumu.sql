@@ -45,8 +45,42 @@ CREATE TABLE `sys_authority` (
 
 LOCK TABLES `sys_authority` WRITE;
 /*!40000 ALTER TABLE `sys_authority` DISABLE KEYS */;
-INSERT INTO `sys_authority` VALUES (1,0,'*:*:*','权限菜单','权限菜单',0,1,'2022-07-25 22:08:56','2022-07-26 22:28:38',NULL,NULL,1),(1552637514433519617,0,'sys:*:*','系统设置','系统设置',0,1,'2022-07-28 20:50:04','2022-07-28 21:48:28',NULL,NULL,0),(1552653157606117377,1552637514433519617,'sys:user:*','用户管理','用户管理',0,3,'2022-07-28 21:52:14','2022-07-28 22:24:47',NULL,NULL,0),(1552654641198563330,1552637514433519617,'sys:role:*','角色管理','角色管理',0,1,'2022-07-28 21:58:08','2022-07-28 22:24:39',NULL,NULL,0);
+INSERT INTO `sys_authority` VALUES (1,0,'*:*:*','权限菜单','权限菜单',0,1,'2022-07-25 22:08:56','2022-07-26 22:28:38',NULL,NULL,1),(1552637514433519617,0,'sys:*:*','系统设置','系统设置',0,1,'2022-07-28 20:50:04','2022-07-28 21:48:28',NULL,NULL,0),(1552653157606117377,1552637514433519617,'sys:user:*','用户管理','用户管理',0,1,'2022-07-28 21:52:14','2022-07-28 22:30:16',NULL,NULL,0),(1552654641198563330,1552637514433519617,'sys:role:*','角色管理','角色管理',0,1,'2022-07-28 21:58:08','2022-07-28 22:30:39',NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_authority` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_menu`
+--
+
+DROP TABLE IF EXISTS `sys_menu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_menu` (
+  `id` bigint(20) NOT NULL COMMENT '主键ID',
+  `parent_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '父级菜单ID',
+  `menu_name` varchar(64) NOT NULL COMMENT '菜单名称',
+  `auth_code` varchar(64) NOT NULL COMMENT '权限编码',
+  `menu_path` varchar(128) NOT NULL COMMENT '前端path路径',
+  `menu_icon` varchar(32) DEFAULT NULL COMMENT '菜单图标',
+  `seq` int(11) DEFAULT '0' COMMENT '排序值',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_by` varchar(32) DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `update_by` varchar(32) DEFAULT NULL COMMENT '更新人',
+  `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记，0未删除，1已删除',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sys_menu_auth_code_uindex` (`auth_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='菜单表，菜单与权限是一对一的关系';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sys_menu`
+--
+
+LOCK TABLES `sys_menu` WRITE;
+/*!40000 ALTER TABLE `sys_menu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sys_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -76,7 +110,7 @@ CREATE TABLE `sys_role` (
 
 LOCK TABLES `sys_role` WRITE;
 /*!40000 ALTER TABLE `sys_role` DISABLE KEYS */;
-INSERT INTO `sys_role` VALUES (12345678,'管理员','admin',NULL,'2021-10-08 22:11:55','2022-07-16 17:36:10',NULL,NULL,0);
+INSERT INTO `sys_role` VALUES (12345678,'管理员','admin','测试','2021-10-08 22:11:55','2022-11-09 23:10:10',NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,6 +155,7 @@ CREATE TABLE `sys_user` (
   `id` bigint(20) NOT NULL COMMENT '主键ID',
   `username` varchar(128) DEFAULT NULL COMMENT '用户名',
   `nick_name` varchar(64) DEFAULT NULL COMMENT '昵称',
+  `age` decimal(10,0) DEFAULT NULL COMMENT '年龄',
   `password` varchar(255) DEFAULT NULL COMMENT '密码',
   `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
   `gender` tinyint(4) DEFAULT NULL COMMENT '性别，0男，1女，2未知',
@@ -142,7 +177,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (92193617981,'xiumu','朽木','e10adc3949ba59abbe56e057f20f883e','https://siumu.github.io/img/avatar.jpg',0,'15038935069','1196606665@qq.com','2021-10-08 20:44:51','2022-07-26 21:22:42',NULL,NULL,0);
+INSERT INTO `sys_user` VALUES (92193617981,'xiumu','朽木',NULL,'e10adc3949ba59abbe56e057f20f883e','https://siumu.github.io/img/avatar.jpg',0,'15038935069','1196606665@qq.com','2021-10-08 20:44:51','2022-07-26 21:22:42','123456789',NULL,0),(1562454629063630850,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,'2022-08-24 22:59:47','2022-08-24 22:59:47',NULL,NULL,0);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,6 +212,34 @@ INSERT INTO `sys_user_role` VALUES (1,92193617981,12345678,'2022-07-25 22:11:17'
 UNLOCK TABLES;
 
 --
+-- Table structure for table `xiumu_code_template`
+--
+
+DROP TABLE IF EXISTS `xiumu_code_template`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `xiumu_code_template` (
+  `id` bigint(20) NOT NULL COMMENT '主键ID',
+  `template_name` varchar(128) NOT NULL COMMENT '模板名称',
+  `template_content` text NOT NULL COMMENT '模板内容',
+  `language` tinyint(4) NOT NULL COMMENT '开发语言，Java,HTML,CSS等',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `xiumu_code_template_templateName_uindex` (`template_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='代码生成器模板信息表';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `xiumu_code_template`
+--
+
+LOCK TABLES `xiumu_code_template` WRITE;
+/*!40000 ALTER TABLE `xiumu_code_template` DISABLE KEYS */;
+/*!40000 ALTER TABLE `xiumu_code_template` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping routines for database 'xiumu'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -189,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-28 22:26:02
+-- Dump completed on 2023-01-08 22:42:48

@@ -30,7 +30,6 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-
     /**
      * 自定义异常
      *
