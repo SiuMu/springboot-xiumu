@@ -1,5 +1,6 @@
 package com.xiumu.pojo.sys.vo;
 
+import cn.hutool.core.lang.tree.Tree;
 import com.xiumu.enums.Gender;
 import lombok.Data;
 
@@ -53,5 +54,10 @@ public class UserRoleAuthVO {
      * 权限列表
      */
     private List<String> authList;
+
+    /**
+     * 菜单列表
+     */
+    private List<Tree<String>> menuList;
 
 }

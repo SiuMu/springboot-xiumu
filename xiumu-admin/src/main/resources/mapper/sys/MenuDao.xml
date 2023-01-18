@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiumu.dao.sys.MenuDao">
+    <sql id="menuQuery">
+        <if test=" menu != null ">
+            <if test=" menu.parentId != null and menu.parentId != ''  ">
+                and parent_id = #{menu.parentId}
+            </if>
+            <if test=" menu.menuName != null and menu.menuName != ''  ">
+                and menu_name = #{menu.menuName}
+            </if>
+            <if test=" menu.authCode != null and menu.authCode != ''  ">
+                and auth_code = #{menu.authCode}
+            </if>
+            <if test=" menu.menuPath != null and menu.menuPath != ''  ">
+                and menu_path = #{menu.menuPath}
+            </if>
+            <if test=" menu.menuIcon != null and menu.menuIcon != ''  ">
+                and menu_icon = #{menu.menuIcon}
+            </if>
+            <if test=" menu.seq != null and menu.seq != ''  ">
+                and seq = #{menu.seq}
+            </if>
+        </if>
+    </sql>
+
+    <select id="selectPage" resultType="com.xiumu.pojo.sys.entity.Menu">
+        select * from sys_menu
+        <where>
+            <include refid="menuQuery"></include>
+            and delete_flag = 0
+        </where>
+        order by createTime desc
+    </select>
+
+    <select id="selectByMenu" resultType="com.xiumu.pojo.sys.entity.Menu">
+        select * from sys_menu
+        <where>
+            <include refid="menuQuery"></include>
+            and delete_flag = 0
+        </where>
+        order by create_time desc
+    </select>
+</mapper>

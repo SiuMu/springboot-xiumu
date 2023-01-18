@@ -4,8 +4,8 @@ import com.xiumu.common.core.exception.base.IBaseException;
 import lombok.Getter;
 
 /**
- * 异常枚举
- * 1000 - 1999
+ * 用户相关异常枚举
+ * 1000 - 1099
  *
  * @Author XiuMu
  * @Date 2022/7/16

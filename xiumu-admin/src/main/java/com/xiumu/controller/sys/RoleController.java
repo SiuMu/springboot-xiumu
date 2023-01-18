@@ -38,7 +38,7 @@ public class RoleController {
      * @param pageQuery 分页条件，查询参数
      * @return
      */
-    @PostMapping("/role/page")
+    @PostMapping("/page/role")
     public ResultJSON<IPage<Role>> page(@RequestBody PageQuery<RoleQuery, Role> pageQuery) {
         return ResultJSON.querySuccess(roleService.listPage(pageQuery));
     }

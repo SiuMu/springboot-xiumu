@@ -24,6 +24,9 @@ public class Authority extends BaseEntity {
     private String parentId;
     /**
      * 权限编码
+     * 编码规则， 模块:实体:权限类型:描述
+     * 例如：sys:authority:api:update 表示，sys模块:权限:接口:更新操作
+     * 例如：sys:authority:button:add 表示，sys模块:权限:按钮:新增操作
      */
     private String authCode;
     /**
@@ -35,7 +38,7 @@ public class Authority extends BaseEntity {
      */
     private String authDesc;
     /**
-     * 权限类型，0 菜单，1 按钮，2 接口
+     * 权限类型，0 菜单，1 按钮，2 API接口
      */
     private AuthType authType;
 

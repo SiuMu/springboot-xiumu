@@ -14,13 +14,16 @@ import com.xiumu.common.core.exception.sys.SysException;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.utils.AssertUtil;
 import com.xiumu.dao.sys.UserDao;
+import com.xiumu.enums.AuthType;
 import com.xiumu.exception.user.UserException;
 import com.xiumu.pojo.sys.dto.LoginDTO;
 import com.xiumu.pojo.sys.dto.UserDTO;
+import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.entity.User;
 import com.xiumu.pojo.sys.query.UserQuery;
 import com.xiumu.pojo.sys.vo.UserRoleAuthVO;
 import com.xiumu.service.sys.AuthorityService;
+import com.xiumu.service.sys.MenuService;
 import com.xiumu.service.sys.RoleService;
 import com.xiumu.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 用户 Service 业务层处理
@@ -43,6 +47,9 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private MenuService menuService;
 
     @Override
     public IPage<User> listPage(PageQuery<UserQuery, User> pageQuery) {
@@ -83,7 +90,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
                 .eq(User::getUsername, loginDTO.getUsername())
                 .eq(User::getPassword, SecureUtil.md5(loginDTO.getPassword()));
         User user = this.getOne(queryWrapper);
-        AssertUtil.notNull(user, SysException.PASSWD_ERROR);
+        AssertUtil.isNotNull(user, SysException.PASSWD_ERROR);
         StpUtil.login(user.getId());
         StpUtil.getSession().set(XiuMuConst.USERNAME, user.getUsername());
         return StpUtil.getTokenInfo().tokenValue;
@@ -92,10 +99,13 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     @Override
     public UserRoleAuthVO findUserRoleAuthVOByUserId(String userId) {
         User user = this.getById(userId);
-        AssertUtil.notNull(user, UserException.NOT_EXIT);
+        AssertUtil.isNotNull(user, UserException.NOT_EXIT);
         UserRoleAuthVO userRoleAuthVO = BeanUtil.copyProperties(user, UserRoleAuthVO.class);
         userRoleAuthVO.setRoleList(roleService.listRoleCodeByUserId(userId));
-        userRoleAuthVO.setAuthList(authorityService.listAuthCodeByUserId(userId));
+        List<Authority> authorities = authorityService.listByUserId(userId);
+        userRoleAuthVO.setAuthList(authorities.stream().map(Authority::getAuthCode).collect(Collectors.toList()));
+        List<String> menuAuthCodeList = authorities.stream().filter(authority -> authority.getAuthType() == AuthType.MENU).map(Authority::getAuthCode).collect(Collectors.toList());
+        userRoleAuthVO.setMenuList(menuService.listByAuthCodeList(menuAuthCodeList));
         return userRoleAuthVO;
     }
 

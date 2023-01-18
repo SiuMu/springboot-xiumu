@@ -34,6 +34,14 @@ public interface AuthorityService extends IService<Authority> {
     List<Authority> listByAuthority(AuthorityQuery authority);
 
     /**
+     * 根据用户 ID 查询权限
+     *
+     * @param userId 用户 ID
+     * @return
+     */
+    List<Authority> listByUserId(String userId);
+
+    /**
      * 根据 用户ID 查询该用户所拥有的权限 Code
      *
      * @param userId 用户ID

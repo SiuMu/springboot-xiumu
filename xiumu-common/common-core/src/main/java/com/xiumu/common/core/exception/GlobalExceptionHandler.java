@@ -9,8 +9,11 @@ import com.xiumu.common.core.exception.base.XiuMuException;
 import com.xiumu.common.core.exception.sys.SysException;
 import com.xiumu.common.core.result.ResultJSON;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -125,9 +128,47 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MissingRequestHeaderException.class)
     public ResultJSON<Boolean> paramsValidException(MissingRequestHeaderException e) {
         log.error("参数校验异常处理", e);
-        // 返回参数校验中定义的错误信息
         String error = "缺少自定义请求头：[" + e.getHeaderName() + "]";
         return ResultJSON.failure(SysException.SERVE_FAIL.getCode(), error);
+    }
+
+    /**
+     * http 请求方式错误, 例如用 GET 请求调用 POST 接口
+     *
+     * @param e 异常
+     * @return
+     */
+    @ResponseBody
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResultJSON<Boolean> paramsValidException(HttpRequestMethodNotSupportedException e) {
+        log.error("错误的 Http Method", e);
+        return ResultJSON.failure(SysException.SERVE_FAIL.getCode(), "错误的 Http Method");
+    }
+
+    /**
+     * Http 请求缺少 body, 或者 body 内容格式不正确，无法进行 JSON 反序列化
+     *
+     * @param e 异常
+     * @return
+     */
+    @ResponseBody
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResultJSON<Boolean> paramsValidException(HttpMessageNotReadableException e) {
+        log.error("HTTP 请求体不能为空或者请求体格式错误", e);
+        return ResultJSON.failure(SysException.SERVE_FAIL.getCode(), "请求体不能为空或者请求体格式错误");
+    }
+
+    /**
+     * 数据库唯一索引重复添加
+     *
+     * @param e 异常
+     * @return
+     */
+    @ResponseBody
+    @ExceptionHandler(DuplicateKeyException.class)
+    public ResultJSON<Boolean> paramsValidException(DuplicateKeyException e) {
+        log.error("数据库唯一索引重复添加", e);
+        return ResultJSON.failure(SysException.SERVE_FAIL.getCode(), "该项重复，请勿重复添加");
     }
 
     /**

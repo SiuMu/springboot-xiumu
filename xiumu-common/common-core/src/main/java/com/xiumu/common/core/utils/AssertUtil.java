@@ -18,7 +18,7 @@ public class AssertUtil {
      * @param object    对象
      * @param exception 异常枚举
      */
-    public static void notNull(Object object, IBaseException exception) {
+    public static void isNotNull(Object object, IBaseException exception) {
         if (object == null) {
             throw new XiuMuException(exception);
         }

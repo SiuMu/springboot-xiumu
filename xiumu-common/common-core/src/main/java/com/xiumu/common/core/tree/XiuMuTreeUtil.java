@@ -60,10 +60,14 @@ public class XiuMuTreeUtil extends TreeUtil {
 
     /**
      * 配置节点ID的 key
+     * 该方法用来设置需要构建树形结构的对象的，节点 父节点，排序字段 key，默认是 id, parentId, weight
+     * 如果有的对象是根据其他字段 key 构建树，如 code， parentCode， sort
+     * 就可以先设置 key XiuMuTreeUtil.configKeys("code", "parentCode", "sort")
+     * 再调用 XiuMuTreeUtil.buildTree(objectList, parentCodeValue)
      *
      * @param idKey       节点ID
      * @param parentIdKey 父节点ID
-     * @param weightKey   权重
+     * @param weightKey   排序权重，值越小越靠前
      */
     public static void configKeys(String idKey, String parentIdKey, String weightKey) {
         if (StrUtil.isNotBlank(idKey)) {

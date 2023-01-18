@@ -18,7 +18,9 @@ import java.util.stream.Stream;
 public enum AuthType {
 
     MENU(0, "菜单"),
-    BUTTON(1, "按钮");
+    BUTTON(1, "按钮"),
+    API(2, "API接口")
+    ;
 
     AuthType(Integer code, String desc) {
         this.code = code;

@@ -1,5 +1,6 @@
 package com.xiumu.controller.sys;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xiumu.common.core.page.PageQuery;
@@ -9,6 +10,7 @@ import com.xiumu.pojo.sys.dto.AuthorityDTO;
 import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.query.AuthorityQuery;
 import com.xiumu.service.sys.AuthorityService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,7 @@ import java.util.List;
  * @author XiuMu
  * @date 2022-07-16 17:25:15
  */
+@Slf4j
 @RestController
 public class AuthorityController {
 
@@ -36,7 +39,7 @@ public class AuthorityController {
      * @param pageQuery 分页条件，查询参数
      * @return
      */
-    @PostMapping("/authority/page")
+    @PostMapping("/page/authority")
     public ResultJSON<IPage<Authority>> page(@RequestBody PageQuery<AuthorityQuery, Authority> pageQuery) {
         return ResultJSON.querySuccess(authorityService.listPage(pageQuery));
     }
@@ -84,6 +87,7 @@ public class AuthorityController {
      * @param id           主键 ID
      * @return
      */
+    @SaCheckPermission("sys:authority:api:update")
     @PutMapping("/authority/{id}")
     public ResultJSON<Boolean> update(@Validated @RequestBody AuthorityDTO authorityDTO, @PathVariable String id) {
         return ResultJSON.modifySuccess(authorityService.updateById(authorityDTO, id));

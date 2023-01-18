@@ -41,7 +41,7 @@ public class UserController {
      * @param pageQuery 分页条件，查询参数
      * @return
      */
-    @PostMapping("/user/page")
+    @PostMapping("/page/user")
     public ResultJSON<IPage<User>> page(@RequestBody PageQuery<UserQuery, User> pageQuery) {
         return ResultJSON.querySuccess(userService.listPage(pageQuery));
     }
@@ -121,7 +121,7 @@ public class UserController {
      *
      * @return
      */
-    @GetMapping("/user/user&role&auth")
+    @GetMapping("/user/user&role&auth&menu")
     public ResultJSON<UserRoleAuthVO> userRoleAuth() {
         return ResultJSON.querySuccess(userService.findUserRoleAuthVOByUserId(StpUtil.getLoginIdAsString()));
     }

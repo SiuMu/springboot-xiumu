@@ -1,33 +1,32 @@
-package com.xiumu.pojo.sys.entity;
+package com.xiumu.pojo.sys.dto;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.xiumu.common.core.entity.BaseEntity;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 /**
- * 菜单表，菜单与权限是一对一的关系
+ * 菜单 对象 DTO
  *
  * @author XiuMu
  * @Date 2023-01-18 11:02:59
  */
 @Data
-@TableName("sys_menu")
-public class Menu extends BaseEntity {
+public class MenuDTO {
     /**
      * 父级菜单 ID
      */
+    @NotBlank(message = "父级菜单不能为空")
     private String parentId;
     /**
      * 菜单名称
      */
+    @NotBlank(message = "菜单名称不能为空")
     private String menuName;
-    /**
-     * 权限编码
-     */
-    private String authCode;
+
     /**
      * 前端 path 路径
      */
+    @NotBlank(message = "path 路径不能为空")
     private String menuPath;
     /**
      * 菜单图标

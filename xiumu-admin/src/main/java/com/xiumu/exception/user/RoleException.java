@@ -3,15 +3,16 @@ package com.xiumu.exception.user;
 import com.xiumu.common.core.exception.base.IBaseException;
 
 /**
- * 1200-1299
+ * 角色相关异常
+ * 1100-1199
  *
  * @Author XiuMu
  * @Date 2022/7/16
  */
 public enum RoleException implements IBaseException {
 
-    CODE_EXIT(1201, "角色编码已经被使用"),
-    NOT_EXIT(1200, "该角色不存在");
+    CODE_EXIT(1101, "角色编码已经被使用"),
+    NOT_EXIT(1100, "该角色不存在");
 
     private final Integer code;
 
