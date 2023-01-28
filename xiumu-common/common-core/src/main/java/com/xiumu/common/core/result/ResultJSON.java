@@ -10,7 +10,6 @@ import lombok.Data;
  * @Author XiuMu
  * @Date 2022/7/16
  **/
-
 @Data
 public class ResultJSON<T> {
 

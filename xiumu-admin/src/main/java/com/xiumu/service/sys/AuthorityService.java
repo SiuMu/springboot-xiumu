@@ -73,6 +73,7 @@ public interface AuthorityService extends IService<Authority> {
      * @return
      */
     boolean deleteById(Long id);
+
     /**
      * 通过 角色Id 查询角色下的权限
      * @param roleId 角色ID

@@ -41,7 +41,7 @@ public class UserRoleAuthVO {
     private String avatar;
 
     /**
-     * 性别，值为 1 时是男性，值为 2 时是女性，值为 0 时是未知
+     * 性别，值为 0 时是男性，值为 1 时是女性，值为 2 时是未知
      */
     private Gender gender;
 

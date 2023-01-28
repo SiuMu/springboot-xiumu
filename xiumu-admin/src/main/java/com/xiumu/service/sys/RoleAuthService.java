@@ -1,7 +1,6 @@
 package com.xiumu.service.sys;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiumu.pojo.sys.dto.RoleAuthDTO;
 import com.xiumu.pojo.sys.entity.RoleAuth;
 
 import java.util.List;
@@ -13,14 +12,6 @@ import java.util.List;
  * @date 2022-07-16 17:27:06
  */
 public interface RoleAuthService extends IService<RoleAuth> {
-
-    /**
-     * 创建 角色权限关联
-     *
-     * @param roleAuthDTO roleAuth 信息
-     * @return
-     */
-    boolean create(RoleAuthDTO roleAuthDTO);
 
     /**
      * 根据角色 ID 查询

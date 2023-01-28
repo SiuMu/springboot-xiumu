@@ -13,7 +13,6 @@ import lombok.Getter;
 @Getter
 public enum AuthException implements IBaseException {
 
-
     NO_MENU_INFO(1203, "菜单信息不能为空！"),
     NOT_IS_MENU(1202, "只有菜单才能新建子级权限！"),
     REPEAT_CODE(1201, "权限编码已经被使用！"),
