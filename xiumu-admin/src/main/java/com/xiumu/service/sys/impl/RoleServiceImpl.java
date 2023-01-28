@@ -1,6 +1,7 @@
 package com.xiumu.service.sys.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
@@ -8,14 +9,20 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiumu.common.core.enums.YesNo;
 import com.xiumu.common.core.page.PageQuery;
+import com.xiumu.common.core.utils.AssertUtil;
 import com.xiumu.dao.sys.RoleDao;
+import com.xiumu.exception.user.RoleException;
 import com.xiumu.pojo.sys.dto.RoleDTO;
 import com.xiumu.pojo.sys.entity.Role;
+import com.xiumu.pojo.sys.entity.RoleAuth;
 import com.xiumu.pojo.sys.query.RoleQuery;
+import com.xiumu.service.sys.RoleAuthService;
 import com.xiumu.service.sys.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +34,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleService {
+
+    @Autowired
+    private RoleAuthService roleAuthService;
 
     @Override
     public IPage<Role> listPage(PageQuery<RoleQuery, Role> pageQuery) {
@@ -46,14 +56,16 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
     @Override
     @Transactional
     public boolean create(RoleDTO roleDTO) {
-        Role role = BeanUtil.toBean(roleDTO, Role.class);
+        Role role = getByRoleCode(roleDTO.getRoleCode());
+        AssertUtil.isNull(role, RoleException.CODE_EXIT);
+        role = BeanUtil.toBean(roleDTO, Role.class);
         return this.save(role);
     }
 
     @Override
     @Transactional
     public boolean updateById(RoleDTO roleDTO, String id) {
-        Role role = BeanUtil.copyProperties(roleDTO, Role.class);
+        Role role = new Role().setRoleName(roleDTO.getRoleName()).setRoleDesc(roleDTO.getRoleDesc());
         role.setId(id);
         return updateById(role);
     }
@@ -67,8 +79,37 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
     }
 
     @Override
+    public Role getByRoleCode(String roleCode) {
+        LambdaQueryWrapper<Role> queryWrapper = new LambdaQueryWrapper<Role>()
+                .eq(Role::getRoleCode, roleCode)
+                .eq(Role::getDeleteFlag, YesNo.NO);
+        return getOne(queryWrapper);
+    }
+
+    @Override
     public List<Role> listByUserId(String userId) {
         return this.baseMapper.selectByUserId(userId);
+    }
+
+    @Override
+    public boolean setAuth(String id, List<String> authIdList) {
+        Role role = getById(id);
+        AssertUtil.isNotNull(role, RoleException.NOT_EXIT);
+        AssertUtil.isTrue(CollectionUtil.isNotEmpty(authIdList), RoleException.EMPTY_AUTH);
+        List<RoleAuth> roleAuthList = roleAuthService.listByRoleId(id);
+        // 保留重复的，增加新增的
+        List<Long> deleteIdList = new ArrayList<>();
+        roleAuthList.forEach(roleAuth -> {
+            if (authIdList.contains(roleAuth.getAuthId().toString())){
+                // 重复的
+                authIdList.remove(roleAuth.getAuthId().toString());
+            }else {
+                deleteIdList.add(roleAuth.getAuthId());
+            }
+        });
+        List<RoleAuth> addList = authIdList.stream().map(auth -> new RoleAuth(Long.parseLong(id), Long.parseLong(auth))).collect(Collectors.toList());
+        roleAuthService.removeBatchByIds(deleteIdList);
+        return roleAuthService.saveBatch(addList);
     }
 
     /**

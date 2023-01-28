@@ -23,7 +23,7 @@ public class AuthorityDTO {
      * 权限编码
      * 权限验证的时候会进行正则匹配，避免出现 * 等一些特殊字符
      */
-    @Pattern(regexp = "^[a-z:]+$", message = "权限编码只允许输入英文字母和英文冒号")
+    @Pattern(regexp = "^[a-z:]+", message = "权限编码只允许输入英文字母和英文冒号")
     @NotBlank(message = "权限编码不能为空")
     private String authCode;
     /**

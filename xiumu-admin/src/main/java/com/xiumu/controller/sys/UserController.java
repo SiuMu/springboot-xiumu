@@ -105,6 +105,18 @@ public class UserController {
     }
 
     /**
+     * 设置用户角色
+     *
+     * @param id         用户 ID
+     * @param roleIdList 角色 ID 集合
+     * @return
+     */
+    @PutMapping("/user/{id}/role")
+    public ResultJSON<Boolean> updateRoleById(@PathVariable String id, @RequestBody List<String> roleIdList) {
+        return ResultJSON.modifySuccess(userService.setRole(id, roleIdList));
+    }
+
+    /**
      * 通过 ID 逻辑删除
      *
      * @param id ID

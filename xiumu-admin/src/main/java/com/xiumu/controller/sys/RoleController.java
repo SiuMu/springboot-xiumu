@@ -102,6 +102,18 @@ public class RoleController {
     }
 
     /**
+     * 设置角色的权限
+     *
+     * @param id         角色 ID
+     * @param authIdList 权限 ID 集合
+     * @return
+     */
+    @PutMapping("/role/{id}/auth")
+    public ResultJSON<Boolean> updateAuth(@PathVariable String id, @RequestBody List<String> authIdList) {
+        return ResultJSON.modifySuccess(roleService.setAuth(id, authIdList));
+    }
+
+    /**
      * 通过 ID 逻辑删除
      *
      * @param id ID

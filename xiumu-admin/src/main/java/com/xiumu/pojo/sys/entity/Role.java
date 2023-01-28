@@ -3,6 +3,7 @@ package com.xiumu.pojo.sys.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xiumu.common.core.entity.BaseEntity;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * Entity 表示与数据库一一对应的实体，不能出现数据库没有的字段。
@@ -14,6 +15,7 @@ import lombok.Data;
  * @date 2022-07-16 17:25:52
  */
 @Data
+@Accessors(chain = true)
 @TableName("sys_role")
 public class Role extends BaseEntity {
 

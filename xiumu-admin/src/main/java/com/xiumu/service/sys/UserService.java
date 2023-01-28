@@ -75,4 +75,13 @@ public interface UserService extends IService<User> {
      * @return
      */
     UserRoleAuthVO findUserRoleAuthVOByUserId(String userId);
+
+    /**
+     * 设置用户角色
+     *
+     * @param id         用户 ID
+     * @param roleIdList 角色 ID 集合
+     * @return
+     */
+    boolean setRole(String id, List<String> roleIdList);
 }

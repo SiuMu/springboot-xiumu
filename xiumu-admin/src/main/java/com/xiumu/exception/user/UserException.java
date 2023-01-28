@@ -14,6 +14,7 @@ import lombok.Getter;
 public enum UserException implements IBaseException {
 
 
+    EMPTY_ROLE(1008, "设置的角色不能为空"),
     NOT_EXIT(1007, "用户不存在"),
     CONFIRM_PASSWORD_ERROR(1006, "两次密码输入不一致"),
     NOT_ENABLED(1005, "用户已经被禁用！！"),

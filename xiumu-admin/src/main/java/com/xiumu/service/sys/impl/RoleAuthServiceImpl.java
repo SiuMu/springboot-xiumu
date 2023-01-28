@@ -1,17 +1,11 @@
 package com.xiumu.service.sys.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xiumu.common.core.enums.YesNo;
-import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.RoleAuthDao;
 import com.xiumu.pojo.sys.dto.RoleAuthDTO;
 import com.xiumu.pojo.sys.entity.RoleAuth;
-import com.xiumu.pojo.sys.query.RoleAuthQuery;
 import com.xiumu.service.sys.RoleAuthService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,17 +20,6 @@ import java.util.List;
  */
 @Service
 public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao, RoleAuth> implements RoleAuthService {
-
-    @Override
-    public IPage<RoleAuth> listPage(PageQuery<RoleAuthQuery, RoleAuth> pageQuery) {
-        return this.baseMapper.selectPage(pageQuery, pageQuery.getCondition());
-    }
-
-    @Override
-    public List<RoleAuth> listByRoleAuth(RoleAuthQuery roleAuth) {
-        return this.baseMapper.selectByRoleAuth(roleAuth);
-    }
-
     @Override
     @Transactional
     public boolean create(RoleAuthDTO roleAuthDTO) {
@@ -45,34 +28,7 @@ public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao, RoleAuth> impl
     }
 
     @Override
-    public boolean deleteById(Long id) {
-        LambdaUpdateWrapper<RoleAuth> updateWrapper = new LambdaUpdateWrapper<RoleAuth>()
-                .set(RoleAuth::getDeleteFlag, YesNo.YES)
-                .eq(RoleAuth::getId, id);
-        return this.update(updateWrapper);
-    }
-
-    /**
-     * 重写 list 方法，查询未逻辑删除的记录
-     *
-     * @return
-     */
-    @Override
-    public List<RoleAuth> list() {
-        LambdaQueryWrapper<RoleAuth> queryWrapper = new LambdaQueryWrapper<RoleAuth>().eq(RoleAuth::getDeleteFlag, YesNo.NO);
-        return this.baseMapper.selectList(queryWrapper);
-    }
-
-    /**
-     * 重写 list 方法，查询未逻辑删除的记录
-     *
-     * @return
-     */
-    public List<RoleAuth> list(LambdaQueryWrapper<RoleAuth> queryWrapper) {
-        if (ObjectUtil.isNull(queryWrapper)) {
-            queryWrapper = new LambdaQueryWrapper<RoleAuth>();
-        }
-        queryWrapper.eq(RoleAuth::getDeleteFlag, YesNo.NO);
-        return this.baseMapper.selectList(queryWrapper);
+    public List<RoleAuth> listByRoleId(String roleId) {
+        return list(new LambdaQueryWrapper<RoleAuth>().eq(RoleAuth::getRoleId, roleId));
     }
 }

@@ -2,6 +2,7 @@ package com.xiumu.service.sys.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -20,12 +21,10 @@ import com.xiumu.pojo.sys.dto.LoginDTO;
 import com.xiumu.pojo.sys.dto.UserDTO;
 import com.xiumu.pojo.sys.entity.Authority;
 import com.xiumu.pojo.sys.entity.User;
+import com.xiumu.pojo.sys.entity.UserRole;
 import com.xiumu.pojo.sys.query.UserQuery;
 import com.xiumu.pojo.sys.vo.UserRoleAuthVO;
-import com.xiumu.service.sys.AuthorityService;
-import com.xiumu.service.sys.MenuService;
-import com.xiumu.service.sys.RoleService;
-import com.xiumu.service.sys.UserService;
+import com.xiumu.service.sys.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +49,9 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private UserRoleService userRoleService;
 
     @Override
     public IPage<User> listPage(PageQuery<UserQuery, User> pageQuery) {
@@ -107,6 +109,16 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         List<String> menuAuthCodeList = authorities.stream().filter(authority -> authority.getAuthType() == AuthType.MENU).map(Authority::getAuthCode).collect(Collectors.toList());
         userRoleAuthVO.setMenuList(menuService.listByAuthCodeList(menuAuthCodeList));
         return userRoleAuthVO;
+    }
+
+    @Override
+    public boolean setRole(String id, List<String> roleIdList) {
+        User user = getById(id);
+        AssertUtil.isNotNull(user, UserException.NOT_EXIT);
+        AssertUtil.isTrue(CollectionUtil.isNotEmpty(roleIdList), UserException.EMPTY_ROLE);
+        List<UserRole> userRoleList = roleIdList.stream().map(role -> new UserRole(Long.parseLong(id), Long.parseLong(role))).collect(Collectors.toList());
+        userRoleService.deleteByUserId(id);
+        return userRoleService.saveBatch(userRoleList);
     }
 
     /**

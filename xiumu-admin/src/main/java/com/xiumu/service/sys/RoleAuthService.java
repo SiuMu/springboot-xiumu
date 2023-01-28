@@ -1,11 +1,8 @@
 package com.xiumu.service.sys;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.pojo.sys.dto.RoleAuthDTO;
 import com.xiumu.pojo.sys.entity.RoleAuth;
-import com.xiumu.pojo.sys.query.RoleAuthQuery;
 
 import java.util.List;
 
@@ -18,22 +15,6 @@ import java.util.List;
 public interface RoleAuthService extends IService<RoleAuth> {
 
     /**
-     * 分页查询
-     *
-     * @param pageQuery 分页条件
-     * @return
-     */
-    IPage<RoleAuth> listPage(PageQuery<RoleAuthQuery, RoleAuth> pageQuery);
-
-    /**
-     * 根据条件查询 角色权限关联
-     *
-     * @param roleAuth 查询条件
-     * @return
-     */
-    List<RoleAuth> listByRoleAuth(RoleAuthQuery roleAuth);
-
-    /**
      * 创建 角色权限关联
      *
      * @param roleAuthDTO roleAuth 信息
@@ -41,12 +22,10 @@ public interface RoleAuthService extends IService<RoleAuth> {
      */
     boolean create(RoleAuthDTO roleAuthDTO);
 
-
     /**
-     * 根据 id 逻辑删除
-     *
-     * @param id id
+     * 根据角色 ID 查询
+     * @param roleId 角色 ID
      * @return
      */
-    boolean deleteById(Long id);
+    List<RoleAuth> listByRoleId(String roleId);
 }

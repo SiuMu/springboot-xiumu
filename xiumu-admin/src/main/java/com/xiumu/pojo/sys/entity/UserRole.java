@@ -22,14 +22,13 @@ public class UserRole extends BaseEntity {
      * 角色ID
      */
     private Long roleId;
-    /**
-     * 创建人
-     */
-    private String createBy;
-    /**
-     * 更新人
-     */
-    private String updateBy;
 
+    public UserRole() {
+    }
+
+    public UserRole(Long userId, Long roleId) {
+        this.userId = userId;
+        this.roleId = roleId;
+    }
 }
 

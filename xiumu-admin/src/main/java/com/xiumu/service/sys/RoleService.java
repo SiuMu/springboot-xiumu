@@ -73,4 +73,21 @@ public interface RoleService extends IService<Role> {
      * @return
      */
     List<Role> listByUserId(String userId);
+
+    /**
+     * 根据编码查询角色
+     *
+     * @param roleCode 角色编码
+     * @return
+     */
+    Role getByRoleCode(String roleCode);
+
+    /**
+     * 设置角色的权限
+     *
+     * @param id         角色 ID
+     * @param authIdList 权限 ID
+     * @return
+     */
+    boolean setAuth(String id, List<String> authIdList);
 }

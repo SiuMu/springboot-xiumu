@@ -26,5 +26,12 @@ public class RoleAuth extends BaseEntity {
      */
     private Long authId;
 
+    public RoleAuth() {
+    }
+
+    public RoleAuth(Long roleId, Long authId) {
+        this.roleId = roleId;
+        this.authId = authId;
+    }
 }
 

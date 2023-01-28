@@ -11,6 +11,7 @@ import com.xiumu.common.core.exception.base.IBaseException;
  */
 public enum RoleException implements IBaseException {
 
+    EMPTY_AUTH(1102, "权限编码不能为空"),
     CODE_EXIT(1101, "角色编码已经被使用"),
     NOT_EXIT(1100, "该角色不存在");
 

@@ -7,8 +7,6 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiumu.common.core.enums.YesNo;
-import com.xiumu.common.core.exception.base.IBaseExceptionImpl;
-import com.xiumu.common.core.exception.sys.SysException;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.utils.AssertUtil;
 import com.xiumu.common.core.utils.ValidatorUtils;
@@ -65,13 +63,13 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
     public boolean create(AuthorityDTO authorityDTO) {
         Authority authority = BeanUtil.toBean(authorityDTO, Authority.class);
         // 判断只有菜单才可以添加子级权限
-        if (!authorityDTO.getParentId().equals("0")){
+        if (!authorityDTO.getParentId().equals("0")) {
             Authority parent = getById(authorityDTO.getParentId());
-            AssertUtil.isTrue(parent.getAuthType() == AuthType.MENU, AuthException.NOT_MENU);
+            AssertUtil.isTrue(parent.getAuthType() == AuthType.MENU, AuthException.NOT_IS_MENU);
         }
         // 如果添加的是菜单权限，对菜单信息进行手动校验, 再保存菜单
-        if (authorityDTO.getAuthType() == AuthType.MENU){
-            AssertUtil.isNotNull(authorityDTO.getMenu(), IBaseExceptionImpl.of(SysException.PARAM_ERROR.getCode(), "菜单信息不能为空"));
+        if (authorityDTO.getAuthType() == AuthType.MENU) {
+            AssertUtil.isNotNull(authorityDTO.getMenu(), AuthException.NO_MENU_INFO);
             ValidatorUtils.validate(authorityDTO.getMenu());
             Menu menu = BeanUtil.toBean(authorityDTO.getMenu(), Menu.class);
             menu.setAuthCode(authority.getAuthCode());
@@ -83,9 +81,13 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
     @Override
     @Transactional
     public boolean updateById(AuthorityDTO authorityDTO, String id) {
-        Authority authority = BeanUtil.copyProperties(authorityDTO, Authority.class);
+        Authority authority = getById(id);
+        AssertUtil.isNotNull(authority, AuthException.NOT_EXIT);
+        if (authority.getAuthType() == AuthType.MENU){
+            menuService.updateByAuthCode(authorityDTO.getAuthCode(), authorityDTO.getMenu());
+        }
+        authority = BeanUtil.copyProperties(authorityDTO, Authority.class);
         authority.setId(id);
-        menuService.updateByAuthCode(authorityDTO.getAuthCode(), authorityDTO.getMenu());
         return updateById(authority);
     }
 

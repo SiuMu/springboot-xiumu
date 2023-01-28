@@ -1,22 +1,14 @@
 package com.xiumu.service.sys.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xiumu.common.core.enums.YesNo;
-import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.dao.sys.UserRoleDao;
-import com.xiumu.pojo.sys.entity.UserRole;
 import com.xiumu.pojo.sys.dto.UserRoleDTO;
-import com.xiumu.pojo.sys.query.UserRoleQuery;
+import com.xiumu.pojo.sys.entity.UserRole;
 import com.xiumu.service.sys.UserRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * 用户角色关联 Service 业务层处理
@@ -26,16 +18,6 @@ import java.util.List;
  */
 @Service
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleDao, UserRole> implements UserRoleService {
-
-    @Override
-    public IPage<UserRole> listPage(PageQuery<UserRoleQuery, UserRole> pageQuery) {
-        return this.baseMapper.selectPage(pageQuery, pageQuery.getCondition());
-    }
-
-    @Override
-    public List<UserRole> listByUserRole(UserRoleQuery userRole) {
-        return this.baseMapper.selectByUserRole(userRole);
-    }
 
     @Override
     @Transactional
@@ -53,35 +35,7 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleDao, UserRole> impl
     }
 
     @Override
-    @Transactional
-    public boolean deleteById(String id) {
-        LambdaUpdateWrapper<UserRole> updateWrapper = new LambdaUpdateWrapper<UserRole>()
-                .set(UserRole::getDeleteFlag, YesNo.YES)
-                .eq(UserRole::getId, id);
-        return this.update(updateWrapper);
-    }
-
-    /**
-     * 重写 list 方法，查询未逻辑删除的记录
-     *
-     * @return
-     */
-    @Override
-    public List<UserRole> list() {
-        LambdaQueryWrapper<UserRole> queryWrapper = new LambdaQueryWrapper<UserRole>().eq(UserRole::getDeleteFlag, YesNo.NO);
-        return this.baseMapper.selectList(queryWrapper);
-    }
-
-    /**
-     * 重写 list 方法，查询未逻辑删除的记录
-     *
-     * @return
-     */
-    public List<UserRole> list(LambdaQueryWrapper<UserRole> queryWrapper) {
-        if (ObjectUtil.isNull(queryWrapper)) {
-            queryWrapper = new LambdaQueryWrapper<UserRole>();
-        }
-        queryWrapper.eq(UserRole::getDeleteFlag, YesNo.NO);
-        return this.baseMapper.selectList(queryWrapper);
+    public boolean deleteByUserId(String userId) {
+        return remove(new LambdaQueryWrapper<UserRole>().eq(UserRole::getUserId, userId));
     }
 }
