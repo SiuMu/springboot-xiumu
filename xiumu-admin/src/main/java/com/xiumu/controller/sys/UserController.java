@@ -133,7 +133,7 @@ public class UserController {
      *
      * @return
      */
-    @GetMapping("/user/user&role&auth&menu")
+    @GetMapping("/user/user&role&auth")
     public ResultJSON<UserRoleAuthVO> userRoleAuth() {
         return ResultJSON.querySuccess(userService.findUserRoleAuthVOByUserId(StpUtil.getLoginIdAsString()));
     }

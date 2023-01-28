@@ -34,7 +34,7 @@ Content-Type: application/json
 XiuMuToken: 7dacecb3-ecd8-4ae7-bed4-752f5e89e388
 
 ###  UserController 查询该用户的 user&role&auth
-GET http://localhost:8080/user/user&role&auth&menu
+GET http://localhost:8080/user/user&role&auth
 Content-Type: application/json
 XiuMuToken: 7dacecb3-ecd8-4ae7-bed4-752f5e89e388
 

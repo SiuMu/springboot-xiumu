@@ -56,7 +56,7 @@ public class UserRoleAuthVO {
     private List<String> authList;
 
     /**
-     * 菜单列表
+     * 菜单列表，树形结构
      */
     private List<Tree<String>> menuList;
 
