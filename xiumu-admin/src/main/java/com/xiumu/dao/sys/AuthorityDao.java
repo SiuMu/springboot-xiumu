@@ -42,7 +42,7 @@ public interface AuthorityDao extends BaseMapper<Authority> {
      * @param roleId 角色ID
      * @return
      */
-    List<Authority> selectByRoleId(String roleId);
+    List<Authority> selectByRoleId(Long roleId);
 
     /**
      * 根据用户ID 查询所有的权限
@@ -50,5 +50,5 @@ public interface AuthorityDao extends BaseMapper<Authority> {
      * @param userId 用户
      * @return
      */
-    List<Authority> selectByUserId(String userId);
+    List<Authority> selectByUserId(Long userId);
 }

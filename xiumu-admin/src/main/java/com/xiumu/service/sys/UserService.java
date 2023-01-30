@@ -50,7 +50,7 @@ public interface UserService extends IService<User> {
      * @param id      主键 ID
      * @return
      */
-    boolean updateById(UserDTO userDTO, String id);
+    boolean updateById(UserDTO userDTO, Long id);
 
     /**
      * 根据 id 逻辑删除
@@ -74,7 +74,7 @@ public interface UserService extends IService<User> {
      * @param userId 用户ID
      * @return
      */
-    UserRoleAuthVO findUserRoleAuthVOByUserId(String userId);
+    UserRoleAuthVO findUserRoleAuthVOByUserId(Long userId);
 
     /**
      * 设置用户角色
@@ -83,5 +83,5 @@ public interface UserService extends IService<User> {
      * @param roleIdList 角色 ID 集合
      * @return
      */
-    boolean setRole(String id, List<String> roleIdList);
+    boolean setRole(Long id, List<Long> roleIdList);
 }

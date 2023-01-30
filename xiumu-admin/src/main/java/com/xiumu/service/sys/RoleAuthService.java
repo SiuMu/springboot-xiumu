@@ -18,5 +18,5 @@ public interface RoleAuthService extends IService<RoleAuth> {
      * @param roleId 角色 ID
      * @return
      */
-    List<RoleAuth> listByRoleId(String roleId);
+    List<RoleAuth> listByRoleId(Long roleId);
 }

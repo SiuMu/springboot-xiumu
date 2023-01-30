@@ -72,7 +72,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     @Override
     @Transactional
-    public boolean updateById(UserDTO userDTO, String id) {
+    public boolean updateById(UserDTO userDTO, Long id) {
         User user = BeanUtil.copyProperties(userDTO, User.class);
         user.setId(id);
         return updateById(user);
@@ -99,7 +99,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     }
 
     @Override
-    public UserRoleAuthVO findUserRoleAuthVOByUserId(String userId) {
+    public UserRoleAuthVO findUserRoleAuthVOByUserId(Long userId) {
         User user = this.getById(userId);
         AssertUtil.isNotNull(user, UserException.NOT_EXIT);
         UserRoleAuthVO userRoleAuthVO = BeanUtil.copyProperties(user, UserRoleAuthVO.class);
@@ -112,11 +112,11 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     }
 
     @Override
-    public boolean setRole(String id, List<String> roleIdList) {
+    public boolean setRole(Long id, List<Long> roleIdList) {
         User user = getById(id);
         AssertUtil.isNotNull(user, UserException.NOT_EXIT);
         AssertUtil.isTrue(CollectionUtil.isNotEmpty(roleIdList), UserException.EMPTY_ROLE);
-        List<UserRole> userRoleList = roleIdList.stream().map(role -> new UserRole(Long.parseLong(id), Long.parseLong(role))).collect(Collectors.toList());
+        List<UserRole> userRoleList = roleIdList.stream().map(role -> new UserRole(id, role)).collect(Collectors.toList());
         userRoleService.deleteByUserId(id);
         return userRoleService.saveBatch(userRoleList);
     }

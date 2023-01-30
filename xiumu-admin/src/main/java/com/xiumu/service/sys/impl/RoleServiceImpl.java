@@ -49,7 +49,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
     }
 
     @Override
-    public List<String> listRoleCodeByUserId(String userId) {
+    public List<String> listRoleCodeByUserId(Long userId) {
         return listByUserId(userId).stream().map(Role::getRoleCode).collect(Collectors.toList());
     }
 
@@ -64,14 +64,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
 
     @Override
     @Transactional
-    public boolean updateById(RoleDTO roleDTO, String id) {
+    public boolean updateById(RoleDTO roleDTO, Long id) {
         Role role = new Role().setRoleName(roleDTO.getRoleName()).setRoleDesc(roleDTO.getRoleDesc());
         role.setId(id);
         return updateById(role);
     }
 
     @Override
-    public boolean deleteById(String id) {
+    public boolean deleteById(Long id) {
         LambdaUpdateWrapper<Role> updateWrapper = new LambdaUpdateWrapper<Role>()
                 .set(Role::getDeleteFlag, YesNo.YES)
                 .eq(Role::getId, id);
@@ -87,12 +87,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
     }
 
     @Override
-    public List<Role> listByUserId(String userId) {
+    public List<Role> listByUserId(Long userId) {
         return this.baseMapper.selectByUserId(userId);
     }
 
     @Override
-    public boolean setAuth(String id, List<String> authIdList) {
+    public boolean setAuth(Long id, List<Long> authIdList) {
         Role role = getById(id);
         AssertUtil.isNotNull(role, RoleException.NOT_EXIT);
         AssertUtil.isTrue(CollectionUtil.isNotEmpty(authIdList), RoleException.EMPTY_AUTH);
@@ -107,7 +107,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
                 deleteIdList.add(roleAuth.getAuthId());
             }
         });
-        List<RoleAuth> addList = authIdList.stream().map(auth -> new RoleAuth(Long.parseLong(id), Long.parseLong(auth))).collect(Collectors.toList());
+        List<RoleAuth> addList = authIdList.stream().map(auth -> new RoleAuth(id, auth)).collect(Collectors.toList());
         roleAuthService.removeBatchByIds(deleteIdList);
         return roleAuthService.saveBatch(addList);
     }

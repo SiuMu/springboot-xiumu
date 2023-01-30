@@ -29,7 +29,7 @@ public class StpInterfaceImpl implements StpInterface {
      */
     @Override
     public List<String> getPermissionList(Object loginId, String loginType) {
-        return authorityService.listAuthCodeByUserId(Convert.toStr(loginId));
+        return authorityService.listAuthCodeByUserId(Convert.toLong(loginId));
     }
 
     /**
@@ -39,6 +39,6 @@ public class StpInterfaceImpl implements StpInterface {
      */
     @Override
     public List<String> getRoleList(Object loginId, String loginType) {
-        return roleService.listRoleCodeByUserId(Convert.toStr(loginId));
+        return roleService.listRoleCodeByUserId(Convert.toLong(loginId));
     }
 }

@@ -64,7 +64,7 @@ public class AuthorityController {
      * @return
      */
     @GetMapping("/authority/{id}")
-    public ResultJSON<Authority> find(@PathVariable String id) {
+    public ResultJSON<Authority> find(@PathVariable Long id) {
         return ResultJSON.querySuccess(authorityService.getById(id));
     }
 
@@ -89,7 +89,7 @@ public class AuthorityController {
      */
     @SaCheckPermission("sys:authority:api:update")
     @PutMapping("/authority/{id}")
-    public ResultJSON<Boolean> update(@Validated @RequestBody AuthorityDTO authorityDTO, @PathVariable String id) {
+    public ResultJSON<Boolean> update(@Validated @RequestBody AuthorityDTO authorityDTO, @PathVariable Long id) {
         return ResultJSON.modifySuccess(authorityService.updateById(authorityDTO, id));
     }
 

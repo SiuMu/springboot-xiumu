@@ -19,7 +19,7 @@ import java.util.List;
 public class RoleAuthServiceImpl extends ServiceImpl<RoleAuthDao, RoleAuth> implements RoleAuthService {
 
     @Override
-    public List<RoleAuth> listByRoleId(String roleId) {
+    public List<RoleAuth> listByRoleId(Long roleId) {
         return list(new LambdaQueryWrapper<RoleAuth>().eq(RoleAuth::getRoleId, roleId));
     }
 }

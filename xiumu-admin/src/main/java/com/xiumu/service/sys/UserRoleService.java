@@ -17,5 +17,5 @@ public interface UserRoleService extends IService<UserRole> {
      * @param userId 用户 ID
      * @return
      */
-    boolean deleteByUserId(String userId);
+    boolean deleteByUserId(Long userId);
 }

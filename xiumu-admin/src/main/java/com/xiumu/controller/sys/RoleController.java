@@ -62,7 +62,7 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/{id}")
-    public ResultJSON<Role> find(@PathVariable String id) {
+    public ResultJSON<Role> find(@PathVariable Long id) {
         return ResultJSON.querySuccess(roleService.getById(id));
     }
 
@@ -73,7 +73,7 @@ public class RoleController {
      * @return
      */
     @GetMapping("/role/{id}/auth")
-    public ResultJSON<List<Authority>> authList(@PathVariable String id) {
+    public ResultJSON<List<Authority>> authList(@PathVariable Long id) {
         return ResultJSON.querySuccess(authorityService.listByRoleId(id));
     }
 
@@ -97,7 +97,7 @@ public class RoleController {
      * @return
      */
     @PutMapping("/role/{id}")
-    public ResultJSON<Boolean> update(@Validated @RequestBody RoleDTO roleDTO, @PathVariable String id) {
+    public ResultJSON<Boolean> update(@Validated @RequestBody RoleDTO roleDTO, @PathVariable Long id) {
         return ResultJSON.modifySuccess(roleService.updateById(roleDTO, id));
     }
 
@@ -109,7 +109,7 @@ public class RoleController {
      * @return
      */
     @PutMapping("/role/{id}/auth")
-    public ResultJSON<Boolean> updateAuth(@PathVariable String id, @RequestBody List<String> authIdList) {
+    public ResultJSON<Boolean> updateAuth(@PathVariable Long id, @RequestBody List<Long> authIdList) {
         return ResultJSON.modifySuccess(roleService.setAuth(id, authIdList));
     }
 
@@ -120,7 +120,7 @@ public class RoleController {
      * @return
      */
     @DeleteMapping("/role/{id}")
-    public ResultJSON<Boolean> delete(@PathVariable String id) {
+    public ResultJSON<Boolean> delete(@PathVariable Long id) {
         return ResultJSON.deleteSuccess(roleService.deleteById(id));
     }
 }

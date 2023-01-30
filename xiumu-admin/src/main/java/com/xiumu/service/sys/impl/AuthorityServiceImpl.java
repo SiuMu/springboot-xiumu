@@ -49,12 +49,12 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
     }
 
     @Override
-    public List<Authority> listByUserId(String userId) {
+    public List<Authority> listByUserId(Long userId) {
         return this.baseMapper.selectByUserId(userId);
     }
 
     @Override
-    public List<String> listAuthCodeByUserId(String userId) {
+    public List<String> listAuthCodeByUserId(Long userId) {
         return listByUserId(userId).stream().map(Authority::getAuthCode).collect(Collectors.toList());
     }
 
@@ -80,7 +80,7 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
 
     @Override
     @Transactional
-    public boolean updateById(AuthorityDTO authorityDTO, String id) {
+    public boolean updateById(AuthorityDTO authorityDTO, Long id) {
         Authority authority = getById(id);
         AssertUtil.isNotNull(authority, AuthException.NOT_EXIT);
         if (authority.getAuthType() == AuthType.MENU){
@@ -100,7 +100,7 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
     }
 
     @Override
-    public List<Authority> listByRoleId(String roleId) {
+    public List<Authority> listByRoleId(Long roleId) {
         return this.baseMapper.selectByRoleId(roleId);
     }
 

@@ -24,7 +24,7 @@ public class BaseEntity implements Serializable {
      * 提示：使用 Long 传递给前端会出现精度丢失问题
      */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private String id;
+    private Long id;
 
     /**
      * 创建时间

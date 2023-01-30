@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public class UserRoleServiceImpl extends ServiceImpl<UserRoleDao, UserRole> implements UserRoleService {
 
     @Override
-    public boolean deleteByUserId(String userId) {
+    public boolean deleteByUserId(Long userId) {
         return remove(new LambdaQueryWrapper<UserRole>().eq(UserRole::getUserId, userId));
     }
 }

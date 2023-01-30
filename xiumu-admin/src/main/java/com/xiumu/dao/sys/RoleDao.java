@@ -42,6 +42,6 @@ public interface RoleDao extends BaseMapper<Role> {
      * @param userId 用户ID
      * @return
      */
-    List<Role> selectByUserId(String userId);
+    List<Role> selectByUserId(Long userId);
 
 }

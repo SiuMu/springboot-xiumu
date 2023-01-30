@@ -65,7 +65,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/{id}")
-    public ResultJSON<User> find(@PathVariable String id) {
+    public ResultJSON<User> find(@PathVariable Long id) {
         return ResultJSON.querySuccess(userService.getById(id));
     }
 
@@ -76,7 +76,7 @@ public class UserController {
      * @return
      */
     @GetMapping("/user/{id}/role")
-    public ResultJSON<List<Role>> roleList(@PathVariable String id) {
+    public ResultJSON<List<Role>> roleList(@PathVariable Long id) {
         return ResultJSON.querySuccess(roleService.listByUserId(id));
     }
 
@@ -100,7 +100,7 @@ public class UserController {
      * @return
      */
     @PutMapping("/user/{id}")
-    public ResultJSON<Boolean> update(@Validated @RequestBody UserDTO userDTO, @PathVariable String id) {
+    public ResultJSON<Boolean> update(@Validated @RequestBody UserDTO userDTO, @PathVariable Long id) {
         return ResultJSON.modifySuccess(userService.updateById(userDTO, id));
     }
 
@@ -112,7 +112,7 @@ public class UserController {
      * @return
      */
     @PutMapping("/user/{id}/role")
-    public ResultJSON<Boolean> updateRoleById(@PathVariable String id, @RequestBody List<String> roleIdList) {
+    public ResultJSON<Boolean> updateRoleById(@PathVariable Long id, @RequestBody List<Long> roleIdList) {
         return ResultJSON.modifySuccess(userService.setRole(id, roleIdList));
     }
 
@@ -135,6 +135,6 @@ public class UserController {
      */
     @GetMapping("/user/user&role&auth")
     public ResultJSON<UserRoleAuthVO> userRoleAuth() {
-        return ResultJSON.querySuccess(userService.findUserRoleAuthVOByUserId(StpUtil.getLoginIdAsString()));
+        return ResultJSON.querySuccess(userService.findUserRoleAuthVOByUserId(StpUtil.getLoginIdAsLong()));
     }
 }
