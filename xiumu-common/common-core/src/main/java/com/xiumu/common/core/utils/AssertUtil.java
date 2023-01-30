@@ -19,9 +19,7 @@ public class AssertUtil {
      * @param exception 异常枚举
      */
     public static void isNotNull(Object object, IBaseException exception) {
-        if (object == null) {
-            throw new XiuMuException(exception);
-        }
+        isTrue(object != null, exception);
     }
 
     /**
@@ -31,9 +29,17 @@ public class AssertUtil {
      * @param exception 异常枚举
      */
     public static void isNull(Object object, IBaseException exception) {
-        if (object != null) {
-            throw new XiuMuException(exception);
-        }
+        isTrue(object == null, exception);
+    }
+
+    /**
+     * 断言必须为 False
+     *
+     * @param expression 布尔值
+     * @param exception  异常
+     */
+    public static void isFalse(boolean expression, IBaseException exception) {
+        isTrue(!expression, exception);
     }
 
     /**
@@ -47,17 +53,4 @@ public class AssertUtil {
             throw new XiuMuException(exception);
         }
     }
-
-    /**
-     * 断言必须为 False
-     *
-     * @param expression 布尔值
-     * @param exception  异常
-     */
-    public static void isFalse(boolean expression, IBaseException exception) {
-        if (expression) {
-            throw new XiuMuException(exception);
-        }
-    }
-
 }
