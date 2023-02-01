@@ -5,7 +5,7 @@
 <mapper namespace="com.xiumu.dao.sys.MenuDao">
     <sql id="menuQuery">
         <if test=" menu != null ">
-            <if test=" menu.parentId != null and menu.parentId != ''  ">
+            <if test=" menu.parentId != null ">
                 and parent_id = #{menu.parentId}
             </if>
             <if test=" menu.menuName != null and menu.menuName != ''  ">

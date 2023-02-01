@@ -3,6 +3,7 @@ package com.xiumu.controller.sys;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.xiumu.common.core.constants.XiuMuConst;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.result.ResultJSON;
 import com.xiumu.common.core.tree.XiuMuTreeUtil;
@@ -52,9 +53,9 @@ public class AuthorityController {
      * @return
      */
     @GetMapping("/authority")
-    public ResultJSON<List<Tree<String>>> list(AuthorityQuery authority) {
+    public ResultJSON<List<Tree<Long>>> list(AuthorityQuery authority) {
         List<Authority> authorityList = authorityService.listByAuthority(authority);
-        return ResultJSON.querySuccess(XiuMuTreeUtil.buildTree(authorityList,"0"));
+        return ResultJSON.querySuccess(XiuMuTreeUtil.buildTree(authorityList, XiuMuConst.ZERO_LONG));
     }
 
     /**

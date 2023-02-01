@@ -58,6 +58,6 @@ public class UserRoleAuthVO {
     /**
      * 菜单列表，树形结构
      */
-    private List<Tree<String>> menuList;
+    private List<Tree<Long>> menuList;
 
 }

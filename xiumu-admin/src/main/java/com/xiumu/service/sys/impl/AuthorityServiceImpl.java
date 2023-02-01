@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.constants.XiuMuConst;
 import com.xiumu.common.core.enums.YesNo;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.utils.AssertUtil;
@@ -63,7 +64,7 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
     public boolean create(AuthorityDTO authorityDTO) {
         Authority authority = BeanUtil.toBean(authorityDTO, Authority.class);
         // 判断只有菜单才可以添加子级权限
-        if (!authorityDTO.getParentId().equals("0")) {
+        if (!authorityDTO.getParentId().equals(XiuMuConst.ZERO_LONG)) {
             Authority parent = getById(authorityDTO.getParentId());
             AssertUtil.isTrue(parent.getAuthType() == AuthType.MENU, AuthException.NOT_IS_MENU);
         }
@@ -73,6 +74,7 @@ public class AuthorityServiceImpl extends ServiceImpl<AuthorityDao, Authority> i
             ValidatorUtils.validate(authorityDTO.getMenu());
             Menu menu = BeanUtil.toBean(authorityDTO.getMenu(), Menu.class);
             menu.setAuthCode(authority.getAuthCode());
+            menu.setWeight(authorityDTO.getWeight());
             menuService.save(menu);
         }
         return this.save(authority);

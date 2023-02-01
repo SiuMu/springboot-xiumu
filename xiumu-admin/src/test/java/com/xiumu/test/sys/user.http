@@ -1,0 +1,21 @@
+###  UserController 用户角色权限
+GET http://localhost:8080/user/user&role&auth
+Content-Type: application/json
+XiuMuToken: eed79682-7188-4b7b-b2f6-5d7f89051fb7
+
+### 查询 user
+GET http://localhost:8080/user
+XiuMuToken: eed79682-7188-4b7b-b2f6-5d7f89051fb7
+
+### 添加用户
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "username": "lym",
+  "password": "123456",
+  "nickName": "昵称"
+}
+
+### 删除 user
+DELETE http://localhost:8080/user/1620710485882060801

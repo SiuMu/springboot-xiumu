@@ -1,0 +1,45 @@
+### 查询 auth
+GET http://localhost:8080/authority
+XiuMuToken: b70cd878-1e2f-46a3-8b8e-57f24323f84f
+
+### 新增
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: b70cd878-1e2f-46a3-8b8e-57f24323f84f
+
+{
+  "parentId": "1620728144690466818",
+  "authCode": "sys:role:api:delete",
+  "authName": "角色删除接口",
+  "authDesc": "角色删除接口",
+  "authType": "2",
+  "weight": 1,
+  "menu": {
+    "parentId": "0",
+    "menuName": "角色管理",
+    "menuPath": "/sys/role",
+    "menuIcon": "auth",
+    "component": "/sys/role/index"
+  }
+}
+
+### 修改
+PUT http://localhost:8080/authority/1620732519005675521
+Content-Type: application/json
+XiuMuToken: b70cd878-1e2f-46a3-8b8e-57f24323f84f
+
+{
+  "parentId": "1620728144690466818",
+  "authCode": "sys:role:button:delete",
+  "authName": "角色删除按钮",
+  "authDesc": "角色删除按钮",
+  "authType": "2",
+  "weight": 1,
+  "menu": {
+    "parentId": "0",
+    "menuName": "角色管理",
+    "menuPath": "/sys/role",
+    "menuIcon": "auth",
+    "component": "/sys/role/index"
+  }
+}

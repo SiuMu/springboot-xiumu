@@ -40,7 +40,7 @@ public interface MenuService extends IService<Menu> {
      * @param authCodeList 权限集合
      * @return
      */
-    List<Tree<String>> listByAuthCodeList(List<String> authCodeList);
+    List<Tree<Long>> listByAuthCodeList(List<String> authCodeList);
 
     /**
      * 根据权限编码更新对应的菜单信息

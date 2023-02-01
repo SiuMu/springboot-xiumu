@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.xiumu.common.core.constants.XiuMuConst;
 import com.xiumu.common.core.page.PageQuery;
 import com.xiumu.common.core.tree.XiuMuTreeUtil;
 import com.xiumu.dao.sys.MenuDao;
@@ -36,9 +37,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao, Menu> implements MenuS
     }
 
     @Override
-    public List<Tree<String>> listByAuthCodeList(List<String> authCodeList) {
+    public List<Tree<Long>> listByAuthCodeList(List<String> authCodeList) {
         List<Menu> menuList = list(new LambdaQueryWrapper<Menu>().in(Menu::getAuthCode, authCodeList));
-        return XiuMuTreeUtil.buildTree(menuList, "0");
+        return XiuMuTreeUtil.buildTree(menuList, XiuMuConst.ZERO_LONG);
     }
 
     @Override

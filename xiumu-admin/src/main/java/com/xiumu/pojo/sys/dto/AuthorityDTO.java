@@ -18,7 +18,7 @@ public class AuthorityDTO {
      * 父级ID
      */
     @NotBlank(message = "父级权限不能为空")
-    private String parentId;
+    private Long parentId;
     /**
      * 权限编码
      * 权限验证的时候会进行正则匹配，避免出现 * 等一些特殊字符

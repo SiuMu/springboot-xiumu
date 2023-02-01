@@ -1,6 +1,7 @@
 package com.xiumu.common.core.result;
 
 import com.xiumu.common.core.enums.RequestOperateType;
+import com.xiumu.common.core.exception.base.IBaseException;
 import lombok.Data;
 
 /**
@@ -117,7 +118,13 @@ public class ResultJSON<T> {
      * @param result 返回结果
      */
     public static <T> ResultJSON<T> success(T result, RequestOperateType operateType) {
-        return new ResultJSON<>(200, "请求成功", result, operateType);
+        String msg = "请求成功";
+        if (operateType == RequestOperateType.LOGIN){
+            msg = "登录成功";
+        }else if (operateType == RequestOperateType.LOGOUT){
+            msg = "退出成功";
+        }
+        return new ResultJSON<>(200, msg, result, operateType);
     }
 
     /**
@@ -125,6 +132,13 @@ public class ResultJSON<T> {
      */
     public static ResultJSON<Boolean> failure(Integer code, String msg) {
         return new ResultJSON<>(code, msg, false, RequestOperateType.QUERY);
+    }
+
+    /**
+     * 请求失败
+     */
+    public static ResultJSON<Boolean> failure(IBaseException exception) {
+        return new ResultJSON<>(exception.getCode(), exception.getMessage(), false, RequestOperateType.QUERY);
     }
 
 }

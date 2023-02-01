@@ -40,16 +40,16 @@ public class XiuMuTreeUtil extends TreeUtil {
      * @param parentId   最顶层父节点ID
      * @return
      */
-    public static List<Tree<String>> buildTree(List<?> objectList, String parentId) {
-        List<TreeNode<String>> nodeList = CollUtil.newArrayList();
+    public static List<Tree<Long>> buildTree(List<?> objectList, Long parentId) {
+        List<TreeNode<Long>> nodeList = CollUtil.newArrayList();
 
         // 将对象转化成树节点
         for (Object obj : objectList) {
             Map<String, Object> bean = BeanUtil.beanToMap(obj);
-            final String id = Convert.toStr(bean.get(ID_KEY));
-            final String objParentId = Convert.toStr(bean.get(PARENT_ID_KEY));
+            final Long id = Convert.toLong(bean.get(ID_KEY));
+            final Long objParentId = Convert.toLong(bean.get(PARENT_ID_KEY));
             final Long weight = Convert.toLong(bean.get(WEIGHT_KEY));
-            nodeList.add(new TreeNode<String>(id, objParentId, "", weight).setExtra(bean));
+            nodeList.add(new TreeNode<Long>(id, objParentId, "", weight).setExtra(bean));
         }
 
         // 还原配置

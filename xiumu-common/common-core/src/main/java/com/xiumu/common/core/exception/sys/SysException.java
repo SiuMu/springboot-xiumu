@@ -17,7 +17,10 @@ public enum SysException implements IBaseException {
     PARAM_ERROR(101, "参数校验异常"),
     NOT_LOGIN(300, "未登录！请先登录"),
     NOT_AUTHORITY(400, "没有相关权限！！"),
-    SERVE_FAIL(500, "服务器繁忙! 请稍后再试！");
+    INVALID_HTTP_METHOD(450, "错误的 http 请求方式"),
+    SERVE_FAIL(500, "服务器繁忙! 请稍后再试！"),
+    REPEAT_ITEM(600, "该项重复，请勿重复添加")
+    ;
 
     private final Integer code;
 

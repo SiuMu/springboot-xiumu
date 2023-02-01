@@ -1,5 +1,7 @@
 package com.xiumu.pojo.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.xiumu.common.core.entity.BaseEntity;
 import lombok.Data;
@@ -16,19 +18,25 @@ public class Menu extends BaseEntity {
     /**
      * 父级菜单 ID
      */
-    private String parentId;
+    private Long parentId;
     /**
      * 菜单名称
      */
     private String menuName;
     /**
      * 权限编码
+     * 编码不可更改
      */
+    @TableField(updateStrategy = FieldStrategy.NEVER)
     private String authCode;
     /**
      * 前端 path 路径
      */
     private String menuPath;
+    /**
+     * 前端路由组件路径
+     */
+    private String component;
     /**
      * 菜单图标
      */
