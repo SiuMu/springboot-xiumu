@@ -1,6 +1,7 @@
 package com.xiumu.service.sys.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.tree.Tree;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
@@ -38,6 +39,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuDao, Menu> implements MenuS
 
     @Override
     public List<Tree<Long>> listByAuthCodeList(List<String> authCodeList) {
+        if (CollUtil.isEmpty(authCodeList)){
+            return null;
+        }
         List<Menu> menuList = list(new LambdaQueryWrapper<Menu>().in(Menu::getAuthCode, authCodeList));
         return XiuMuTreeUtil.buildTree(menuList, XiuMuConst.ZERO_LONG);
     }

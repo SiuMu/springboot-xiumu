@@ -1,96 +1,14 @@
-###  TokenController 登录
-GET http://localhost:8080/token?username=xiumu&password=123456
+###  TokenController 登录接口
+GET {{host}}/token?username=xiumu&password=123456
 Accept: application/json
 
+
 ###  TokenController 退出登录
-GET http://localhost:8080/logout
+GET {{host}}/logout
 Content-Type: application/json
-XiuMuToken: 87d357a7-b609-42e3-959e-65433bd3acb2
-
-###  UserController 分页
-POST http://localhost:8080/page/user
-Content-Type: application/json
-XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
-
-{
-  "condition": {
-    "username": "xiumu"
-  }
-}
-
-###  UserController 查询全部
-GET http://localhost:8080/user?username=xiumu
-Content-Type: application/json
-XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
-
-###  UserController 通过 ID 查询
-GET http://localhost:8080/user/92193617981
-Content-Type: application/json
-XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
-
-###  UserController 查询该用户的 role
-GET http://localhost:8080/user/92193617981/role
-Content-Type: application/json
-XiuMuToken: 7dacecb3-ecd8-4ae7-bed4-752f5e89e388
-
-###  UserController 查询该用户的 user&role&auth
-GET http://localhost:8080/user/user&role&auth
-Content-Type: application/json
-XiuMuToken: 7dacecb3-ecd8-4ae7-bed4-752f5e89e388
-
-###  RoleController 接口测试
-GET http://localhost:8080/role/12345678/auth
-Content-Type: application/json
-XiuMuToken: 87d357a7-b609-42e3-959e-65433bd3acb2
+XiuMuToken: 3e1f1c84-7f98-41b8-8cf2-9619cf6bfe49
 
 
-###  RoleController 接口测试
-GET http://localhost:8080/user/92193617981/role
-Content-Type: application/json
-XiuMuToken: b0b59a60-1613-4eb4-ba36-548226d90de9
-
-
-###  AuthorityController 查询全部
-GET http://localhost:8080/authority
-XiuMuToken: 661aa45d-ca05-45c8-baa4-2f8648c485bd
-
-### AuthorityController 新增
-POST http://localhost:8080/authority
-Content-Type: application/json
-XiuMuToken: f704dbc2-2f76-4f0e-96bb-859a070525a8
-
-{
-  "parentId": "0",
-  "authCode": "sys:authority:api:update",
-  "authName": "测试正则",
-  "authDesc": "测试正则",
-  "authType": 2,
-  "menu": {
-    "authCode": "sys:*:*",
-    "menuPath": "/home",
-    "parentId": "0",
-    "menuName": "测试一下"
-  }
-}
-
-### AuthorityController 修改
-PUT http://localhost:8080/authority/1615622205381664769
-Content-Type: application/json
-XiuMuToken: f704dbc2-2f76-4f0e-96bb-859a070525a8
-
-{
-  "parentId": "0",
-  "authCode": "sys:*:*",
-  "authName": "测试1",
-  "authDesc": "测试1",
-  "authType": 0,
-  "menu": {
-    "authCode": "sys:*:*",
-    "menuPath": "/home",
-    "parentId": "1",
-    "menuName": "测试一下"
-  }
-}
 
 
 

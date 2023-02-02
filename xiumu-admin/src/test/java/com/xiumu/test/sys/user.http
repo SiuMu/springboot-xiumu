@@ -1,14 +1,14 @@
 ###  UserController 用户角色权限
-GET http://localhost:8080/user/user&role&auth
+GET {{host}}/user/user&role&auth
 Content-Type: application/json
-XiuMuToken: eed79682-7188-4b7b-b2f6-5d7f89051fb7
+XiuMuToken: {{token}}
 
 ### 查询 user
-GET http://localhost:8080/user
-XiuMuToken: eed79682-7188-4b7b-b2f6-5d7f89051fb7
+GET {{host}}/user
+XiuMuToken: {{token}}
 
 ### 添加用户
-POST http://localhost:8080/user
+POST {{host}}/user
 Content-Type: application/json
 
 {
@@ -16,6 +16,15 @@ Content-Type: application/json
   "password": "123456",
   "nickName": "昵称"
 }
+
+### 设置角色
+PUT {{host}}/user/19971029/role
+Content-Type: application/json
+XiuMuToken: {{token}}
+
+["1620733847266254849"]
+
+###
 
 ### 删除 user
 DELETE http://localhost:8080/user/1620710485882060801

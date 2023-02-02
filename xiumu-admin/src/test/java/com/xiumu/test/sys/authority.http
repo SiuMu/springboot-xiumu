@@ -1,11 +1,11 @@
 ### 查询 auth
 GET http://localhost:8080/authority
-XiuMuToken: b70cd878-1e2f-46a3-8b8e-57f24323f84f
+XiuMuToken: {{token}}
 
 ### 新增
 POST http://localhost:8080/authority
 Content-Type: application/json
-XiuMuToken: b70cd878-1e2f-46a3-8b8e-57f24323f84f
+XiuMuToken: {{token}}
 
 {
   "parentId": "1620728144690466818",
@@ -26,7 +26,7 @@ XiuMuToken: b70cd878-1e2f-46a3-8b8e-57f24323f84f
 ### 修改
 PUT http://localhost:8080/authority/1620732519005675521
 Content-Type: application/json
-XiuMuToken: b70cd878-1e2f-46a3-8b8e-57f24323f84f
+XiuMuToken: {{token}}
 
 {
   "parentId": "1620728144690466818",
