@@ -1,0 +1,879 @@
+GET http://localhost:8080/user
+XiuMuToken: c594b701-a45d-4369-9f43-0775c7e65b6d
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c594b701-a45d-4369-9f43-0775c7e65b6d
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-02-02T103803.200.json
+
+###
+
+GET http://localhost:8080/user/user&role&auth
+Content-Type: application/json
+XiuMuToken: c594b701-a45d-4369-9f43-0775c7e65b6d
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c594b701-a45d-4369-9f43-0775c7e65b6d
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-02-02T103758.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=7dacecb3-ecd8-4ae7-bed4-752f5e89e388
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-02-02T103732.200.json
+
+###
+
+GET http://localhost:8080/user/user&role&auth&menu
+Content-Type: application/json
+XiuMuToken: 7dacecb3-ecd8-4ae7-bed4-752f5e89e388
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=7dacecb3-ecd8-4ae7-bed4-752f5e89e388
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T180033.200.json
+
+###
+
+GET http://localhost:8080/user/92193617981/role
+Content-Type: application/json
+XiuMuToken: 7dacecb3-ecd8-4ae7-bed4-752f5e89e388
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=7dacecb3-ecd8-4ae7-bed4-752f5e89e388
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T175926.200.json
+
+###
+
+GET http://localhost:8080/user/92193617981/role
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=7dacecb3-ecd8-4ae7-bed4-752f5e89e388
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T175916.200.json
+
+###
+
+GET http://localhost:8080/user/user&role&auth
+Content-Type: application/json
+XiuMuToken: 7dacecb3-ecd8-4ae7-bed4-752f5e89e388
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=7dacecb3-ecd8-4ae7-bed4-752f5e89e388
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T175819.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=f704dbc2-2f76-4f0e-96bb-859a070525a8
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T175758.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: f704dbc2-2f76-4f0e-96bb-859a070525a8
+Content-Length: 261
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=f704dbc2-2f76-4f0e-96bb-859a070525a8
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:authority:api:update",
+  "authName": "测试正则",
+  "authDesc": "测试正则",
+  "authType": 2,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T171750.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: f704dbc2-2f76-4f0e-96bb-859a070525a8
+Content-Length: 263
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=f704dbc2-2f76-4f0e-96bb-859a070525a8
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:authority:api:update:*",
+  "authName": "测试正则",
+  "authDesc": "测试正则",
+  "authType": 2,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T171735.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: f704dbc2-2f76-4f0e-96bb-859a070525a8
+Content-Length: 266
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=f704dbc2-2f76-4f0e-96bb-859a070525a8
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:authority:api:update123:*",
+  "authName": "测试正则",
+  "authDesc": "测试正则",
+  "authType": 2,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T171725.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=05d227e8-2bbe-45b2-a5df-5923d05e3e9f
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T171711.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 5fc502a5-82e9-4240-90a2-59aa42e8adbf
+Content-Length: 266
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=05d227e8-2bbe-45b2-a5df-5923d05e3e9f
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:authority:api:update123:*",
+  "authName": "测试正则",
+  "authDesc": "测试正则",
+  "authType": 2,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T171707.200.json
+
+###
+
+PUT http://localhost:8080/authority/1615622205381664769
+Content-Type: application/json
+XiuMuToken: 05d227e8-2bbe-45b2-a5df-5923d05e3e9f
+Content-Length: 234
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=05d227e8-2bbe-45b2-a5df-5923d05e3e9f
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试1",
+  "authDesc": "测试1",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "1",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T165451.200.json
+
+###
+
+PUT http://localhost:8080/authority/1615622205381664769
+Content-Type: application/json
+XiuMuToken: 05d227e8-2bbe-45b2-a5df-5923d05e3e9f
+Content-Length: 234
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=05d227e8-2bbe-45b2-a5df-5923d05e3e9f
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试1",
+  "authDesc": "测试1",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "1",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T165406.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=d6c20834-6f0e-478a-ac10-ae120ce95991
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T165352.200.json
+
+###
+
+PUT http://localhost:8080/authority/1615622205381664769
+Content-Type: application/json
+XiuMuToken: d6c20834-6f0e-478a-ac10-ae120ce95991
+Content-Length: 234
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=d6c20834-6f0e-478a-ac10-ae120ce95991
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试1",
+  "authDesc": "测试1",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "1",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T165004.200.json
+
+###
+
+PUT http://localhost:8080/authority/1615622205381664769
+Content-Type: application/json
+XiuMuToken: d6c20834-6f0e-478a-ac10-ae120ce95991
+Content-Length: 232
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=d6c20834-6f0e-478a-ac10-ae120ce95991
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T164900.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=5fc502a5-82e9-4240-90a2-59aa42e8adbf
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T164848.200.json
+
+###
+
+PUT http://localhost:8080/authority/1615622205381664769
+Content-Type: application/json
+XiuMuToken: 5fc502a5-82e9-4240-90a2-59aa42e8adbf
+Content-Length: 232
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=5fc502a5-82e9-4240-90a2-59aa42e8adbf
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T164841.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 5fc502a5-82e9-4240-90a2-59aa42e8adbf
+Content-Length: 232
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=5fc502a5-82e9-4240-90a2-59aa42e8adbf
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T162945.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=18398c4a-7113-4c70-8145-96f1e364d82e
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T162932.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 18398c4a-7113-4c70-8145-96f1e364d82e
+Content-Length: 232
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=18398c4a-7113-4c70-8145-96f1e364d82e
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T162459.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T162448.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 232
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0",
+    "menuName": "测试一下"
+  }
+}
+
+<> 2023-01-18T160845.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 200
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home",
+    "parentId": "0"
+  }
+}
+
+<> 2023-01-18T160823.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 179
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "menuPath": "/home"
+  }
+}
+
+<> 2023-01-18T160802.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 175
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*",
+    "path": "/home"
+  }
+}
+
+<> 2023-01-18T160750.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 154
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+    "authCode": "sys:*:*"
+  }
+}
+
+<> 2023-01-18T160704.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 128
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": {
+  }
+}
+
+<> 2023-01-18T160635.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 125
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0,
+  "menu": ""
+}
+
+<> 2023-01-18T160448.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 111
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "parentId": "0",
+  "authCode": "sys:*:*",
+  "authName": "测试",
+  "authDesc": "测试",
+  "authType": 0
+}
+
+<> 2023-01-18T160428.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+}
+
+<> 2023-01-18T160314.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 6017436d-0e15-4116-bddc-428e15070cd3
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=6017436d-0e15-4116-bddc-428e15070cd3
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T160300.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=661aa45d-ca05-45c8-baa4-2f8648c485bd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T160251.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 661aa45d-ca05-45c8-baa4-2f8648c485bd
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=661aa45d-ca05-45c8-baa4-2f8648c485bd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T160247.200.json
+
+###
+
+POST http://localhost:8080/authority
+Content-Type: application/json
+XiuMuToken: 661aa45d-ca05-45c8-baa4-2f8648c485bd
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=661aa45d-ca05-45c8-baa4-2f8648c485bd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T160041.200.json
+
+###
+
+GET http://localhost:8080/authority
+XiuMuToken: 661aa45d-ca05-45c8-baa4-2f8648c485bd
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=661aa45d-ca05-45c8-baa4-2f8648c485bd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T155946.200.json
+
+###
+
+GET http://localhost:8080/token?username=xiumu&password=123456
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T155925.200.json
+
+###
+
+GET http://localhost:8080/authority
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T155917.200.json
+
+###
+
+GET http://localhost:8080/user/user&role&auth
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T115214.200.json
+
+###
+
+GET http://localhost:8080/user/92193617981/role
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T115052.200.json
+
+###
+
+GET http://localhost:8080/user/92193617981
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T114934.200.json
+
+###
+
+GET http://localhost:8080/user?username=xiumu
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T114750.200.json
+
+###
+
+GET http://localhost:8080/user
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Content-Length: 25
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "xiumu"
+}
+
+<> 2023-01-18T114637.200.json
+
+###
+
+GET http://localhost:8080/user
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T114619.200.json
+
+###
+
+GET http://localhost:8080/user
+Content-Type: application/json
+XiuMuToken: aad51560-8942-4c00-a845-e738d72239f8
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-01-18T114607.200.json
+
+###
+
+POST http://localhost:8080/page/user
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Content-Length: 48
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "condition": {
+    "username": "xiumu"
+  }
+}
+
+<> 2023-01-18T114545.200.json
+
+###
+
+POST http://localhost:8080/page/user
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+}
+
+<> 2023-01-18T114349.200.json
+
+###
+
+POST http://localhost:8080/page/user
+Content-Type: application/json
+XiuMuToken: c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.5)
+Cookie: XiuMuToken=c24dedbc-dbb5-4004-bcda-65a66fab95dd
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+}
+
+<> 2023-01-18T114149.200.json
+
+###
+
