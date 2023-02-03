@@ -28,6 +28,7 @@ public class MenuDTO {
     /**
      * 菜单标题
      */
+    @NotBlank(message = "菜单标题不能为空")
     private String menuTitle;
     /**
      * 前端 path 路径
