@@ -24,6 +24,10 @@ public class Menu extends BaseEntity {
      */
     private String menuName;
     /**
+     * 菜单标题
+     */
+    private String menuTitle;
+    /**
      * 权限编码
      * 编码不可更改
      */

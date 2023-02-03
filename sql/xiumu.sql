@@ -61,8 +61,10 @@ CREATE TABLE `sys_menu` (
   `id` bigint(20) NOT NULL COMMENT '主键ID',
   `parent_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '父级菜单ID',
   `menu_name` varchar(64) NOT NULL COMMENT '菜单名称',
+  `menu_title` varchar(32) DEFAULT NULL COMMENT '菜单标题',
   `auth_code` varchar(64) NOT NULL COMMENT '权限编码',
   `menu_path` varchar(128) NOT NULL COMMENT '前端path路径',
+  `component` varchar(128) NOT NULL COMMENT '前端路由组件路径',
   `menu_icon` varchar(32) DEFAULT NULL COMMENT '菜单图标',
   `weight` smallint(6) DEFAULT '1' COMMENT '排序值',
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -70,9 +72,9 @@ CREATE TABLE `sys_menu` (
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `update_by` varchar(32) DEFAULT NULL COMMENT '更新人',
   `delete_flag` tinyint(4) DEFAULT '0' COMMENT '删除标记，0未删除，1已删除',
-  `component` varchar(128) NOT NULL COMMENT '前端路由组件路径',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `sys_menu_auth_code_uindex` (`auth_code`)
+  UNIQUE KEY `sys_menu_auth_code_uindex` (`auth_code`),
+  UNIQUE KEY `sys_menu_menu_name_uindex` (`menu_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='菜单表，菜单与权限是一对一的关系';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,7 +84,7 @@ CREATE TABLE `sys_menu` (
 
 LOCK TABLES `sys_menu` WRITE;
 /*!40000 ALTER TABLE `sys_menu` DISABLE KEYS */;
-INSERT INTO `sys_menu` VALUES (1615622205373276162,1,'测试一下','sys:*:*','/home',NULL,1,'2023-01-18 16:08:45',NULL,'2023-01-18 16:50:04','92193617981',0,'');
+INSERT INTO `sys_menu` VALUES (1615622205373276162,1,'测试一下',NULL,'sys:*:*','/home','',NULL,1,'2023-01-18 16:08:45',NULL,'2023-01-18 16:50:04','92193617981',0);
 /*!40000 ALTER TABLE `sys_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-02-02 10:35:45
+-- Dump completed on 2023-02-03 17:20:44

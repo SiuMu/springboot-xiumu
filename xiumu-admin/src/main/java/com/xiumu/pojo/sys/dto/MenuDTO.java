@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * 菜单 对象 DTO
@@ -21,9 +22,13 @@ public class MenuDTO {
     /**
      * 菜单名称
      */
+    @Pattern(regexp = "^[A-Za-z]+", message = "菜单名称只允许输入英文字母")
     @NotBlank(message = "菜单名称不能为空")
     private String menuName;
-
+    /**
+     * 菜单标题
+     */
+    private String menuTitle;
     /**
      * 前端 path 路径
      */

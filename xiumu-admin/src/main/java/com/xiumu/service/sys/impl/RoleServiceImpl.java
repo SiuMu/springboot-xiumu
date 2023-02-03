@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -97,16 +96,10 @@ public class RoleServiceImpl extends ServiceImpl<RoleDao, Role> implements RoleS
         AssertUtil.isNotNull(role, RoleException.NOT_EXIT);
         AssertUtil.isTrue(CollectionUtil.isNotEmpty(authIdList), RoleException.EMPTY_AUTH);
         List<RoleAuth> roleAuthList = roleAuthService.listByRoleId(id);
-        // 保留重复的，增加新增的
-        List<Long> deleteIdList = new ArrayList<>();
-        roleAuthList.forEach(roleAuth -> {
-            if (authIdList.contains(roleAuth.getAuthId().toString())){
-                // 重复的
-                authIdList.remove(roleAuth.getAuthId().toString());
-            }else {
-                deleteIdList.add(roleAuth.getAuthId());
-            }
-        });
+        // 过滤出需要删除的权限
+        List<Long> deleteIdList = roleAuthList.stream().filter(roleAuth -> !authIdList.contains(roleAuth.getAuthId())).map(RoleAuth::getId).collect(Collectors.toList());
+        // 过滤出需要新增的权限
+        authIdList.removeIf(authId -> roleAuthList.stream().anyMatch(roleAuth -> roleAuth.getAuthId().equals(authId)));
         List<RoleAuth> addList = authIdList.stream().map(auth -> new RoleAuth(id, auth)).collect(Collectors.toList());
         roleAuthService.removeBatchByIds(deleteIdList);
         return roleAuthService.saveBatch(addList);
